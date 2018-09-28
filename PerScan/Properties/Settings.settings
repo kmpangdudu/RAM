@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PerScan.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="default_path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Users\erjun\Documents\Test\RAM\</Value>
+    </Setting>
+    <Setting Name="default_File" Type="System.String" Scope="User">
+      <Value Profile="(Default)">www</Value>
+    </Setting>
+    <Setting Name="errorletter" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="delimiter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">|</Value>
+    </Setting>
+    <Setting Name="default_Col" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">183</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

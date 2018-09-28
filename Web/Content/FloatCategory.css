@@ -1,0 +1,61 @@
+﻿
+   #wrapper { position: relative; }
+   #over_map {
+            padding-bottom:15px ;
+              font-size:7pt;
+              color:#666666; 
+              position: absolute; 
+              top: 50px; 
+              left: 7px; 
+              z-index: 99; 
+              /*border :solid 1px #666666;
+              border-radius:5px;
+              box-shadow: 5px -5px  10px #555555; 
+              background:rgba(255,255,255,0.7);*/ 
+
+   }
+   #myChoice {
+       padding: 1px 20px 10px 20px;  
+   }
+    #filterTitle {
+        padding:10px 10px 0px 0px; 
+        font-size :11pt;color:#333333;
+}
+    #hand{
+        padding-left:2px;
+    }
+
+ 
+
+    .b2bfiltertext
+    {
+        font-size:9pt!important;
+        padding:0 0 3px 3px;
+    }
+
+
+    #cbl > tbody > tr > td
+{
+    text-align :left;
+    width :5%;
+}
+
+
+#myChoice>#cbl>tbody>tr>td>input{
+    margin-left :5px;
+ 
+}
+
+    
+   
+.floatCategory{
+    position:fixed;
+    top:180px!important;
+    right:10px;
+    z-index:1;
+    /*width:200px;*/
+    }
+
+    #ContentPlaceHolder1_UCCategory_floatCategory{
+
+    }

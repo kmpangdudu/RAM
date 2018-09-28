@@ -1,0 +1,1641 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:WebApi.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.Controllers.HelpController">
+             <summary>
+             The controller that will handle requests for the help page.
+             </summary>
+            [FilterIP(
+                 ConfigurationKeyAllowedSingleIPs = "AllowedAdminSingleIPs",
+                 ConfigurationKeyAllowedMaskedIPs = "AllowedAdminMaskedIPs",
+                 ConfigurationKeyDeniedSingleIPs = "DeniedAdminSingleIPs",
+                 ConfigurationKeyDeniedMaskedIPs = "DeniedAdminMaskedIPs"
+            )]
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,WebApi.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:WebApi.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:WebApi.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:WebApi.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebApi.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:WebApi.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:WebApi.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:WebApi.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:WebApi.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebApi.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:WebApi.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,WebApi.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,WebApi.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:WebApi.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:WebApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:WebApi.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(WebApi.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:WebApi.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:WebApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},WebApi.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:WebApi.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:WebApi.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageSampleKey.#ctor(WebApi.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:WebApi.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:WebApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:WebApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,WebApi.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:WebApi.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:WebApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:WebApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:WebApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:WebApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebApi.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:WebApi.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:WebApi.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebApi.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:WebApi.Controllers.CityController">
+            <summary>
+            Get all information about city
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.CityController.GetAllCitis(System.String)">
+            <summary>
+            Get all allowing cities 
+            </summary>
+            <param name="token">Access token</param>
+            <returns>return an allowing city list, [CityID], [City Name] and [Provincial Alias], fromat in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CityController.GetAllCitis_QS(System.String)">
+            <summary>
+            Query String get all allowing cities 
+            </summary>
+            <param name="token">Access token</param>
+            <returns>return an allowing city list, [CityID], [City Name] and [Provincial Alias], fromat in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CityController.GetAllCitis_XML(System.String)">
+            <summary>
+            Get all allowing cities 
+            </summary>
+            <param name="token">Access token</param>
+            <returns>return an allowing city list, [City ID], [City Name] and [provincial Alias], format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CityController.GetAllCitis_XML_QS(System.String)">
+            <summary>
+            Get all allowing cities 
+            </summary>
+            <param name="token">Access token</param>
+            <returns>return an allowing city list, [City ID], [City Name] and [provincial Alias], format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CityController.GetCityByProvince(System.Int32,System.String)">
+            <summary>
+            looks up allowing provincial cities list by their provinceID
+            </summary>
+            <param name="pid">Province ID. Alerta = 1, BC = 2,..., Ontario = 9, ....</param>
+            <param name="token">Access token</param>
+            <returns>return all allowing cities in this province, [cityID], [city Name], and [Provincial Alias], format in json</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CityController.GetCityByProvince_QS(System.Int32,System.String)">
+            <summary>
+            using querystring style to look up provincial city list by their provinceID.
+            </summary>
+            <param name="pid">Province ID. Alerta = 1, BC = 2,..., Ontario = 9, ....</param>
+            <param name="token">Access token</param>
+            <returns>return all allowing cities in this province, [cityID], [City Name] and [Provincial Alias], format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CityController.GetCityByProvince_XML(System.Int32,System.String)">
+            <summary>
+            Looks up allowing provincial city list by their provinceID
+            </summary>
+            <param name="pid">Province ID. Alerta = 1, BC = 2,..., Ontario = 9, ....</param>
+            <param name="token">Access token</param>
+            <returns>return all allowing cities in this province, [cityID], [Provincial Alias], format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CityController.GetCityByProvince_XML_QS(System.Int32,System.String)">
+            <summary>
+            using QueryString style to look up all cities by their provinceID.
+            </summary>
+            <param name="pid">Province ID. Alerta = 1, BC = 2,..., Ontario = 9, ....</param>
+            <param name="token">Access token</param>
+            <returns>return an allowing city list in this province, [cityID], [Provincial Alias],  format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CityController.GetCityByCid(System.Int32,System.String)">
+            <summary>
+            Looks up single allowing city's information in detail by using cityID 
+            </summary>
+            <param name="cid">City ID. </param>
+            <param name="token">access token</param>
+            <returns>return the city's information in detail, [city name], [provincial alias], [latitude] and [longgitude], formation in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CityController.GetCityByCid_QS(System.Int32,System.String)">
+            <summary>
+            using querystring style to get allowing city's detail information by using cityID
+            </summary>
+            <param name="cid">City ID. </param>
+            <returns>return the city's information in detail, [city name], [provincial alias], [latitude] and [longgitude], formation in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CityController.GetCityByCid_XML(System.Int32,System.String)">
+            <summary>
+            Get the allowing city's detail information by using cityID
+            </summary>
+            <param name="cid">City ID</param>
+            <param name="token">Access token</param>
+            <returns>return the city's information in detail, [city name], [provincial alias], [latitude] and [longgitude], formation in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CityController.GetCityByCid_XML_QS(System.Int32,System.String)">
+            <summary>
+            using querystring style to get the city's detail information by using cityID
+            </summary>
+            <param name="cid">City ID</param>
+            <param name="token">Access token</param>
+            <returns>return the city's information in detail, [city name], [provincial alias], [latitude] and [longgitude], formation in XML</returns>
+        </member>
+        <member name="T:WebApi.Controllers.EmailController">
+            <summary>
+            Sending user selected favourites resources list to a email account.
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.EmailController.Send(BIZ.EmailMe.email)">
+            <summary>
+            Sending user selected favourites resources from KHP's public SMTP. the email receiver should do email account format validation before sending
+            </summary>
+            <param name="_email">user's email account and his favourites resources list. Using "，" (comma) to separate each receivers if you have multiple receivers.
+            JSON format. 
+            {"lang":"en","receiver":"user1@example.com; user2@example.com;", "body":"my favourites resources list:<br/> 1. Kids help phone; 2. Ontario Mental Health services."}</param>
+            <returns>successful sent return "OK", otherwise will say "Failed" </returns>
+        </member>
+        <member name="M:WebApi.Controllers.EmailController.Gsender(BIZ.EmailMe.email)">
+            <summary>
+            Test sending email by using Gmail public SMTP. the email receiver should do email account format validation before sending
+            </summary>
+            <param name="_email">user's email account and his favourites resources list. Using ", " (comma) to separate each receivers if you have multiple receivers.
+            JSON format. 
+            {"receiver":"user1@example.com; user2@example.com;", "body":"my favourites resources list:<br/> 1. Kids help phone; 2. Ontario Mental Health services."}</param>
+            <returns>successful sent return "OK", otherwise will say "Failed" </returns>
+        </member>
+        <member name="T:WebApi.Controllers.TestController">
+            <summary>
+            provide a sample for testing 
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.TestController.Demo(System.String,System.String)">
+            <summary>
+            Testing to get a JSON list.
+            </summary>
+            <param name="lang">language. English = "en", French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>return a json list fro testing</returns>
+        </member>
+        <member name="M:WebApi.Controllers.TestController.Demo_QS(System.String,System.String)">
+            <summary>
+            Query String Style. testing to get a JSON list.
+            </summary>
+            <param name="lang">language. English = "en", French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>return a json list fro testing</returns>
+        </member>
+        <member name="M:WebApi.Controllers.TestController.DemoX(System.String,System.String)">
+            <summary>
+            Testing to get a XML list.
+            </summary>
+            <param name="lang">language. English = "en", French = "fr"</param>
+            <returns>return a XML list for testing</returns>
+        </member>
+        <member name="M:WebApi.Controllers.TestController.DemoX_QS(System.String,System.String)">
+            <summary>
+            Query String style. Testing to get a XML list.
+            </summary>
+            <param name="lang">language. English = "en", French = "fr"</param>
+            <returns>return a XML list for testing</returns>
+        </member>
+        <member name="T:WebApi.Controllers.ProvinceController">
+            <summary>
+            Get provincial information
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.ProvinceController.GetAllProvince(System.String,System.String)">
+            <summary>
+            Get province list by language
+            </summary>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return a province list, [ProvinceID], [Province], [Province ALias],format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ProvinceController.GetAllProvince_QS(System.String,System.String)">
+            <summary>
+            Query String style, Get province list by language
+            </summary>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return a province list, [ProvinceID], [Province], [Province ALias],format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ProvinceController.GetAllProvinces_XML(System.String,System.String)">
+            <summary>
+            Get province list by language
+            </summary>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return a province list, [ProvinceID], [Province], [Province ALias],format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ProvinceController.GetAllProvinces_XML_QS(System.String,System.String)">
+            <summary>
+            Query String Style, Get province list by language
+            </summary>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <returns>Return a province list, [ProvinceID], [Province], [Province ALias],format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ProvinceController.GetProvincesByID(System.String,System.Int32,System.String)">
+            <summary>
+            Get province by his ID and language
+            </summary>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="pid">provincial ID. AB = 1, BC = 2, .... , On = 9,.....</param>
+            <param name="token">Access token</param>
+            <returns>Return a province infor, [ProvinceID], [Province], [Province ALias], format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ProvinceController.GetProvincesByID_QS(System.String,System.Int32,System.String)">
+            <summary>
+            Query String style, Get province by his ID and language
+            </summary>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="pid">provincial ID. AB = 1, BC = 2, .... , On = 9,.....</param>
+            <param name="token"> Access token</param>
+            <returns>Return a province infor, [ProvinceID], [Province], [Province ALias], format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ProvinceController.GetAllProvincesByID_XML(System.String,System.Int32,System.String)">
+            <summary>
+            Get province by his ID and language
+            </summary>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="pid">provincial ID. AB = 1, BC = 2, .... , On = 9,.....</param>
+            <param name="token">Access token</param>
+            <returns>Return a province infor, [ProvinceID], [Province], [Province ALias], format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ProvinceController.GetAllProvincesByID_XML_QS(System.String,System.Int32,System.String)">
+            <summary>
+            Query String style, Get province by his ID and language
+            </summary>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="pid">provincial ID. AB = 1, BC = 2, .... , On = 9,.....</param>
+            <returns>Return a province infor, [ProvinceID], [Province], [Province ALias], format in XML</returns>
+        </member>
+        <member name="T:WebApi.Controllers.ResourceController">
+            <summary>
+            Get Resource information by using its ID, location, interest keyword(s), city, province, category etc.
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByLang(System.String,System.String)">
+            <summary>
+            Get all allowing resource list by language.
+            </summary>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return JSON format resource list, filter by language</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByLang_QS(System.String,System.String)">
+            <summary>
+            Query string style getting allowing resource list by language.
+            </summary>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return JSON format resource list, filter by language</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByLang_XML(System.String,System.String)">
+            <summary>
+            Get all allowing resource list by language.
+            </summary>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return XML format resource list, filter by language</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByLang_XML_QS(System.String,System.String)">
+            <summary>
+            Query String style getting all allowing resource list by language.
+            </summary>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return XML format resource list, filter by language</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResources(System.String)">
+            <summary>
+            Get allowing resource list return in JSON fromat
+            </summary>
+            <param name="token">Access token</param>
+            <returns>Return resource list format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResources_QS(System.String)">
+            <summary>
+            Query string style getting allowing resource list return in JSON format.
+            </summary>
+            <param name="token">Access token</param>
+            <returns>Return JSON format resource list</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResources_xml(System.String)">
+            <summary>
+            Get allowing resource list return in XML style.
+            </summary>
+            <param name="token">Access token</param>
+            <returns>Return allowing resource list format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResources_XML_QS(System.String)">
+            <summary>
+            Query String style getting all allowing resource list.
+            </summary>
+            <param name="token">Access token</param>
+            <returns>Return XML format allowing resource list</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetResourcesByID(System.String,System.Int32,System.String)">
+            <summary>
+             Get specific allowing resource by its id, filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="rid">resource id</param>
+            <param name="token">Access token</param>
+            <returns>return a JSON format specific resource's detail information</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetResourcesByID_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String style getting allowing specific resource by its id, filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="rid">resource id</param>
+            <param name="token">Access token</param>
+            <returns>return a JSON format specific resource's detail information</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GGetResourcesByID_XML(System.String,System.Int32,System.String)">
+            <summary>
+             Get allowing specific resource by its id, filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="rid">resource id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format specific resource's detail information</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetResourcesByID_XML_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String style getting allowing specific resource by its id, filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="rid">resource id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format specific resource's detail information</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetUniqueResources(System.String,System.String,System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+             For email favour list to user, it will track user selected resource for a period of time. get specific resource by language, map, resource agency number, SubCategory id, top category id 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="map">map resource. such as mapped, list, both, shelter</param>
+            <param name="ran">resourceAgencyNum id</param>
+            <param name="sid">SubCategoryid id</param>
+            <param name="tid">top category id</param>
+            <param name="token">Access token</param>
+            <returns>return a JSON format specific resource's detail information</returns>
+            
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetUniqueResources_QS(System.String,System.String,System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+             For email favour list to user, it will track user selected resource for a period of time. Query String style getting specific resource by by language, map, resource agency number, SubCategory id, top category id 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="map">map resource. such as mapped, list, both, shelter</param>
+            <param name="ran">resourceAgencyNum id</param>
+            <param name="sid">SubCategoryid id</param>
+            <param name="tid">top category  id</param>
+            <param name="token">Access token</param>
+            <returns>return a JSON format specific resource's detail information</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetUniqueResources_XML(System.String,System.String,System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+             For email favour list to user, it will track user selected resource for a period of time. XML format, get specific resource by language, map, resource agency number, SubCategory id, top category id 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="map">map resource. such as mapped, list, both, shelter</param>
+            <param name="ran">resourceAgencyNum id</param>
+            <param name="sid">SubCategoryid id</param>
+            <param name="tid">top category  id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format specific resource's detail information</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetUniqueResources_XML_QS(System.String,System.String,System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+             For email favour list to user, it will track user selected resource for a period of time. Query String style getting specific resource by language, map, resource agency number, SubCategory id, top category id 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="map">map resource. such as mapped, list, both, shelter</param>
+            <param name="ran">resourceAgencyNum id</param>
+            <param name="sid">SubCategory id</param>
+            <param name="tid">top category  id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format specific resource's detail information</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByCity(System.String,System.Int32,System.String)">
+            <summary>
+             Get resource list in the specific allowing city filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="cid">city id</param>
+            <param name="token">Access token</param>
+            <returns>return a JSON format resource list located in a specific city</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByCity_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String style getting resource list in the specific allowing city filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="cid">city id</param>
+            <param name="token">Access token</param>
+            <returns>return a JSON format resource list located in a specific city</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByCity_XML(System.String,System.Int32,System.String)">
+            <summary>
+             Get resource list in the specific allowing city filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="cid">city id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format resource list located in a specific city</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByCity_XML_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String style getting resource list in the specific allosing city filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="cid">city id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format resource list located in a specific city</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByProvince(System.String,System.Int32,System.String)">
+            <summary>
+             Get resource list in the specific allowing province filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="pid">province id</param>
+            <param name="token">Access token</param>
+            <returns>return a JSON format resource list located in a specific province</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByProvince_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String style getting resource list in the specific allowing province filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="pid">province id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format resource list located in a specific province</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByProvince_XML(System.String,System.Int32,System.String)">
+            <summary>
+             Get resource list in the specific allowing province filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="pid">province id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format resource list located in a specific province</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByProvince_XML_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String style getting resource list in the specific allowing province filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="pid">province id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format resource list located in a specific province</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesBySubCategory(System.String,System.Int32,System.String)">
+            <summary>
+             Get resource list under the SubCategory filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="sid">SubCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a JSON format resource list under the specific SubCategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesBySubCategory_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String style, Get resource list under the SubCategory filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="sid">SubCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a JSON format resource list under the specific SubCategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesBySubCategory_XML(System.String,System.Int32,System.String)">
+            <summary>
+             Get resource list under the SubCategory filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="sid">SubCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a XML format resource list under the specific SubCategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesBySubCategory_XML_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String Style. Get resource list under the SubCategory filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="sid">SubCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a XML format resource list under the specific SubCategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByTopCategory(System.String,System.Int32,System.String)">
+            <summary>
+             Get resource list under allowing TopCategory, filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="tid">TopCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a JSON format resource list under the specific TopCategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByTopCategory_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String Style. Get resource list under allowing TopCategory filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="tid">TopCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a JSON format resource list under the specific TopCategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByTopCategory_XML(System.String,System.Int32,System.String)">
+            <summary>
+             Get resource list under allowing TopCategory filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="tid">TopCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a XML format resource list under the specific TopCategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetAllResourcesByTopCategory_XML_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String Style. Get resource list under allowing TopCategory filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="tid">TopCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a XML format resource list under the specific TopCategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.search(System.String,System.String,System.String)">
+            <summary>
+            Get allowing resource list by using interest key word(s). Format in JSON.
+            </summary>
+            <param name="kws">interest key words to be searched. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.search_QS(System.String,System.String,System.String)">
+            <summary>
+            Query String style pass interest keyword(s), response allowing JSON resource list.  
+            </summary>
+            <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.search_XML(System.String,System.String,System.String)">
+            <summary>
+            Get XML format allowing resource list by using interest key word(s). 
+            </summary>
+            <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.search_XML_QS(System.String,System.String,System.String)">
+            <summary>
+            Query String style pass interest keyword(s), response XML fromat allowing resource list. 
+            </summary>
+            <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetResourcesInRadiusList(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Get allowing resources which locate in a circular area. current location is center of the circle; radius (Km) is distance. 
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location </param>
+            <param name="lon">Longitude of current location </param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list in a circular area, current location is center, radius  is the distance,fromat in JSON </returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetResourcesInRadiusList_QS(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Query String style, get allowing resources which locate in a circular area. current location is center of the circle; radius (Km) is distance. 
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location</param>
+            <param name="lon">Longitude of current location</param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list in a circular area, current location is center, radius is the distance, fromat in JSON </returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetResourcesInRadiusList_XML(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Get allowing resources which locate in a circular area. current location is center of the circle; radius (Km) is distance. 
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location </param>
+            <param name="lon">Longitude of current location </param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list, current location is center, wish distance is the radius, fromat in XML </returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetResourcesInRadiusList_XML_QS(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Query String style, get allowing resources which locate in a circular area. current location is center of the circle; radius (Km) is distance. 
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location</param>
+            <param name="lon">Longitude of current location</param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list, current location is center, wish distance is the radius, fromat in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetResourcesInBoxList(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Get allowing resources which locate in a Boundary-Box area. current location is center of the boundary box; Radius (Km) is center to Northern, Southern, Eastern and Western boundary. 
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location </param>
+            <param name="lon">Longitude of current location </param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list in Boundary-Box area, current location is center. Radius (Km) is the distance to Northern, Southern, Eastern and Western, fromat in JSON </returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetResourcesInBoxList_QS(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Query String style, get allowing resources which locate in a Boundary-Box area. current location is center of the boundary box; Radius (Km) is center to Northern, Southern, Eastern and Western boundary.  
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location</param>
+            <param name="lon">Longitude of current location</param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list in Boundary-Box area, current location is center. Radius (Km) is the distance to Northern, Southern, Eastern and Western, fromat in JSON </returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetResourcesInBoxList_XML(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Get allowing resources which locate in a Boundary-Box area. current location is center of the boundary box; Radius (Km) is center to Northern, Southern, Eastern and Western boundary.  
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location </param>
+            <param name="lon">Longitude of current location </param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list in Boundary-Box area, current location is center. Radius (Km) is the distance to Northern, Southern, Eastern and Western, ,fromat in XML </returns>
+        </member>
+        <member name="M:WebApi.Controllers.ResourceController.GetResourcesInBoxList_XML_QS(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Query String style, get allowing resources which locate in a Boundary-Box area. current location is center of the boundary box; Radius (Km) is center to Northern, Southern, Eastern and Western boundary.   
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location</param>
+            <param name="lon">Longitude of current location</param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list in Boundary-Box area, current location is center. Radius (Km) is the distance to Northern, Southern, Eastern and Western, fromat in XML</returns>
+        </member>
+        <member name="T:WebApi.Controllers.SearchController">
+            <summary>
+            Search resource, suggestion word(s) by using interest keyword(s), category, city, province location etc. 
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.search(System.String,System.String,System.String)">
+            <summary>
+            Search resource by using interest key word(s).  
+            </summary>
+            <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.search_QS(System.String,System.String,System.String)">
+            <summary>
+            Query String style cluster search resource by using interest key word(s).  
+            </summary>
+            <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.search_XML(System.String,System.String,System.String)">
+            <summary>
+            Cluster search resource by using interest key word(s). XML response. 
+            </summary>
+            <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.search_XML_QS(System.String,System.String,System.String)">
+            <summary>
+            Query String style cluster search resource by using interest key word(s).  XML response 
+            </summary>
+            <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+            <param name="lang">Language. English = "en"; French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetResourcesInRadiusList(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Search allowing resources which locate in a circular area. current location is center of the circle; radius (Km) is distance. 
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location </param>
+            <param name="lon">Longitude of current location </param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">access token</param>
+            <returns>Return a resource list in a circular area, current location is center, radius  is the distance,fromat in JSON </returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetResourcesInRadiusList_QS(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Query String style, searching allowing resources which locate in a circular area. current location is center of the circle; radius (Km) is distance. 
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location</param>
+            <param name="lon">Longitude of current location</param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">access token</param>
+            <returns>Return a resource list in a circular area, current location is center, radius is the distance, fromat in JSON </returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetResourcesInRadiusList_XML(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Search allowing resources which locate in a circular area. current location is center of the circle; radius (Km) is distance. 
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location </param>
+            <param name="lon">Longitude of current location </param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list, current location is center, wish distance is the radius, fromat in XML </returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetResourcesInRadiusList_XML_QS(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Query String style, Searching resources which locate in a circular area. current location is center of the circle; radius (Km) is distance. 
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location</param>
+            <param name="lon">Longitude of current location</param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list, current location is center, wish distance is the radius, fromat in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetResourcesInBoxList(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Search allowing resources locate in a Boundary-Box area. current location is center of the boundary box; Radius (Km) is center to Northern, Southern, Eastern and Western boundary. 
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location </param>
+            <param name="lon">Longitude of current location </param>
+            <param name="radius">Radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list in Boundary-Box area, current location is center. Radius (Km) is the distance to Northern, Southern, Eastern and Western, fromat in JSON </returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetResourcesInBoxList_QS(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Query String style, searching allowing resources locate in a Boundary-Box area. current location is center of the boundary box; Radius (Km) is center to Northern, Southern, Eastern and Western boundary.  
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location</param>
+            <param name="lon">Longitude of current location</param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list in Boundary-Box area, current location is center. Radius (Km) is the distance to Northern, Southern, Eastern and Western, fromat in JSON </returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetResourcesInBoxList_XML(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Searching resources which locate in a Boundary-Box area. current location is center of the boundary box; Radius (Km) is center to Northern, Southern, Eastern and Western boundary.  
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location </param>
+            <param name="lon">Longitude of current location </param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list in Boundary-Box area, current location is center. Radius (Km) is the distance to Northern, Southern, Eastern and Western, ,fromat in XML </returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetResourcesInBoxList_XML_QS(System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Query String style, Searching resources which locate in a Boundary-Box area. current location is center of the boundary box; Radius (Km) is center to Northern, Southern, Eastern and Western boundary.   
+            </summary>
+            <param name="lang">Language: English = "en" ;  French = "fr"</param>
+            <param name="lat">Latitude of current location</param>
+            <param name="lon">Longitude of current location</param>
+            <param name="radius">radius: How many Kilometre from current location</param>
+            <param name="token">Access token</param>
+            <returns>Return a resource list in Boundary-Box area, current location is center. Radius (Km) is the distance to Northern, Southern, Eastern and Western, fromat in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesByCity(System.String,System.Int32,System.String)">
+            <summary>
+             Search allowing resource list in the specific allowing city filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="cid">city id</param>
+            <param name="token">Access token</param>
+            <returns>return a JSON format resource list, located in a specific city</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesByCity_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String style getting resource list in the specific allowing city filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="cid">city id</param>
+            <param name="token">Access token</param>
+            <returns>return a JSON format resource list, located in a specific city</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesByCity_XML(System.String,System.Int32,System.String)">
+            <summary>
+             Get resource list in the specific allowing city filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="cid">city id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format, resource list located in a specific city</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesByCity_XML_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String style getting resource list in the specific allowing city filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="cid">city id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format, resource list located in a specific city</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesByProvince(System.String,System.Int32,System.String)">
+            <summary>
+             Searching resources in the single province filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="pid">province id</param>
+            <param name="token">Access token</param>
+            <returns>return a JSON format resource list located in a specific province</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesByProvince_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String style searching resources in the specific province filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="pid">province id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format resource list located in this province</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesByProvince_XML(System.String,System.Int32,System.String)">
+            <summary>
+             Search resources in a expected province filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="pid">province id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format resource list located in expected province</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesByProvince_XML_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String style searching resources in single province filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="pid">province id</param>
+            <param name="token">Access token</param>
+            <returns>return a XML format resource list located in a specific province</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesBySubCategory(System.String,System.Int32,System.String)">
+            <summary>
+             Search resources under the SubCategory, filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="sid">SubCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a JSON format resource list under the specific subcategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesBySubCategory_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String style, searching resource list under the SubCategory filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="sid">SubCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a JSON format resource list under the specific subcategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesBySubCategory_XML(System.String,System.Int32,System.String)">
+            <summary>
+             Search resources under the SubCategory, filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="sid">SubCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a XML format resource list under the specific subcategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesBySubCategory_XML_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String Style. Get resource list under the SubCategory filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="sid">SubCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a XML format resource list under the specific subcategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesByTopCategory(System.String,System.Int32,System.String)">
+            <summary>
+             Get resource list under the allowing TopCategory filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="tid">TopCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a JSON format resource list under the specific TopCategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesByTopCategory_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String Style. Get resource list under the allowing TopCategory filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="tid">TopCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a JSON format resource list under the specific TopCategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesByTopCategory_XML(System.String,System.Int32,System.String)">
+            <summary>
+             Get resource list under the allowing TopCategory filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="tid">TopCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a XML format resource list under the specific TopCategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.GetAllResourcesByTopCategory_XML_QS(System.String,System.Int32,System.String)">
+            <summary>
+             Query String Style. Get resource list under the allowing TopCategory filter by resource's language 
+            </summary>
+            <param name="lang">language. English = "en"; French = "fr"</param>
+            <param name="tid">TopCategory id.</param>
+            <param name="token">Access token</param>
+            <returns>Return a XML format resource list under the specific TopCategory</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.suggestionWordList">
+            <summary>
+            Get suggection key word list. the suggested words are province ,city if they have resource locate in his boundary; name, category, term, description, services etc.  
+            </summary>
+            <returns>suggection key word list format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.suggestionWordList_XML">
+            <summary>
+            Get suggection key word list. the suggested words are province ,city if they have resource locate in his boundary; name category, term, description, services etc.  
+            </summary>
+            <returns>suggection key word list format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.IncrementSuggestionWordList(System.String)">
+            <summary>
+             incrementally return interest key words for searching (auto-complete searching key word(s) 
+            </summary>
+            <param name="sw">incremental letter(s) of interest key word</param>
+            <returns>retun suggested key word(s), format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.IncrementSuggestionWordList_QS(System.String)">
+            <summary>
+             Query String style,  incrementally return interest key words for searching (auto-complete searching key word(s) 
+            </summary>
+            <param name="sw">incremental letter(s) of interest key word</param>
+            <returns>retun suggested key word(s), format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.IncrementSuggestionWordList_XML(System.String)">
+            <summary>
+             incrementally return interest key words for searching (auto-complete searching key word(s) 
+            </summary>
+            <param name="sw">incremental letter(s) of interest key word</param>
+            <returns>retun suggested key word(s), format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SearchController.IncrementSuggestionWordList_XML_QS(System.String)">
+            <summary>
+             Query String style,  incrementally return interest key words for searching (auto-complete searching key word(s) 
+            </summary>
+            <param name="sw">incremental letter(s) of interest key word</param>
+            <returns>retun suggested key word(s), format in XML</returns>
+        </member>
+        <member name="T:WebApi.Controllers.SubCategoryController">
+            <summary>
+            get Subcategory information
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.SubCategoryController.GetAllSubCategories(System.String,System.String)">
+            <summary>
+            Authorized users get allowing SubCategory list by language
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="token">Access toke</param>
+            <returns>Return JSON style subcategory list, [SubCategoryID], [SubCategory], [SubCategoryDesc]. Filter by language</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SubCategoryController.GetAllSubCategories_QS(System.String,System.String)">
+            <summary>
+            Query String Style. Authorized users get SubCategory list by language.
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="token">Access toke</param>
+            <returns>Return JSON style subcategory list, [SubCategoryID], [SubCategory], [SubCategoryDesc]. Filter by language</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SubCategoryController.GetAllSubCategories_XML(System.String,System.String)">
+            <summary>
+            Authorized users get allowing SubCategory list by language
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return XML style subcategory list, [SubCategoryID], [SubCategory], [SubCategoryDesc]. Filter by language</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SubCategoryController.GetAllSubCategories_XML_QS(System.String,System.String)">
+            <summary>
+            Query String Style. Get SubCategory list by language.
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="token">Access token</param>
+            <returns>Return XML style subcategory list, [SubCategoryID], [SubCategory], [SubCategoryDesc]. Filter by language</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SubCategoryController.GetSubcategoryBySID(System.String,System.Int32,System.String)">
+            <summary>
+            Get SubCategory by subcategoryID
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="sid">SubCategory ID.</param>
+            <param name="token">Access token</param>
+            <returns>return [SubCategoryID], [SubCategory], [SubCategoryDesc] format in json </returns>
+        </member>
+        <member name="M:WebApi.Controllers.SubCategoryController.GetSubcategoryBySID_QS(System.String,System.Int32,System.String)">
+            <summary>
+            Query String Style. Get SubCategory by subcategoryID
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="sid">SubCategory ID.</param>
+            <param name="token">Access token</param>
+            <returns>return [SubCategoryID], [SubCategory], [SubCategoryDesc]  format in json </returns>
+        </member>
+        <member name="M:WebApi.Controllers.SubCategoryController.GetSubcategoryBySID_XML(System.String,System.Int32,System.String)">
+            <summary>
+            Get SubCategory by subcategoryID
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="sid">SubCategory ID.</param>
+            <param name="token">Access token</param>
+            <returns>return [SubCategoryID], [SubCategory], [SubCategoryDesc]  format in XML </returns>
+        </member>
+        <member name="M:WebApi.Controllers.SubCategoryController.GetSubcategoryBySID_XML_QS(System.String,System.Int32,System.String)">
+            <summary>
+            Query String style. Get SubCategory by subcategoryID
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="sid">SubCategory ID.</param>
+            <returns>return [SubCategoryID], [SubCategory], [SubCategoryDesc]  format in XML </returns>
+        </member>
+        <member name="M:WebApi.Controllers.SubCategoryController.GetSubcategoryByTopID(System.String,System.Int32,System.String)">
+            <summary>
+            Get SubCategory list under a certain TopCategory. Filter by Languang and TopCategory ID
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="tid">TopCategory ID</param>
+            <param name="token">Access token</param>
+            <returns>Return a subcategory list under allowing certain topcategory filter by language. [SubCategoryID], [SubCategory], [SubCategoryDesc] format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SubCategoryController.GetSubcategoryByTopID_QS(System.String,System.Int32,System.String)">
+            <summary>
+            Query String Style. Get SubCategory list under a certain TopCategory. Filter by Languang and TopCategory ID
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="tid">TopCategory ID.</param>
+            <param name="token">Access token</param>
+            <returns>Return a subcategory list under allowing certain topcategory filter by language. [SubCategoryID], [SubCategory], [SubCategoryDesc] format in JSON</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SubCategoryController.GetSubcategoryByTopID_XML(System.String,System.Int32,System.String)">
+            <summary>
+            Get SubCategory list under a certain TopCategory. Filter by Languang and TopCategory ID
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="tid">TopCategory ID.</param>
+            <param name="token">Access token</param>
+            <returns>Return a subcategory list under allowing certain topcategory filter by language. [SubCategoryID], [SubCategory], [SubCategoryDesc] format in XML</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SubCategoryController.GetSubcategoryByTopID_XML_QS(System.String,System.Int32,System.String)">
+            <summary>
+            Query String Style. Get SubCategory list under a certain TopCategory. Filter by Languang and TopCategory ID
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="tid">TopCategory ID.</param>
+            <param name="token">Access token</param>
+            <returns>Return a subcategory list under allowing certain topcategory filter by language. [SubCategoryID], [SubCategory], [SubCategoryDesc] format in XML</returns>
+        </member>
+        <member name="T:WebApi.Controllers.TopCategoryController">
+            <summary>
+            get TopCategory information
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.TopCategoryController.GetAllTopCategories(System.String,System.String)">
+            <summary>
+            Get allowing TopCategory list by language
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="token">Acess token </param>
+            <returns>Authorized user get JSON style allowing Topcategory list, [TopCategoryID], [TOpCategory]. Filter by language and access token</returns>
+        </member>
+        <member name="M:WebApi.Controllers.TopCategoryController.GetAllTopCategories_QS(System.String,System.String)">
+            <summary>
+            Query String Style. Get allowing TopCategory list by language.
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="token">Acess token </param>
+            <returns>Authorized user get JSON style allowing Topcategory list, [TopCategoryID], [TopCategory]. Filter by language</returns>
+        </member>
+        <member name="M:WebApi.Controllers.TopCategoryController.GetAllTopCategories_xml(System.String,System.String)">
+            <summary>
+            Get allowing TopCategory list by language. Fromat in XML
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="token">Acess token </param>
+            <returns>Return XML style TopCategory list, [TopCategoryID], [TopCategory]. Filter by language</returns>
+        </member>
+        <member name="M:WebApi.Controllers.TopCategoryController.GetAllTopCategories_xml_QS(System.String,System.String)">
+            <summary>
+            Query String Style. Get TopCategory list by language.
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="token">Acess token </param>
+            <returns>Return XML style TopCategory list, [TopCategoryID], [TopCategory]. Filter by language</returns>
+        </member>
+        <member name="M:WebApi.Controllers.TopCategoryController.GetTopCategoryByID(System.String,System.Int32,System.String)">
+            <summary>
+            Get TopCategory by TopCategoryID, Return a json format
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="tid">TopCategory ID.</param>
+            <param name="token">access token</param>
+            <returns>return TopCategory format in json </returns>
+        </member>
+        <member name="M:WebApi.Controllers.TopCategoryController.GetTopCategoryByID_QS(System.String,System.Int32,System.String)">
+            <summary>
+            Query String Style. Get TopCategory by TopCategoryID Return a json format
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="tid">TopCategory ID.</param>
+            <param name="token">access token</param>
+            <returns>return TopCategory format in json </returns>
+        </member>
+        <member name="M:WebApi.Controllers.TopCategoryController.GetTopCategoryByID_XML(System.String,System.Int32,System.String)">
+            <summary>
+            Get TopCategory by TopCategoryID
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="tid">TopCategory ID.</param>
+            <param name="token">access token</param>
+            <returns>return TopCategory format in XML </returns>
+        </member>
+        <member name="M:WebApi.Controllers.TopCategoryController.GetTopCategoryByID_XML_QS(System.String,System.Int32,System.String)">
+            <summary>
+            Query String style. Get TopCategory by TopCategoryID
+            </summary>
+            <param name="lang">Language. English = "en", French = "fr"</param>
+            <param name="tid">TopCategory ID.</param>
+            <param name="token">access token</param>
+            <returns>return TopCategory format in XML </returns>
+        </member>
+        <member name="T:WebApi.Filters.AuthorizeIPAddressAttribute">
+            <summary> 
+            Only allows authorized IP addresses access. 
+            </summary> 
+        </member>
+        <member name="M:WebApi.Filters.AuthorizeIPAddressAttribute.IsIpAddressValid(System.String)">
+            <summary> 
+            Compares an IP address to list of valid IP addresses attempting to 
+            find a match 
+            </summary> 
+            <param name="ipAddress">String representation of a valid IP Address</param> 
+            <returns></returns> 
+        </member>
+    </members>
+</doc>

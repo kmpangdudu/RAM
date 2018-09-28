@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Swagger UI</title>
+  <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
+  <link href='css/typography.css' media='screen' rel='stylesheet' type='text/css'/>
+  <link href='css/reset.css' media='screen' rel='stylesheet' type='text/css'/>
+  <link href='css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
+  <link href='css/reset.css' media='print' rel='stylesheet' type='text/css'/>
+  <link href='css/print.css' media='print' rel='stylesheet' type='text/css'/>
+  <script src='lib/jquery-1.8.0.min.js' type='text/javascript'></script>
+  <script src='lib/jquery.slideto.min.js' type='text/javascript'></script>
+  <script src='lib/jquery.wiggle.min.js' type='text/javascript'></script>
+  <script src='lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
+  <script src='lib/handlebars-2.0.0.js' type='text/javascript'></script>
+  <script src='lib/underscore-min.js' type='text/javascript'></script>
+  <script src='lib/backbone-min.js' type='text/javascript'></script>
+  <script src='swagger-ui.js' type='text/javascript'></script>
+  <script src='lib/highlight.7.3.pack.js' type='text/javascript'></script>
+  <script src='lib/marked.js' type='text/javascript'></script>
+
+  <script type="text/javascript">
+    $(function () {
+      var url = window.location.search.match(/url=([^&]+)/);
+      if (url && url.length > 1) {
+        url = decodeURIComponent(url[1]);
+      } else {
+          //url = "http://petstore.swagger.io/v2/swagger.json";
+          url = "docs/v1";
+      }
+      window.swaggerUi = new SwaggerUi({
+          url: url,
+          validatorUrl: null,
+        dom_id: "swagger-ui-container",
+        supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
+        onComplete: function(swaggerApi, swaggerUi){
+          if(typeof initOAuth == "function") {
+            /*
+            initOAuth({
+              clientId: "your-client-id",
+              realm: "your-realms",
+              appName: "your-app-name"
+            });
+            */
+          }
+
+          $('pre code').each(function(i, e) {
+            hljs.highlightBlock(e)
+          });
+
+          addApiKeyAuthorization();
+        },
+        onFailure: function(data) {
+          log("Unable to Load SwaggerUI");
+        },
+        docExpansion: "none",
+        sorter : "alpha"
+      });
+
+      function addApiKeyAuthorization(){
+        var key = encodeURIComponent($('#input_apiKey')[0].value);
+        if(key && key.trim() != "") {
+            var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
+            window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
+            log("added key " + key);
+        }
+      }
+
+      $('#input_apiKey').change(addApiKeyAuthorization);
+
+      // if you have an apiKey you would like to pre-populate on the page for demonstration purposes...
+      /*
+        var apiKey = "myApiKeyXXXX123456789";
+        $('#input_apiKey').val(apiKey);
+        addApiKeyAuthorization();
+      */
+
+      window.swaggerUi.load();
+
+      function log() {
+        if ('console' in window) {
+          console.log.apply(console, arguments);
+        }
+      }
+  });
+  </script>
+</head>
+
+<body class="swagger-section">
+<div id='header'>
+  <div class="swagger-ui-wrap">
+      <a id="logo" href="../Content/img/khp50.png">Resource Around Me - Kids Help Phone</a>
+      <div class="swagger-ui-wrap"></div>
+    <!--<form id='api_selector'>
+      <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>
+      <div class='input'><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
+      <div class='input'><a id="explore" href="#">Explore</a></div>
+    </form>-->
+  </div>
+</div>
+    <style>
+        .a1 {
+            list-style-type: square;
+            padding: 3px 25px 3px 10px;
+            color:#555555;
+        }
+        .b1{font-size:0.9em; font-family :Arial;line-height :14px;color:#555555;}
+    </style>
+
+    <div class="swagger-ui-wrap">
+        <h1>Resource Arround Me Application Web API Online Documentation</h1>
+        <p class="b1">
+            This section provide a general description of Resource Arround Me Application Programming Interface (API).
+        </p>
+        <p class="b1">
+            RAM APIs capability makes it easy for you to acces RAM live resource data in ways never before possible. It enable people to whom you distribute them to access RAM Resources in KHP in real-time. They can browse, search, retrieve details. This gives your software developers access to the data they need for projects like:
+        </p>
+            <ul style="margin:5px;padding:0px 5px 5px 40px;">
+
+                <li class="a1 b1">Mobile apps for iPhone, iPad, Android and other devices to let members of the public find nearby services;</li>
+                <li class="a1 b1">Live links to third-party software systems, like homeless shelter management and donor management systems, that need to exchange real-time information with Kids Help Phone</li>
+                <li class="a1 b1">Custom-built websites that let the public search and view data from KHP Resource Database in ways that your programmers can utterly customize, for instance to target certain populations or design a specific presentation</li>
+                <li class="a1 b1">Live links between KHP and your own internal intranet applications, to enable using those applications to view and update user account and shift calendar information in KHP</li>
+                <li class="a1 b1">Custom exports in formats not currently provided in KHP</li>
+            </ul>
+        <p class="b1">  And soon, Kids Help Phone will be offering others. </p>
+        
+    </div>
+
+<div id="message-bar" class="swagger-ui-wrap">&nbsp;</div>
+<div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+</body>
+</html>

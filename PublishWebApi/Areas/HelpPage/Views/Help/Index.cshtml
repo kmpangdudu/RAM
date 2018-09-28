@@ -1,0 +1,58 @@
+@using System.Web.Http
+@using System.Web.Http.Controllers
+@using System.Web.Http.Description
+@using System.Collections.ObjectModel
+@using WebApi.Areas.HelpPage.Models
+@model Collection<ApiDescription>
+
+@{
+    ViewBag.Title = "Resource Around Me Application API Quick Start ";
+
+    // Group APIs by controller
+    ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.OrderBy(d => d.ActionDescriptor.ControllerDescriptor.ControllerName)
+        .ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
+}
+<style>
+body > div.body-bg > div > header > div > div > h1
+{
+padding:10px 0 15px 0;font-family:Arial;font-size:30px;font-weight:bold;color:#333333;
+}
+</style>
+<link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
+<header class="help-page">
+    <div class="content-wrapper">
+        <div class="float-left">
+            <h1>@ViewBag.Title</h1>
+        </div>
+    </div>
+</header>
+<div id="body" class="help-page">
+    <section class="featured">
+        <div class="content-wrapper">
+            <h2>Introduction</h2>
+            <p>
+                This section provides an overview introduction to the Resources Around ME (API). To test our API visit the <a href="/resourcesaroundme/doc" target="_blank">Resources Around Me Application API Sandbox</a>.
+            </p>
+            <p>On this page you can view the parameters, data descriptors and formats for each API call available for the Resources Around Me data set.  </p>
+			<p>This API is available to browse, search and display detailed records from the Kids Help Phone Resources Around Me database. Canonical data for this project is stored in the information and referral database of the organization. Data is updated from the organization to the application on a weekly basis. </p>
+			<p>It is not possible to edit or alter a Resources Around Me record via the API. If you see a record that requires correction please submit your update through the suggest an update form. The link is located at the bottom of every resource record. Example:<a href="http://kidshelpphone.ca/resourcesaroundme/update.html?id=m171211269607en" target="_blank">http://kidshelpphone.ca/resourcesaroundme/update.html?id=m171211269607en</a></p>
+			<p>If you are interested in partnering or hiring us to update your community's entire record set please email Kids Help Phone at <a href="mailto:resources@kidshelpphone.ca">resources@kidshelpphone.ca</a>
+			<p>
+			Ways to use this API include: 
+            <ul>
+                <li>Mobile apps for iPhone, iPad, Android and other devices to let members of the public find nearby services;</li>
+                <li>Live links to third-party software systems that require geographic data on health service locations in your community;</li>
+                <li>Custom-build websites to show data from the Resource Database relevant to target populations or with a custom presentation layer</li>
+            </ul>
+     
+            </p>
+        </div>
+    </section>
+	<br/>
+    <section class="content-wrapper main-content clear-fix">
+        @foreach (var group in apiGroups)
+        {
+            @Html.DisplayFor(m => group, "ApiGroup")
+        }
+    </section>
+</div>

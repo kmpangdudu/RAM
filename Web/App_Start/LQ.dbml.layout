@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.625, 15.25" name="LQ">
+  <DataContextMoniker Name="/LQDataContext" />
+  <nestedChildShapes>
+    <classShape Id="49913bee-be0e-4a3b-b1c5-9c8b250759d0" absoluteBounds="7, 5.625, 2, 6.1938297526041657">
+      <DataClassMoniker Name="/LQDataContext/Shelter" />
+      <nestedChildShapes>
+        <elementListCompartment Id="487d37bd-2c73-426c-bf17-dc5d43277a3a" absoluteBounds="7.0150000000000006, 6.085, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="394c2276-a3d0-471d-a763-79b9248de811" absoluteBounds="1, 1.125, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/LQDataContext/CityLocation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3f2c848f-3448-4ebd-93f3-c06744fd01db" absoluteBounds="1.0150000000000001, 1.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="657d8e34-02d7-4d37-a14a-706478610854" absoluteBounds="0.875, 3.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/LQDataContext/Province" />
+      <nestedChildShapes>
+        <elementListCompartment Id="af5ee852-e15b-43a0-b6b8-a645c769e10a" absoluteBounds="0.89000000000000012, 4.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.9375 : 3.75); (1.9375 : 3.28049967447917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LQDataContext/Province/Province_CityLocation" />
+      <nodes>
+        <classShapeMoniker Id="657d8e34-02d7-4d37-a14a-706478610854" />
+        <classShapeMoniker Id="394c2276-a3d0-471d-a763-79b9248de811" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="614ef7e4-be73-4ecd-ab07-8f605db3c0af" absoluteBounds="0.75, 7.375, 2, 6.1938297526041657">
+      <DataClassMoniker Name="/LQDataContext/PhoneWeb" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1aa8da80-4aa9-405f-a85c-4d8a9db89686" absoluteBounds="0.765, 7.835, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7ffec2ab-9f51-4c75-bd31-7c45e001f5fa" absoluteBounds="3.625, 1.625, 2, 6.1938297526041657">
+      <DataClassMoniker Name="/LQDataContext/Map" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e64b2f1c-8d4e-489f-b48e-ecfdfd5c0303" absoluteBounds="3.6399999999999997, 2.085, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5b9fb921-fac2-439d-a6db-cf354cb41fd7" absoluteBounds="7, 1.25, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/LQDataContext/KHPCategory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ece03670-61c2-4d2e-978c-fbf63654dbf0" absoluteBounds="7.015, 1.71, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8 : 3.98240397135417); (8 : 5.375); (6.75 : 5.375); (6.75 : 11.3478011067708); (3.125 : 11.3478011067708); (3.125 : 10.4719148763021); (2.92708333333333 : 10.4719148763021 : JumpStart); (2.76041666666667 : 10.4719148763021 : JumpEnd); (2.75 : 10.4719148763021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LQDataContext/KHPCategory/KHPCategory_PhoneWeb" />
+      <nodes>
+        <classShapeMoniker Id="5b9fb921-fac2-439d-a6db-cf354cb41fd7" />
+        <classShapeMoniker Id="614ef7e4-be73-4ecd-ab07-8f605db3c0af" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7 : 2.77244948567708); (5.625 : 2.77244948567708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LQDataContext/KHPCategory/KHPCategory_Map" />
+      <nodes>
+        <classShapeMoniker Id="5b9fb921-fac2-439d-a6db-cf354cb41fd7" />
+        <classShapeMoniker Id="7ffec2ab-9f51-4c75-bd31-7c45e001f5fa" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="87f82c65-8c6a-4710-9cec-a7db3bd79885" absoluteBounds="3.375, 8.75, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/LQDataContext/KHPCategoryID_KHPInterestTaxonomyCode" />
+      <nestedChildShapes>
+        <elementListCompartment Id="63359329-5eb1-4973-a1e0-7ed890f50507" absoluteBounds="3.39, 9.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2491f523-44c8-4987-8969-f22a6fdb039b" absoluteBounds="10.375, 0.75, 2, 1.9631982421875003">
+      <DataClassMoniker Name="/LQDataContext/KHPETLLoadID_InterestTaxonomyCode_CategoryID" />
+      <nestedChildShapes>
+        <elementListCompartment Id="79e5651c-b699-483b-9f97-6fbd139d03d0" absoluteBounds="10.39, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="183e85eb-2c71-4fb5-a6ba-07124d8e55ec" absoluteBounds="3.625, 12.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/LQDataContext/CityLocation1" />
+      <nestedChildShapes>
+        <elementListCompartment Id="126521c3-10b9-44a8-8872-5ffba549be88" absoluteBounds="3.64, 13.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="03fa603a-039a-48d1-900a-37b623e304fe" absoluteBounds="10.375, 3.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/LQDataContext/Classification" />
+      <nestedChildShapes>
+        <elementListCompartment Id="03a2d2f2-6f0a-48f0-b18a-a43d8eb52168" absoluteBounds="10.39, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="80737f24-a5cb-49f7-a217-d9b468f7469b" absoluteBounds="10.375, 6.75, 2, 1.9631982421874996">
+      <DataClassMoniker Name="/LQDataContext/Coverage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f0b0c4fa-a120-4d62-bd5a-60618e937198" absoluteBounds="10.39, 7.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.84375 : 5.7131982421875); (2.84375 : 14.2059147135417); (3.625 : 14.2059147135417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LQDataContext/Province/Province_CityLocation1" />
+      <nodes>
+        <classShapeMoniker Id="657d8e34-02d7-4d37-a14a-706478610854" />
+        <classShapeMoniker Id="183e85eb-2c71-4fb5-a6ba-07124d8e55ec" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="c935988f-6a6f-4e6d-936b-05444c9c046a" absoluteBounds="10.125, 10, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/LQDataContext/crp" />
+      <nestedChildShapes>
+        <elementListCompartment Id="430bd3c7-7074-40c0-bdca-657e9e10b6fa" absoluteBounds="10.14, 10.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fc4f80a6-a3c4-4c51-a425-0f7f7e0afd93" absoluteBounds="9, 13, 2, 1.9631982421875">
+      <DataClassMoniker Name="/LQDataContext/CustomEligibilitybyAge" />
+      <nestedChildShapes>
+        <elementListCompartment Id="17bce502-a532-4289-9ade-7bb4c466ef83" absoluteBounds="9.015, 13.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

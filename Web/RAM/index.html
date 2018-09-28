@@ -1,0 +1,739 @@
+﻿
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="css/animate.css" rel="stylesheet" />
+    <!-- Squad theme CSS -->
+    <link href="css/style.css" rel="stylesheet">
+	<link href="color/default.css" rel="stylesheet">
+
+
+    <title>Resource Around Me</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <link href="http://kidshelpphone.ca/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+    <link href="http://kidshelpphone.ca/favicon.ico" type="image/x-icon" rel="icon" />
+     <link href="../Content/squad.css" rel="stylesheet" /> 
+    <link rel="stylesheet" href="../css/reset.css">
+    <!-- CSS reset -->
+     
+    <link rel="stylesheet" href="css/style.css">  
+    <!-- Resource style -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700|Open+Sans+Condensed:700,300,300italic|Open+Sans:400,300italic,400italic,600,600italic,700,700italic,800,800italic|PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css' />
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.20&signed_in=true&libraries=places"></script>
+
+    <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery-1.8.2.min.js"></script>
+    
+    <script src="../js/modernizr.js"></script>
+    <script src="js/map_squad.js"></script>
+
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+	<!-- Preloader -->
+	<div id="preloader">
+	  <div id="load"></div>
+	</div>
+
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" >  
+       
+        <div id="toptop" class=" float-right" ; style="height:30px; margin-right:10%">
+            <ul class="nav navbar-nav">
+                <li><a href="http://www.kidshelpphone.ca" >Home</a></li>
+                <li><a href="http://jeunessejecoute.ca/resourcesaroundme/?lang=fr">French</a></li>
+                <li><a href="http://www.google.com"><img src="../Images/leavel.png" /></a></li>
+            </ul>
+        </div>
+
+            <div class="container" style="margin-bottom:3px">
+                <!--  blue -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="https://kidshelpphone.ca/Teens/PhoneUs.aspx">
+
+                        <div style="width:123px">
+                            <img src="../Images/en/khp-logo.gif" style="max-width:100%;" />
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="https://kidshelpphone.ca/Teens/PhoneUs.aspx"><img src="../Images/en/nav-phone.png" alt="Phone Us" /></a></li>
+                        <li><a href="https://kidshelpphone.ca/Teens/AskUsOnline.aspx"><img src="../Images/en/nav-ask.png" alt="Ask Us" /></a></li>
+                        <li><a href="https://kidshelpphone.ca/Teens/InfoBooth.aspx"><img src="../Images/en/nav-info.png" alt="info Booth" /></a></li>
+                        <li><a href="https://kidshelpphone.ca/Teens/YourSpace.aspx"><img src="../Images/en/nav-space.png" alt="Your Space" style="margin-top:-5px;" /></a></li>
+                        <li><a href="https://kidshelpphone.ca/Teens/GetInvolved.aspx"><img src="../Images/en/nav-involved.png" alt="Get Involved" /></a></li>
+                        <!--<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Example menu</a></li>
+                            <li><a href="#">Example menu</a></li>
+                            <li><a href="#">Example menu</a></li>
+                        </ul>
+                    </li>-->
+                    </ul>
+                </div>
+
+                <!-- /.navbar-collapse -->
+            </div>
+
+            <!-- /.container -->
+
+        
+    </nav>
+
+	<!-- Section: intro -->
+    <section id="intro" class="intro">
+                        
+            <div id="MapCanvas"></div>
+            <!--<div class="slogan">
+            <h2>WELCOME TO <span class="text_color">SQUAD</span> </h2>
+            <h4>WE ARE GROUP OF GENTLEMEN MAKING AWESOME WEB WITH BOOTSTRAP</h4>
+        </div>
+        <div class="page-scroll">
+            <a href="#service" class="btn btn-circle">
+                <i class="fa fa-angle-double-down animated"></i>
+            </a>
+        </div>-->
+    </section>
+	<!-- /Section: intro -->
+         
+ 
+
+
+
+    <div id="midnav" class="text-center" style="width:100%;padding:2px;text-align:center;height:150px;background-color:#b6ff00;vertical-align: baseline;border:1px solid #0000ff;">
+     
+        <div id="midnavcontainer" class="text-center" style="max-width:95%; text-align:center; margin:0 auto;">
+            <div id="cityseeker" class="float-left">
+                <input id="pac-input" class="controls" type="text"
+                       style="position:absolute;width:240px;height:45px;  left:8px;
+                    box-shadow: -5px -5px 10px #555555;border-radius: 5px;"
+                       placeholder="Enter a city"
+                       autofocus title="Type city name,select from below list.">
+                <p>select a city </p>
+            </div>
+            <div id="myChoice">
+
+                <div id="Distress" class="filterdiv float-left b2bfilter" style="margin-left:20px;">
+                    <img id="DistressServices" src="../Images/DistressServices.jpg" alt="Distress" class="filterimg" />
+                    <p><input class="b2bfilter" type="checkbox" checked id="1box" value="1"><span class="b2bfiltertext">Distress</span></p>
+                </div>
+                <div id="Sexual" class="filterdiv float-left b2bfilter">
+                    <img id="SexualServices" src="../Images/SexualHealth.jpg" alt="SexualServices" class="filterimg" />
+                    <p><input class="b2bfilter" type="checkbox" id="2box" checked value="2"><span class="b2bfiltertext">Sexual Health</span></p>
+                </div>
+                <div id="LGBT" class="filterdiv float-left b2bfilter">
+                    <img id="LGBTServices" src="../Images/LGBT.jpg" alt="LGBTServices" class="filterimg" />
+                    <p><input class="b2bfilter" type="checkbox" id="3box" checked value="3"><span class="b2bfiltertext">LGBT</span></p>
+                </div>
+                <div id="Legal" class="filterdiv float-left b2bfilter">
+                    <img id="legalServices" src="../Images/legalHelp.jpg" alt="LegalServices" class="filterimg" />
+                    <p><input class="b2bfilter" type="checkbox" id="4box" checked value="4"><span class="b2bfiltertext">Legal Help</span></p>
+                </div>
+                <div id="Shelters" class="filterdiv float-left b2bfilter">
+                    <img id="shelterServices" src="../Images/shelter.png" alt="Shelter Services" class="filterimg" />
+                    <p><input class="b2bfilter" type="checkbox" id="5box" checked value="5"><span class="b2bfiltertext">Youth Shelters</span></p>
+                </div>
+                <div id="Housing" class="filterdiv float-left b2bfilter">
+                    <img id="housingHelpServices" src="../Images/housingHelp.jpg" alt="Housing Help Services" class="filterimg" />
+                    <p><input class="b2bfilter" type="checkbox" id="6box" checked value="6"><span class="b2bfiltertext">Housing Help</span></p>
+                </div>
+                <div id="Counselling" class="filterdiv float-left b2bfilter">
+                    <img id="counsellingServices" src="../Images/counselling.jpg" alt="Counselling Services" class="filterimg" />
+                    <p><input class="b2bfilter" type="checkbox" id="7box" checked value="7"><span class="b2bfiltertext">Counselling</span></p>
+                </div>
+                <div id="Violence" class="filterdiv float-left b2bfilter">
+                    <img id="familyViolenceServices" src="../Images/familyViolence.jpg" alt="Family Violence" class="filterimg" />
+                    <p><input class="b2bfilter" type="checkbox" id="8box" checked value="8"><span class="b2bfiltertext">Family Violence Shelters</span></p>
+                </div>
+                <div id="Drugs" class="filterdiv float-left b2bfilter">
+                    <img id="DrugServices" src="../Images/Drug.jpg" alt="Drug Services" class="filterimg" />
+                    <p><input class="b2bfilter" type="checkbox" id="9box" checked value="9"><span class="b2bfiltertext">Drugs, Alcohol and Gambling</span></p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!--<div class="clearfloat"></div>
+    <div class="page-scroll" style="text-align:center;">
+        <a href="#phonwWeb" class="btn btn-circle">
+            <i class="fa fa-angle-double-down animated"></i>
+        </a>
+    </div>-->
+
+
+
+	<!-- Section: Phone and Web -->
+    <section id="pwintro" class="parallax height350">
+        <!--<div class="container">-->
+        <!--<div class="row">-->
+        <div class="slogan">
+            <h2>Weclome to <span class="text_color">Kids Help Phone</span> </h2>
+            <h4>Every day, hundreds of kids reach out to Kids Help Phone during their most challenging and critical moments.</h4>
+        </div>
+        <div class="page-scroll">
+            <a href="#service" class="btn btn-circle">
+                <i class="fa fa-angle-double-down animated"></i>
+            </a>
+        </div>
+        <!--</div>-->
+        <!--</div>-->
+    </section>
+
+    <section id="phonwWeb" class="home-section text-center  ">
+        <div class="heading-about">
+            <div class="container" style="width:100%!important;">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="wow bounceInDown" data-wow-delay="0.4s">
+                            <div class="section-heading">
+                                <h2>Phone and Web</h2>
+                                <i class="fa fa-2x fa-angle-down"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-2 col-lg-offset-5 height-0px">
+                    <hr class="marginbot-50">
+                </div>
+            </div>
+            <!--<div class="row">-->
+            <!-- 111 -->
+            <div class="col-xs-6 col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                <div class="wow bounceInUp" data-wow-delay="0.2s">
+                    <div class="team boxed-grey">
+                        <div class="inner">
+                            <h5>1 Distress Services</h5>
+                            <p class="subtitle"></p>
+                            <div class="avatar marge-bottom-5 min-height">
+                                <!--<img src="img/team/1.jpg" alt="" class="img-responsive img-circle" />-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 222 -->
+            <div class="col-xs-6 col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                <div class="wow bounceInUp" data-wow-delay="0.5s">
+                    <div class="team boxed-grey">
+                        <div class="inner">
+                            <h5>2 Sexual Health</h5>
+                            <p class="subtitle"></p>
+                            <div class="avatar marge-bottom-5 min-height">
+                                <!--<img src="img/team/2.jpg" alt="" class="img-responsive img-circle" />-->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 333 -->
+            <div class="col-xs-6 col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                <div class="wow bounceInUp" data-wow-delay="0.8s">
+                    <div class="team boxed-grey">
+                        <div class="inner">
+                            <h5>3 LGBT</h5>
+                            <p class="subtitle"> </p>
+                            <div class="avatar marge-bottom-5 min-height">
+                                <!--<img src="img/team/3.jpg" alt="" class="img-responsive img-circle" />-->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 444 -->
+            <div class="col-xs-6 col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                <div class="wow bounceInUp" data-wow-delay="1s">
+                    <div class="team boxed-grey">
+                        <div class="inner">
+                            <h5>4 Legal Help</h5>
+                            <p class="subtitle"></p>
+                            <div class="avatar marge-bottom-5 min-height">
+                                <!--<img src="img/team/4.jpg" alt="" class="img-responsive img-circle" />-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--</div>-->
+            <!--<div class="container" style="margin:5px 0; padding:5px 0;min-height:15px;"></div>-->
+            <!--<div class="row" >-->
+            <!-- 555 -->
+            <div class="col-xs-6 col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                <div class="wow bounceInUp" data-wow-delay="0.2s">
+                    <div class="team boxed-grey">
+                        <div class="inner">
+                            <h5>5 Youth Shelters & Homelessness</h5>
+                            <p class="subtitle"></p>
+                            <div class="avatar marge-bottom-5 min-height">
+                                <!--<img src="img/team/1.jpg" alt="" class="img-responsive img-circle" />-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 666 -->
+            <div class="col-xs-6 col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                <div class="wow bounceInUp" data-wow-delay="0.5s">
+                    <div class="team boxed-grey">
+                        <div class="inner">
+                            <h5>6 Youth Shelters & Homelessness</h5>
+                            <p class="subtitle"></p>
+                            <div class="avatar marge-bottom-5 min-height">
+                                <!--<img src="img/team/2.jpg" alt="" class="img-responsive img-circle" />-->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 777 -->
+            <div class="col-xs-6 col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                <div class="wow bounceInUp" data-wow-delay="0.8s">
+                    <div class="team boxed-grey">
+                        <div class="inner">
+                            <h5>7 Counselling & Mental Health</h5>
+                            <p class="subtitle"> </p>
+                            <div class="avatar marge-bottom-5 min-height">
+                                <!--<img src="img/team/3.jpg" alt="" class="img-responsive img-circle" />-->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 888 -->
+            <div class="col-xs-6 col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                <div class="wow bounceInUp" data-wow-delay="1s">
+                    <div class="team boxed-grey">
+                        <div class="inner">
+                            <h5>8 Family Violence Shelters</h5>
+                            <p class="subtitle"></p>
+                            <div class="avatar marge-bottom-5 min-height">
+                                <!--<img src="img/team/4.jpg" alt="" class="img-responsive img-circle" />-->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--</div>-->
+            <!--<div class="container" style="margin:5px 0; padding:5px 0;min-height:15px;"></div>-->
+            <!--<div class="row">-->
+            <!-- 999 -->
+            <div class="col-xs-6 col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                <div class="wow bounceInUp" data-wow-delay="0.2s">
+                    <div class="team boxed-grey">
+                        <div class="inner">
+                            <h5>9 Drugs, Alcohol & Gambling</h5>
+                            <p class="subtitle"></p>
+                            <div class="avatar marge-bottom-5 min-height">
+                                <!--<img src="img/team/1.jpg" alt="" class="img-responsive img-circle" />-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--</div>-->
+    </section>
+	<!-- /Section: Phone and Web -->
+	
+
+
+	<!-- Section: Shelter -->
+
+
+    <section id="shelterintro" class="parallax  height350">
+
+
+        <div class="slogan">
+            <h2>Kids Need<span class="text_color">Kids Help Phone</span> </h2>
+            <h4>Now more than ever, kids need Kids Help Phone. Our professional counsellors are continually in touch with young people from across the country.</h4>
+        </div>
+        <div class="page-scroll">
+            <a href="#service" class="btn btn-circle">
+                <i class="fa fa-angle-double-down animated"></i>
+            </a>
+        </div>
+    </section>
+
+
+    <section id="shelter" class="home-section text-center   ">
+
+        <div class="heading-about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 height-0px">
+                        <div class="wow bounceInDown" data-wow-delay="0.4s">
+                            <div class="section-heading">
+                                <h2>Shelter</h2>
+                                <i class="fa fa-2x fa-angle-down"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-lg-offset-5">
+                    <hr class="marginbot-50">
+                </div>
+            </div>
+            <div class="row">
+                <!-- 1 -->
+                <div class="col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                    <div class="wow fadeInLeft" data-wow-delay="0.2s">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <img src="img/icons/service-icon-1.png" alt="" />
+                            </div>
+                            <div class="service-desc">
+                                <h5>Distress Services</h5>
+                                <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+                                <div class="avatar marge-bottom-5 min-height">
+                                    <!--<img src="img/team/1.jpg" alt="" class="img-responsive img-circle" />-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                    <div class="wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <img src="img/icons/service-icon-2.png" alt="" />
+                            </div>
+                            <div class="service-desc">
+                                <h5>Sexual Health</h5>
+                                <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+                                <div class="avatar marge-bottom-5 min-height">
+                                    <!--<img src="img/team/1.jpg" alt="" class="img-responsive img-circle" />-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                    <div class="wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <img src="img/icons/service-icon-3.png" alt="" />
+                            </div>
+                            <div class="service-desc">
+                                <h5>LGBT</h5>
+                                <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+                                <div class="avatar marge-bottom-5 min-height">
+                                    <!--<img src="img/team/1.jpg" alt="" class="img-responsive img-circle" />-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                    <div class="wow fadeInRight" data-wow-delay="0.2s">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <img src="img/icons/service-icon-4.png" alt="" />
+                            </div>
+                            <div class="service-desc">
+                                <h5>Legal Help</h5>
+                                <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+                                <div class="avatar marge-bottom-5 min-height">
+                                    <!--<img src="img/team/1.jpg" alt="" class="img-responsive img-circle" />-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 -->
+                <div class="col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                    <div class="wow fadeInLeft" data-wow-delay="0.2s">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <img src="img/icons/service-icon-1.png" alt="" />
+                            </div>
+                            <div class="service-desc">
+                                <h5>Youth Shelters & Homelessness </h5>
+                                <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+                                <div class="avatar marge-bottom-5 min-height">
+                                    <!--<img src="img/team/1.jpg" alt="" class="img-responsive img-circle" />-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 --->
+                <div class="col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                    <div class="wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <img src="img/icons/service-icon-2.png" alt="" />
+                            </div>
+                            <div class="service-desc">
+                                <h5>Housing Help</h5>
+                                <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+                                <div class="avatar marge-bottom-5 min-height">
+                                    <!--<img src="img/team/1.jpg" alt="" class="img-responsive img-circle" />-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7 -->
+                <div class="col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                    <div class="wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <img src="img/icons/service-icon-3.png" alt="" />
+                            </div>
+                            <div class="service-desc">
+                                <h5>Counselling & Mental Health</h5>
+                                <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+                                <div class="avatar marge-bottom-5 min-height">
+                                    <!--<img src="img/team/1.jpg" alt="" class="img-responsive img-circle" />-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8 -->
+                <div class="col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                    <div class="wow fadeInRight" data-wow-delay="0.2s">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <img src="img/icons/service-icon-4.png" alt="" />
+                            </div>
+                            <div class="service-desc">
+                                <h5>Family Violence Shelters</h5>
+                                <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+                                <div class="avatar marge-bottom-5 min-height">
+                                    <!--<img src="img/team/1.jpg" alt="" class="img-responsive img-circle" />-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9 -->
+                <div class="col-sm-3 col-md-3 col-l-3 marge-bottom-5">
+                    <div class="wow fadeInLeft" data-wow-delay="0.2s">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <img src="img/icons/service-icon-1.png" alt="" />
+                            </div>
+                            <div class="service-desc">
+                                <h5>Drugs, Alcohol & Gambling</h5>
+                                <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+                                <div class="avatar marge-bottom-5 min-height">
+                                    <!--<img src="img/team/1.jpg" alt="" class="img-responsive img-circle" />-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+	<!-- /Section: Shelter -->
+	
+
+	
+
+	<!-- Section: footer -->
+    <section id="footerintro" class="parallax  height350 ">
+
+
+        <div class="slogan">
+            <h2>Have you ever contacted <span class="text_color">Kids Help Phone</span> with a problem or concern?</h2>
+            <h4>We are looking for individuals 25 years old or over who want to share their story about how Kids Help Phone helped them when they were kids.</h4>
+        </div>
+        <!--<div class="page-scroll">
+            <a href="#service" class="btn btn-circle">
+                <i class="fa fa-angle-double-down animated"></i>
+            </a>
+        </div>-->
+    </section>
+
+    <!--<section id="contact" class="home-section text-center">
+		<div class="heading-contact">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+					<div class="section-heading">
+					<h2>Get in touch</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
+
+		<div class="row">
+			<div class="col-lg-2 col-lg-offset-5">
+				<hr class="marginbot-50">
+			</div>
+		</div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="boxed-grey">
+                <form id="contact-form">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">
+                                Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">
+                                Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">
+                                Subject</label>
+                            <select id="subject" name="subject" class="form-control" required="required">
+                                <option value="na" selected="">Choose One:</option>
+                                <option value="service">General Customer Service</option>
+                                <option value="suggestions">Suggestions</option>
+                                <option value="product">Product Support</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">
+                                Message</label>
+                            <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                                placeholder="Message"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-skin pull-right" id="btnContactUs">
+                            Send Message</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+		
+		<div class="col-lg-4">
+			<div class="widget-contact">
+				<h5>Main Office</h5>
+				
+				<address>
+				  <strong>Squas Design, Inc.</strong><br>
+				  Tower 795 Folsom Ave, Beautiful Suite 600<br>
+				  San Francisco, CA 94107<br>
+				  <abbr title="Phone">P:</abbr> (123) 456-7890
+				</address>
+
+				<address>
+				  <strong>Email</strong><br>
+				  <a href="mailto:#">email.name@example.com</a>
+				</address>	
+				<address>
+				  <strong>We're on social networks</strong><br>
+                       	<ul class="company-social">
+                            <li class="social-facebook"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <li class="social-twitter"><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li class="social-dribble"><a href="#" target="_blank"><i class="fa fa-dribbble"></i></a></li>
+                            <li class="social-google"><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>	
+				</address>					
+			
+			</div>	
+		</div>
+    </div>	
+
+		</div>
+	</section>-->
+	<!-- /Section: footer -->
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-lg-12">
+					<div class="wow shake" data-wow-delay="0.4s">
+					<div class="page-scroll marginbot-30">
+						<a href="#intro" id="totop" class="btn btn-circle">
+							<i class="fa fa-angle-double-up animated"></i>
+						</a>
+					</div>
+					</div>
+					<p>&copy;Copyright 2014 - Squad. All rights reserved.</p>
+				</div>
+			</div>	
+		</div>
+	</footer>
+
+    <!-- Core JavaScript Files -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>	
+	<script src="js/jquery.scrollTo.js"></script>
+	<script src="js/wow.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/custom.js"></script>
+
+</body>
+
+</html>

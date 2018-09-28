@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>POST Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        //var url = "http://www.kidshelpphone.ca/ram/api/v1/email/gmail";
+        var url = "http://localhost/ramapi/api/v1/email/gmail";
+        var b = Date();
+        var h = location.host;
+        var h1 = window.location.href;
+        var a1 = "william.chen@kidshelpphone.ca";
+        var a2 = ",chenerjun@gmail.com";
+        var a3 = ",mark.duiker@kidshelpphone.ca";
+        var email = {
+            "receiver": a1 +  a2 ,
+        "body":b+"<br><br>Hi there,<br/><br/>host:"+h+";  "+h1
+    };
+
+    //var email = {
+    //    "receiver": "william.chen@kidshelpphone.ca,chenerjun@gmail.com",
+    //    "body": "sent:2:48pm<br><br>Hi there,<br/><br/>Thank you for choosing the Resource Around Me to search the services.<br/>Below is you have selected faviouiries resource list:<br/><ol><li>Services Sample I;</li><li>Services Sample II;</li><li>Services Sample III;</li></ol><br/>Thank you so much for looking up resources from Kids Help Phone and hopefully you found this useful!<br/><br/>Resource Around Me<br/>Kids Help Phone"
+    //};
+    $.ajax(
+         {
+             url: url,
+             type: "POST",
+             data: email,
+             dataType: 'HTML',
+              //ContentType: 'application/json;charset=utf-8',
+             success: function (response) {
+                 $("#p1").append("ok");
+             },
+             error: function (xhr, status, p3, p4) {
+                 var err = "Error " + " " + status + " " + p3;
+                 if (xhr.responseText && xhr.responseText[0] == "{")
+                     err = JSON.parse(xhr.responseText).message;
+                 alert(err); alert(xhr.responseText);
+             }
+         });
+    </script>
+
+
+
+</head>
+<body>
+    you post to API :  <p id="p1"></p>
+</body>
+</html>

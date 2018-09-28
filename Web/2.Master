@@ -1,0 +1,122 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="2.master.cs" Inherits="Web._21" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Resource Around Me</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <link href="http://kidshelpphone.ca/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+    <link href="http://kidshelpphone.ca/favicon.ico" type="image/x-icon" rel="icon" />
+    <link href="Content/2.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/reset.css">
+    <!-- CSS reset -->
+    <%--<link rel="stylesheet" href="css/style.css">--%>
+    <!-- Resource style -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700|Open+Sans+Condensed:700,300,300italic|Open+Sans:400,300italic,400italic,600,600italic,700,700italic,800,800italic|PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css' />
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.20&signed_in=true&libraries=places"></script>
+
+    <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-1.8.2.min.js"></script>
+    <script src="Scripts/2.js"></script>
+    <script src="js/modernizr.js"></script>
+    <!-- Modernizr -->
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+      <%--  <header role="banner">--%>
+            <table style="width:95%;margin:5px 25px 0 25px;">
+                <tr>
+                    <td style="height:95px;padding:10px 15px 0 15px;width:10%!important;"><a href="http://www.kidshelpphone.ca">
+                        <img src="images/en/khp-logo.gif" alt="Kids Help Phone"></a></td>
+                    <td style="text-align :center; width:60%; text-align:center;padding-left:20px;">
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="text-align:center;">
+                                    <a href="http://kidshelpphone.ca/Teens/PhoneUs.aspx">
+                                        <img id="nav-phone" src="images/en/nav-phone - Copy.png"></a> 
+                                 <a href="http://kidshelpphone.ca/Teens/AskUsOnline.aspx">
+                                     <img id="nav-ask" src="images/en/nav-ask - Copy.png"></a> 
+                                 <a href="http://kidshelpphone.ca/Teens/InfoBooth.aspx">
+                                     <img id="nav-info" src="images/en/nav-info - Copy.png"></a> 
+                                 <a href="http://kidshelpphone.ca/Teens/YourSpace.aspx">
+                                     <img id="nav-space" src="images/en/nav-space - Copy.png"></a> 
+                                 
+                                    <a href="http://kidshelpphone.ca/Teens/GetInvolved.aspx">
+                                        <img id="nav-involved" src="images/en/nav-involved - Copy.png"></a>
+                                </td>
+                      
+                            </tr>
+                        </table>
+                    </td>
+
+                    <td style="vertical-align:top;text-align:left;width:15%!important;">
+                        <table style="width:100%;" >
+                            <tr>
+                                <td style="vertical-align:top;text-align:right;margin-top:10px; padding-top:10px;" ><a href="http://wwww.kidshelpphone.ca">Home</a></td>
+                                <td style="vertical-align:top;text-align:right;margin-top:10px;padding-top:10px;"><a href="#">Français</a></td>
+                                <td style="vertical-align:top;text-align:right;margin-top:10px;padding-top:10px;"><a id="quickleave" href="http://google.com" class="btn"><img src ="Images/leavel.png" alt="lq" /></a></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <%--<div id="headContainer">
+
+               <div id="logoarea" class="logo">
+                    <a href="http://www.kidshelpphone.ca">
+                        <img src="images/en/khp-logo.gif" alt="Kids Help Phone"></a>
+                </div> 
+                <div id="navarea" class="header_menu">
+                    <div style="margin: 0 auto;">
+                        <nav>
+                            <ul id="topmenu">
+                                <li>
+                                    <a href="http://kidshelpphone.ca/Teens/PhoneUs.aspx">
+                                        <img id="nav-phone" src="images/en/nav-phone - Copy.png"></a>
+                                </li>
+                                <li>
+                                    <a href="http://kidshelpphone.ca/Teens/AskUsOnline.aspx">
+                                        <img id="nav-ask" src="images/en/nav-ask - Copy.png"></a>
+                                </li>
+                                <li>
+                                    <a href="http://kidshelpphone.ca/Teens/InfoBooth.aspx">
+                                        <img id="nav-info" src="images/en/nav-info - Copy.png"></a>
+                                </li>
+                                <li>
+                                    <a href="http://kidshelpphone.ca/Teens/YourSpace.aspx">
+                                        <img id="nav-space" src="images/en/nav-space - Copy.png"></a>
+                                </li>
+                                <li>
+                                    <a href="http://kidshelpphone.ca/Teens/GetInvolved.aspx">
+                                        <img id="nav-involved" src="images/en/nav-involved - Copy.png"></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div id="utiliarea" class="header_utils">
+                    <ul class="utils">
+                        <li>Home</li>
+                        <li>Français</li>
+                        <li class="btn"><a href="http://google.com">Leave Site Quickly</a></li>
+                    </ul>
+                </div>
+            </div>--%>
+       <%-- </header>--%>
+
+
+
+
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+     
+    </form>
+</body>
+</html>

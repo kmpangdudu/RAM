@@ -1,0 +1,1676 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RAMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="Get_City_By_CId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cid" Type="int" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetCityAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetCityByProvince" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pid" Type="int" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getProvince" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getProvinceByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="pid" Type="int" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_apilog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dbschema" Type="nvarchar" Mode="In" />
+          <Parameter Name="csmethod" Type="nvarchar" Mode="In" />
+          <Parameter Name="format" Type="nvarchar" Mode="In" />
+          <Parameter Name="para" Type="nvarchar" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="cscontent" Type="nvarchar" Mode="In" />
+          <Parameter Name="csendpoint" Type="nvarchar" Mode="In" />
+          <Parameter Name="keywords" Type="nvarchar" Mode="In" />
+          <Parameter Name="csip" Type="nvarchar" Mode="In" />
+          <Parameter Name="csstatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="cscode" Type="int" Mode="In" />
+          <Parameter Name="cshost" Type="nvarchar" Mode="In" />
+          <Parameter Name="csurl" Type="nvarchar" Mode="In" />
+          <Parameter Name="csuseragent" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Cluster_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchWordS" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Cluster_Search_Short" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchWordS" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_All_RamResource" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_All_RamResource_by_Lang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_All_Resource_In_Radius_boundary_Box" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lat" Type="numeric" Mode="In" />
+          <Parameter Name="Long" Type="numeric" Mode="In" />
+          <Parameter Name="Radius" Type="numeric" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_All_Resources_In_Radius" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartLatitude" Type="numeric" Mode="In" />
+          <Parameter Name="StartLongitude" Type="numeric" Mode="In" />
+          <Parameter Name="Radius" Type="numeric" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Allow_Domain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Proc_Get_Allow_IP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Proc_Get_Blocked_IP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Proc_Get_Google_All_City" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Proc_Get_Google_City_By_GoogleCityID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Google_City_By_ProvinceID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Resource_by_City" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CityID" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Resource_by_Classification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="type" Type="nvarchar" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Resource_By_Coverage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="s" Type="nvarchar" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Resource_by_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Resource_by_Province" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProvinceID" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Resource_by_Province_and_City" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CityID" Type="int" Mode="In" />
+          <Parameter Name="ProvinceID" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Resource_by_SubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubCategoryID" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Resource_by_Top_and_SubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TOPCategoryID" Type="int" Mode="In" />
+          <Parameter Name="SubCategoryID" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Resource_by_TopCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TOPCategoryID" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_SubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_SubCategory_by_SId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SID" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_SubCategory_byTopCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TID" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_SuggestionWord_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Proc_Get_TopCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Unique_Resource" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="map" Type="nvarchar" Mode="In" />
+          <Parameter Name="resourceAgencyNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="subcategoryid" Type="int" Mode="In" />
+          <Parameter Name="topcategoryid" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Increment_Google_City" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="L" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Increment_Loaction_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="L" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Increment_Suggestion_Word" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="L" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Search_Resource_by_City" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CityID" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Search_Resource_By_Coverage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="s" Type="nvarchar" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Search_Resource_by_Province" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProvinceID" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Search_Resource_by_SubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubCategoryID" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Search_Resource_by_TopCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TOPCategoryID" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Search_Resource_In_Radius_boundary_Box" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lat" Type="numeric" Mode="In" />
+          <Parameter Name="Long" Type="numeric" Mode="In" />
+          <Parameter Name="Radius" Type="numeric" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Search_Resources_In_Radius" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartLatitude" Type="numeric" Mode="In" />
+          <Parameter Name="StartLongitude" Type="numeric" Mode="In" />
+          <Parameter Name="Radius" Type="numeric" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_TopCategory_by_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TID" Type="int" Mode="In" />
+          <Parameter Name="LANG" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Canadaip" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="geo">
+          <Parameter Name="ip" Type="bigint" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_GetSurveyQuestionByQuestionID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="survey">
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="qid" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_GetSurveyQuestionByVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="survey">
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="ver" Type="nvarchar" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_GetSurveyQuestionOptsByQuestionID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="survey">
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="qid" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_GetSurveyQuestionOptsByVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="survey">
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="ver" Type="nvarchar" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_GetSurveyTypeByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="survey">
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="sid" Type="int" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Insert_Answer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="survey">
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="surveyQuestion_ID" Type="int" Mode="In" />
+          <Parameter Name="chatID" Type="int" Mode="In" />
+          <Parameter Name="surveyAnswer" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="language" Type="nvarchar" Mode="In" />
+          <Parameter Name="surveyAnswer_Device" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="RAMModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RAMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RAMEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="Proc_Get_SubCategory" ReturnType="Collection(RAMModel.SubCategoryResult)">
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_SubCategory_by_SId" ReturnType="Collection(RAMModel.SubCategoryResult)">
+            <Parameter Name="SID" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_SubCategory_byTopCategory" ReturnType="Collection(RAMModel.SubCategoryResult)">
+            <Parameter Name="TID" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_TopCategory" ReturnType="Collection(RAMModel.TopCategoryList)">
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_TopCategory_by_ID" ReturnType="Collection(RAMModel.TopCategoryList)">
+            <Parameter Name="TID" Mode="In" Type="Int32" />
+            <Parameter Name="LANG" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AllCitiesList" ReturnType="Collection(RAMModel.CityList)" >
+          <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetCityByProvince" ReturnType="Collection(RAMModel.CityList)">
+            <Parameter Name="pid" Mode="In" Type="Int32" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get_City_By_CId" ReturnType="Collection(RAMModel.CityResult)">
+            <Parameter Name="cid" Mode="In" Type="Int32" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getProvinceByID" ReturnType="Collection(RAMModel.ProvinceList)">
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="pid" Mode="In" Type="Int32" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getProvinceList" ReturnType="Collection(RAMModel.ProvinceList)">
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Resource_by_Cluster_Search_Keywords" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="SearchWordS" Mode="In" Type="String" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_All_RamResource_by_Lang" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_All_RamResource" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Resource_by_City" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="CityID" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Resource_by_ID" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Resource_by_Province" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="ProvinceID" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Resource_by_Province_and_City" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="CityID" Mode="In" Type="Int32" />
+            <Parameter Name="ProvinceID" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Resource_by_SubCategory" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="SubCategoryID" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Resource_by_Top_and_SubCategory" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="TOPCategoryID" Mode="In" Type="Int32" />
+            <Parameter Name="SubCategoryID" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Resource_by_TopCategory" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="TOPCategoryID" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_SuggestionWord_List" ReturnType="Collection(RAMModel.SuggestionWords)" />
+          <FunctionImport Name="Proc_Increment_Suggestion_Word" ReturnType="Collection(RAMModel.SuggestionWords)">
+          <Parameter Name="L" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_All_Resource_In_Radius_boundary_Box" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="Lat" Mode="In" Type="Decimal" />
+            <Parameter Name="Long" Mode="In" Type="Decimal" />
+            <Parameter Name="Radius" Mode="In" Type="Decimal" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_All_Resources_In_Radius" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="StartLatitude" Mode="In" Type="Decimal" />
+            <Parameter Name="StartLongitude" Mode="In" Type="Decimal" />
+            <Parameter Name="Radius" Mode="In" Type="Decimal" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Cluster_Search_Short" ReturnType="Collection(RAMModel.Search_Result)">
+            <Parameter Name="SearchWordS" Mode="In" Type="String" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Search_Resources_In_Radius" ReturnType="Collection(RAMModel.Search_Result)">
+            <Parameter Name="StartLatitude" Mode="In" Type="Decimal" />
+            <Parameter Name="StartLongitude" Mode="In" Type="Decimal" />
+            <Parameter Name="Radius" Mode="In" Type="Decimal" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Search_Resource_In_Radius_boundary_Box" ReturnType="Collection(RAMModel.Search_Result)">
+            <Parameter Name="Lat" Mode="In" Type="Decimal" />
+            <Parameter Name="Long" Mode="In" Type="Decimal" />
+            <Parameter Name="Radius" Mode="In" Type="Decimal" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Search_Resource_by_City" ReturnType="Collection(RAMModel.Search_Result)">
+            <Parameter Name="CityID" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Search_Resource_by_Province" ReturnType="Collection(RAMModel.Search_Result)">
+            <Parameter Name="ProvinceID" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Search_Resource_by_SubCategory" ReturnType="Collection(RAMModel.Search_Result)">
+            <Parameter Name="SubCategoryID" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Search_Resource_by_TopCategory" ReturnType="Collection(RAMModel.Search_Result)">
+            <Parameter Name="TOPCategoryID" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Unique_Resource" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="map" Mode="In" Type="String" />
+            <Parameter Name="resourceAgencyNum" Mode="In" Type="String" />
+            <Parameter Name="subcategoryid" Mode="In" Type="Int32" />
+            <Parameter Name="topcategoryid" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Resource_By_Coverage" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="s" Mode="In" Type="String" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Search_Resource_By_Coverage" ReturnType="Collection(RAMModel.Search_Result)">
+            <Parameter Name="s" Mode="In" Type="String" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Allow_Domain" ReturnType="Collection(String)" />
+          <FunctionImport Name="Proc_Get_Allow_IP" ReturnType="Collection(String)" />
+          <FunctionImport Name="Proc_Get_Google_All_City" ReturnType="Collection(RAMModel.GoogleCityList)" />
+          <FunctionImport Name="Proc_Get_Google_City_By_GoogleCityID" ReturnType="Collection(RAMModel.GoogleCityList)">
+          <Parameter Name="cid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Google_City_By_ProvinceID" ReturnType="Collection(RAMModel.GoogleCityList)">
+          <Parameter Name="PID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Increment_Google_City" ReturnType="Collection(RAMModel.GoogleCityList)">
+          <Parameter Name="L" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Increment_Loaction_Search" ReturnType="Collection(RAMModel.CityList)">
+            <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="L" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Blocked_IP" ReturnType="Collection(String)" />
+          <FunctionImport Name="Proc_Get_Resource_by_Classification" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="type" Mode="In" Type="String" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Canadaip" ReturnType="Collection(RAMModel.geolocation)">
+            <Parameter Name="ip" Mode="In" Type="Int64" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_apilog">
+            <Parameter Name="dbschema" Mode="In" Type="String" />
+            <Parameter Name="csmethod" Mode="In" Type="String" />
+            <Parameter Name="format" Mode="In" Type="String" />
+            <Parameter Name="para" Mode="In" Type="String" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="cscontent" Mode="In" Type="String" />
+            <Parameter Name="csendpoint" Mode="In" Type="String" />
+            <Parameter Name="keywords" Mode="In" Type="String" />
+            <Parameter Name="csip" Mode="In" Type="String" />
+            <Parameter Name="csstatus" Mode="In" Type="String" />
+            <Parameter Name="cscode" Mode="In" Type="Int32" />
+            <Parameter Name="cshost" Mode="In" Type="String" />
+            <Parameter Name="csurl" Mode="In" Type="String" />
+            <Parameter Name="csuseragent" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Insert_Answer">
+            <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="surveyQuestion_ID" Mode="In" Type="Int32" />
+            <Parameter Name="chatID" Mode="In" Type="Int32" />
+            <Parameter Name="surveyAnswer" Mode="In" Type="String" />
+            <Parameter Name="language" Mode="In" Type="String" />
+            <Parameter Name="surveyAnswer_Device" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_GetSurveyQuestionByQuestionID" ReturnType="Collection(RAMModel.Proc_GetSurveyQuestionByQuestionID_Result)">
+            <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="qid" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_GetSurveyQuestionOptsByQuestionID" ReturnType="Collection(RAMModel.Proc_GetSurveyQuestionOptsByQuestionID_Result)">
+            <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="qid" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_GetSurveyTypeByID" ReturnType="Collection(RAMModel.Proc_GetSurveyTypeByID_Result)">
+            <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="sid" Mode="In" Type="Int32" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_GetSurveyQuestionByVersion" ReturnType="Collection(RAMModel.Proc_GetSurveyQuestionByVersion_Result)">
+            <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="ver" Mode="In" Type="String" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_GetSurveyQuestionOptsByVersion" ReturnType="Collection(RAMModel.Proc_GetSurveyQuestionOptsByVersion_Result)">
+            <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="ver" Mode="In" Type="String" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="TopCategoryList">
+          <Property Type="Int32" Name="TopCategoryID" Nullable="false" />
+          <Property Type="String" Name="TopCategory" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="CityList">
+          <Property Type="Int32" Name="CityId" Nullable="false" />
+          <Property Type="String" Name="city" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Province" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="CityResult">
+          <Property Type="Int32" Name="CityId" Nullable="false" />
+          <Property Type="String" Name="city" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="province" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="latitude" Nullable="true" Precision="18" Scale="10" />
+          <Property Type="Decimal" Name="longitude" Nullable="true" Precision="18" Scale="10" />
+        </ComplexType>
+        <ComplexType Name="ProvinceList">
+          <Property Type="Int32" Name="ProvinceID" Nullable="false" />
+          <Property Type="String" Name="Alias" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Province" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SuggestionWords">
+          <Property Type="Int32" Name="SuggestionWordID" Nullable="false" />
+          <Property Type="String" Name="SuggestionWord" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="SubCategoryResult">
+          <Property Type="Int32" Name="SubCategoryID" Nullable="false" />
+          <Property Type="String" Name="SubCategory" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="SubCategoryDesc" Nullable="true" MaxLength="2000" />
+        </ComplexType>
+        <ComplexType Name="RamResource">
+          <Property Type="Int32" Name="ETLLoadID" Nullable="false" />
+          <Property Type="String" Name="ResourceAgencyNum" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Map" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="SubCategoryID" Nullable="false" />
+          <Property Type="String" Name="SubCategory" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="TOPCategoryID" Nullable="false" />
+          <Property Type="String" Name="TopCategory" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="AgencyDescription" Nullable="true" />
+          <Property Type="String" Name="PhysicalAddress" Nullable="true" MaxLength="2000" />
+          <Property Type="Int32" Name="PhysicalCityID" Nullable="true" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="PhysicalProvinceID" Nullable="true" />
+          <Property Type="String" Name="Province" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhysicalCountry" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhysicalPostalCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="STerm" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="LTerms" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="PhysicalAddressIsPrivate" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Latitude" Nullable="true" Precision="18" Scale="10" />
+          <Property Type="Decimal" Name="Longitude" Nullable="true" Precision="18" Scale="10" />
+          <Property Type="String" Name="HoursOfOperation" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="WebsiteAddress" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Eligibility" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="DisabilitiesAccess" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="FeeStructureSource" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="ApplicationProcess" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="DocumentsRequired" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="LanguagesOfferedList" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="LanguageOfRecord" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="WorkHours" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="CustomEligibilitybyAge" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Coverage" Nullable="true" />
+          <Property Type="String" Name="CoverageArea" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="NormalWaitTime" Nullable="true" MaxLength="2000" />
+        </ComplexType>
+        <ComplexType Name="Search_Result">
+          <Property Type="Int32" Name="ETLLoadID" Nullable="false" />
+          <Property Type="String" Name="ResourceAgencyNum" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Map" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="SubCategoryID" Nullable="false" />
+          <Property Type="String" Name="SubCategory" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="TOPCategoryID" Nullable="false" />
+          <Property Type="String" Name="TopCategory" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="PhysicalAddress" Nullable="true" />
+          <Property Type="String" Name="City" Nullable="true" />
+          <Property Type="String" Name="Province" Nullable="true" />
+          <Property Type="String" Name="STerm" Nullable="true" />
+          <Property Type="String" Name="PhysicalAddressIsPrivate" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Latitude" Nullable="true" Precision="18" Scale="10" />
+          <Property Type="Decimal" Name="Longitude" Nullable="true" Precision="18" Scale="10" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="WebsiteAddress" Nullable="true" MaxLength="2000" />
+        </ComplexType>
+        <ComplexType Name="GoogleCityList">
+          <Property Type="Int32" Name="GoogleCityID" Nullable="false" />
+          <Property Type="String" Name="GoogleCity" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="province" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="geolocation">
+          <Property Type="String" Name="country" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="Proc_GetSurveyQuestionByQuestionID_Result">
+          <Property Type="Int32" Name="surveyQuestion_id" Nullable="false" />
+          <Property Type="Int32" Name="surveyTypeID" Nullable="true" />
+          <Property Type="String" Name="surveyQuestion" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="surveyQuestionDesc" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="Proc_GetSurveyQuestionOptsByQuestionID_Result">
+          <Property Type="Int32" Name="surveyQuestionOptID" Nullable="false" />
+          <Property Type="Int32" Name="surveyQuestionID" Nullable="true" />
+          <Property Type="String" Name="surveyQuestionOpt" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="surveyQuestionOptDesc" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="Proc_GetSurveyTypeByID_Result">
+          <Property Type="Int32" Name="surveytype_id" Nullable="false" />
+          <Property Type="String" Name="surveyType" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="Proc_GetSurveyQuestionByVersion_Result">
+          <Property Type="Int32" Name="surveyQuestion_id" Nullable="false" />
+          <Property Type="Int32" Name="surveyTypeID" Nullable="true" />
+          <Property Type="String" Name="surveyQuestion" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="surveyQuestionDesc" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="Proc_GetSurveyQuestionOptsByVersion_Result">
+          <Property Type="Int32" Name="surveyQuestionOptID" Nullable="false" />
+          <Property Type="Int32" Name="surveyQuestionID" Nullable="true" />
+          <Property Type="String" Name="surveyQuestionOpt" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="surveyQuestionOptDesc" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RAMModelStoreContainer" CdmEntityContainer="RAMEntities" >
+          <FunctionImportMapping FunctionImportName="Proc_Get_SubCategory" FunctionName="RAMModel.Store.Proc_Get_SubCategory">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.SubCategoryResult">
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="SubCategoryDesc" ColumnName="SubCategoryDesc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_SubCategory_by_SId" FunctionName="RAMModel.Store.Proc_Get_SubCategory_by_SId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.SubCategoryResult">
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="SubCategoryDesc" ColumnName="SubCategoryDesc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_SubCategory_byTopCategory" FunctionName="RAMModel.Store.Proc_Get_SubCategory_byTopCategory">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.SubCategoryResult">
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="SubCategoryDesc" ColumnName="SubCategoryDesc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_TopCategory" FunctionName="RAMModel.Store.Proc_Get_TopCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.TopCategoryList">
+                <ScalarProperty Name="TopCategoryID" ColumnName="TopCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_TopCategory_by_ID" FunctionName="RAMModel.Store.Proc_TopCategory_by_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.TopCategoryList">
+                <ScalarProperty Name="TopCategoryID" ColumnName="TopCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AllCitiesList" FunctionName="RAMModel.Store.GetCityAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.CityList">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCityByProvince" FunctionName="RAMModel.Store.GetCityByProvince">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.CityList">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_City_By_CId" FunctionName="RAMModel.Store.Get_City_By_CId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.CityResult">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getProvinceByID" FunctionName="RAMModel.Store.getProvinceByID">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.ProvinceList">
+                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+                <ScalarProperty Name="Alias" ColumnName="Alias" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getProvinceList" FunctionName="RAMModel.Store.getProvince">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.ProvinceList">
+                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+                <ScalarProperty Name="Alias" ColumnName="Alias" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Resource_by_Cluster_Search_Keywords" FunctionName="RAMModel.Store.Proc_Cluster_Search">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_All_RamResource_by_Lang" FunctionName="RAMModel.Store.Proc_Get_All_RamResource_by_Lang">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_All_RamResource" FunctionName="RAMModel.Store.Proc_Get_All_RamResource">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Resource_by_City" FunctionName="RAMModel.Store.Proc_Get_Resource_by_City">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Resource_by_ID" FunctionName="RAMModel.Store.Proc_Get_Resource_by_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Resource_by_Province" FunctionName="RAMModel.Store.Proc_Get_Resource_by_Province">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Resource_by_Province_and_City" FunctionName="RAMModel.Store.Proc_Get_Resource_by_Province_and_City">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Resource_by_SubCategory" FunctionName="RAMModel.Store.Proc_Get_Resource_by_SubCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Resource_by_Top_and_SubCategory" FunctionName="RAMModel.Store.Proc_Get_Resource_by_Top_and_SubCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Resource_by_TopCategory" FunctionName="RAMModel.Store.Proc_Get_Resource_by_TopCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_SuggestionWord_List" FunctionName="RAMModel.Store.Proc_Get_SuggestionWord_List">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.SuggestionWords">
+                <ScalarProperty Name="SuggestionWordID" ColumnName="SuggestionWordID" />
+                <ScalarProperty Name="SuggestionWord" ColumnName="SuggestionWord" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Increment_Suggestion_Word" FunctionName="RAMModel.Store.Proc_Increment_Suggestion_Word">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.SuggestionWords">
+                <ScalarProperty Name="SuggestionWordID" ColumnName="SuggestionWordID" />
+                <ScalarProperty Name="SuggestionWord" ColumnName="SuggestionWord" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_All_Resource_In_Radius_boundary_Box" FunctionName="RAMModel.Store.Proc_Get_All_Resource_In_Radius_boundary_Box">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_All_Resources_In_Radius" FunctionName="RAMModel.Store.Proc_Get_All_Resources_In_Radius">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Cluster_Search_Short" FunctionName="RAMModel.Store.Proc_Cluster_Search_Short">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.Search_Result">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Search_Resources_In_Radius" FunctionName="RAMModel.Store.Proc_Search_Resources_In_Radius">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.Search_Result">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Search_Resource_In_Radius_boundary_Box" FunctionName="RAMModel.Store.Proc_Search_Resource_In_Radius_boundary_Box">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.Search_Result">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Search_Resource_by_City" FunctionName="RAMModel.Store.Proc_Search_Resource_by_City">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.Search_Result">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Search_Resource_by_Province" FunctionName="RAMModel.Store.Proc_Search_Resource_by_Province">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.Search_Result">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Search_Resource_by_SubCategory" FunctionName="RAMModel.Store.Proc_Search_Resource_by_SubCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.Search_Result">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Search_Resource_by_TopCategory" FunctionName="RAMModel.Store.Proc_Search_Resource_by_TopCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.Search_Result">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Unique_Resource" FunctionName="RAMModel.Store.Proc_Get_Unique_Resource">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Resource_By_Coverage" FunctionName="RAMModel.Store.Proc_Get_Resource_By_Coverage">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Search_Resource_By_Coverage" FunctionName="RAMModel.Store.Proc_Search_Resource_By_Coverage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.Search_Result">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Allow_Domain" FunctionName="RAMModel.Store.Proc_Get_Allow_Domain" />
+          <FunctionImportMapping FunctionImportName="Proc_Get_Allow_IP" FunctionName="RAMModel.Store.Proc_Get_Allow_IP" />
+          <FunctionImportMapping FunctionImportName="Proc_Get_Google_All_City" FunctionName="RAMModel.Store.Proc_Get_Google_All_City">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.GoogleCityList">
+                <ScalarProperty Name="GoogleCityID" ColumnName="GoogleCityID" />
+                <ScalarProperty Name="GoogleCity" ColumnName="GoogleCity" />
+                <ScalarProperty Name="province" ColumnName="province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Google_City_By_GoogleCityID" FunctionName="RAMModel.Store.Proc_Get_Google_City_By_GoogleCityID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.GoogleCityList">
+                <ScalarProperty Name="GoogleCityID" ColumnName="GoogleCityID" />
+                <ScalarProperty Name="GoogleCity" ColumnName="GoogleCity" />
+                <ScalarProperty Name="province" ColumnName="province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Google_City_By_ProvinceID" FunctionName="RAMModel.Store.Proc_Get_Google_City_By_ProvinceID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.GoogleCityList">
+                <ScalarProperty Name="GoogleCityID" ColumnName="GoogleCityID" />
+                <ScalarProperty Name="GoogleCity" ColumnName="GoogleCity" />
+                <ScalarProperty Name="province" ColumnName="province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Increment_Google_City" FunctionName="RAMModel.Store.Proc_Increment_Google_City">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.GoogleCityList">
+                <ScalarProperty Name="GoogleCityID" ColumnName="GoogleCityID" />
+                <ScalarProperty Name="GoogleCity" ColumnName="GoogleCity" />
+                <ScalarProperty Name="province" ColumnName="province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Increment_Loaction_Search" FunctionName="RAMModel.Store.Proc_Increment_Loaction_Search">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.CityList">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Blocked_IP" FunctionName="RAMModel.Store.Proc_Get_Blocked_IP" />
+          <FunctionImportMapping FunctionImportName="Proc_Get_Resource_by_Classification" FunctionName="RAMModel.Store.Proc_Get_Resource_by_Classification">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Canadaip" FunctionName="RAMModel.Store.Proc_Get_Canadaip" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.geolocation">
+                <ScalarProperty Name="country" ColumnName="country" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_apilog" FunctionName="RAMModel.Store.Proc_apilog" />
+          <FunctionImportMapping FunctionImportName="Proc_Insert_Answer" FunctionName="RAMModel.Store.Proc_Insert_Answer" />
+          <FunctionImportMapping FunctionImportName="Proc_GetSurveyQuestionByQuestionID" FunctionName="RAMModel.Store.Proc_GetSurveyQuestionByQuestionID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.Proc_GetSurveyQuestionByQuestionID_Result">
+                <ScalarProperty Name="surveyQuestion_id" ColumnName="surveyQuestion_id" />
+                <ScalarProperty Name="surveyTypeID" ColumnName="surveyTypeID" />
+                <ScalarProperty Name="surveyQuestion" ColumnName="surveyQuestion" />
+                <ScalarProperty Name="surveyQuestionDesc" ColumnName="surveyQuestionDesc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_GetSurveyQuestionOptsByQuestionID" FunctionName="RAMModel.Store.Proc_GetSurveyQuestionOptsByQuestionID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.Proc_GetSurveyQuestionOptsByQuestionID_Result">
+                <ScalarProperty Name="surveyQuestionOptID" ColumnName="surveyQuestionOptID" />
+                <ScalarProperty Name="surveyQuestionID" ColumnName="surveyQuestionID" />
+                <ScalarProperty Name="surveyQuestionOpt" ColumnName="surveyQuestionOpt" />
+                <ScalarProperty Name="surveyQuestionOptDesc" ColumnName="surveyQuestionOptDesc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_GetSurveyTypeByID" FunctionName="RAMModel.Store.Proc_GetSurveyTypeByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.Proc_GetSurveyTypeByID_Result">
+                <ScalarProperty Name="surveytype_id" ColumnName="surveytype_id" />
+                <ScalarProperty Name="surveyType" ColumnName="surveyType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_GetSurveyQuestionByVersion" FunctionName="RAMModel.Store.Proc_GetSurveyQuestionByVersion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.Proc_GetSurveyQuestionByVersion_Result">
+                <ScalarProperty Name="surveyQuestion_id" ColumnName="surveyQuestion_id" />
+                <ScalarProperty Name="surveyTypeID" ColumnName="surveyTypeID" />
+                <ScalarProperty Name="surveyQuestion" ColumnName="surveyQuestion" />
+                <ScalarProperty Name="surveyQuestionDesc" ColumnName="surveyQuestionDesc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_GetSurveyQuestionOptsByVersion" FunctionName="RAMModel.Store.Proc_GetSurveyQuestionOptsByVersion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.Proc_GetSurveyQuestionOptsByVersion_Result">
+                <ScalarProperty Name="surveyQuestionOptID" ColumnName="surveyQuestionOptID" />
+                <ScalarProperty Name="surveyQuestionID" ColumnName="surveyQuestionID" />
+                <ScalarProperty Name="surveyQuestionOpt" ColumnName="surveyQuestionOpt" />
+                <ScalarProperty Name="surveyQuestionOptDesc" ColumnName="surveyQuestionOptDesc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

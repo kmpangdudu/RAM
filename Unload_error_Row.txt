@@ -1,0 +1,6 @@
+Flat File Source Error Output Column|ErrorCode|ErrorColumn
+Flat File Source Error Output Column,ErrorCode,ErrorColumn
+Flat File Source Error Output Column,ErrorCode,ErrorColumn
+Flat File Source Error Output Column,ErrorCode,ErrorColumn
+Flat File Source Error Output Column,ErrorCode,ErrorColumn
+Flat File Source Error Output Column,ErrorCode,ErrorColumn

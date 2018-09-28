@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WebApi.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ssl" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="pwd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">R3k!hd89s$</Value>
+    </Setting>
+    <Setting Name="sendfrom" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">rameml@kidshelpphone.ca</Value>
+    </Setting>
+    <Setting Name="displayname" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Resources Around Me/Ressources autour de moi</Value>
+    </Setting>
+    <Setting Name="subject" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">My Favourites List</Value>
+    </Setting>
+    <Setting Name="host" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">mail.kidshelpphone.ca</Value>
+    </Setting>
+    <Setting Name="port" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">587</Value>
+    </Setting>
+    <Setting Name="loginname" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">rameml</Value>
+    </Setting>
+    <Setting Name="subject_fr" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Mes Signets</Value>
+    </Setting>
+    <Setting Name="AllowDomain" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://www.kidshelpphone.ca,http://kidshelpphone.ca,https://www.kidshelpphone.ca,https://kidshelpphone.ca,http://www.jeunessejecoute.ca,http://jeunessejecoute.ca,http://www.kidshelpdev.org,http://kidshelpdev.org,http://localhost,https://localhost,http://dev.khp.blanclabs.com, http://qa.khp.blanclabs.com, http://prd.khp.blanclabs.com</Value>
+    </Setting>
+    <Setting Name="AuthorizeIPAddresses" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">::1,127.0.0.1,10.*.*.*, 207.164.226.2, 209.141.156.45, 50.100.14.*, 52.15.130.24, 192.197.205.213, 54.202.77.31,200.62.26.226,54.213.162.134,38.140.101.42,54.191.239.180</Value>
+    </Setting>
+    <Setting Name="eCardloginname" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Resources</Value>
+    </Setting>
+    <Setting Name="eCardpwd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">K1dsH3lp15</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="RAM" Class="LQDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=T530;Initial Catalog=RAM;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="RAMConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Shelter" Member="Shelters">
+    <Type Name="Shelter">
+      <Column Name="ETLLoadID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ResourceAgencyNum" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ClassicationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PublicName" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="AgencyDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TaxonomyLevelNameID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ParentAgencyNum" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalAddress" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="PhysicalCityID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhysicalProvinceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhysicalCountry" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalPostalCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalAddressIsPrivate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="HoursOfOperation" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="WebsiteAddress" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Eligibility" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="DisabilitiesAccess" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FeeStructureSource" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="ApplicationProcess" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="DocumentsRequired" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguagesOfferedList" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguageOfRecord" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WorkHours" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CustomEligibilitybyAge" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CityLocation" Member="CityLocations">
+    <Type Name="CityLocation">
+      <Column Name="CityId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CityName" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ProvinceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="latitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="longitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="ChangedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Province_CityLocation" Member="Province" ThisKey="ProvinceID" OtherKey="ProvinceID" Type="Province" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Province" Member="Provinces">
+    <Type Name="Province">
+      <Column Name="ProvinceID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Province" Member="Province1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ProvinceAlias" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ProvinceFrench" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="changedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Province_CityLocation" Member="CityLocations" ThisKey="ProvinceID" OtherKey="ProvinceID" Type="CityLocation" />
+      <Association Name="Province_CityLocation1" Member="CityLocation1s" ThisKey="ProvinceID" OtherKey="ProvinceID" Type="CityLocation1" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhoneWeb" Member="PhoneWebs">
+    <Type Name="PhoneWeb">
+      <Column Name="ETLLoadID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ResourceAgencyNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KHPCategoryID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PublicName" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="AgencyDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TaxonomyLevelNameID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ParentAgencyNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalAddress" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="PhysicalCityID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhysicalProvinceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhysicalCountry" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalPostalCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalAddressIsPrivate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="HoursOfOperation" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="WebsiteAddress" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="Eligibility" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="DisabilitiesAccess" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="FeeStructureSource" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="ApplicationProcess" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="DocumentsRequired" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguagesOfferedList" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguageOfRecord" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkHours" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="CustomEligibilitybyAge" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="KHPCategory_PhoneWeb" Member="KHPCategory" ThisKey="KHPCategoryID" OtherKey="KHPCategoryID" Type="KHPCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Map" Member="Maps">
+    <Type Name="Map">
+      <Column Name="ETLLoadID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ResourceAgencyNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KHPCategoryID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PublicName" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="AgencyDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TaxonomyLevelNameID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ParentAgencyNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalAddress" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="PhysicalCityID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhysicalProvinceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhysicalCountry" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalPostalCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalAddressIsPrivate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="HoursOfOperation" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="WebsiteAddress" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="Eligibility" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="DisabilitiesAccess" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="FeeStructureSource" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="ApplicationProcess" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="DocumentsRequired" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguagesOfferedList" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguageOfRecord" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkHours" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="CustomEligibilitybyAge" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="KHPCategory_Map" Member="KHPCategory" ThisKey="KHPCategoryID" OtherKey="KHPCategoryID" Type="KHPCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHPCategory" Member="KHPCategories">
+    <Type Name="KHPCategory">
+      <Column Name="KHPCategoryID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="KHPCategory" Member="KHPCategory1" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="KHPCategoryDesc" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="HumanServiceTaxonomyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="KHPCategoryFr" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="ImageSrc" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="changedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="KHPCategory_PhoneWeb" Member="PhoneWebs" ThisKey="KHPCategoryID" OtherKey="KHPCategoryID" Type="PhoneWeb" />
+      <Association Name="KHPCategory_Map" Member="Maps" ThisKey="KHPCategoryID" OtherKey="KHPCategoryID" Type="Map" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHPCategoryID_KHPInterestTaxonomyCode" Member="KHPCategoryID_KHPInterestTaxonomyCodes">
+    <Type Name="KHPCategoryID_KHPInterestTaxonomyCode">
+      <Column Name="CategoryIDKHPTaxonomyCodeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="KHPInterestTaxonomyCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Desc]" Member="Desc" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Phase" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="changedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="createddate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHPETLLoadID_InterestTaxonomyCode_CategoryID" Member="KHPETLLoadID_InterestTaxonomyCode_CategoryIDs">
+    <Type Name="KHPETLLoadID_InterestTaxonomyCode_CategoryID">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ETLLoadID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="KHPInterestTaxonomyCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KHPCategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="changedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CityLocation" Member="CityLocation1s">
+    <Type Name="CityLocation1">
+      <Column Name="CityId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CityName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="ProvinceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="latitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="longitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="ChangedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Province_CityLocation1" Member="Province" ThisKey="ProvinceID" OtherKey="ProvinceID" Type="Province" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Classification" Member="Classifications">
+    <Type Name="Classification">
+      <Column Name="classificationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="classification" Member="classification1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="createdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Coverage" Member="Coverages">
+    <Type Name="Coverage">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ETLLoadID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Coverage" Member="Coverage1" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="CoverageDesc" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="ChangedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.crp" Member="crps">
+    <Type Name="crp">
+      <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cityid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CityName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ProvinceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="latitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="longitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="ProvinceAlias" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="County" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ChangedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CustomEligibilitybyAge" Member="CustomEligibilitybyAges">
+    <Type Name="CustomEligibilitybyAge">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ETLLoadID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomEligibilitybyAge" Member="CustomEligibilitybyAge1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomEligibilitybyAgeDesc" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ChangedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetResourceByCategory" Method="GetResourceByCategory">
+    <Parameter Name="categories" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.getCategories" Method="getCategories">
+    <ElementType Name="getCategoriesResult">
+      <Column Name="KHPCategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KHPCategory" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="ImageSrc" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getMapByCategories" Method="getMapByCategories">
+    <Parameter Name="c1" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c2" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c3" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c4" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c5" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c6" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c7" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c8" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c9" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="getMapByCategoriesResult">
+      <Column Name="ETLLoadID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="KHPCategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PublicName" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="AgencyDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TaxonomyLevelNameID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhysicalAddress" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CityName" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalCountry" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalPostalCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="HoursOfOperation" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="WebsiteAddress" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Eligibility" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="DisabilitiesAccess" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FeeStructureSource" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="ApplicationProcess" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="DocumentsRequired" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguagesOfferedList" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguageOfRecord" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WorkHours" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CustomEligibilitybyAge" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getMapByCategoriesEN" Method="getMapByCategoriesEN">
+    <Parameter Name="c1" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c2" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c3" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c4" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c5" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c6" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c7" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c8" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c9" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="getMapByCategoriesENResult">
+      <Column Name="ETLLoadID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="KHPCategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PublicName" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="AgencyDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TaxonomyLevelNameID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhysicalAddress" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CityName" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalCountry" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalPostalCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="HoursOfOperation" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="WebsiteAddress" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Eligibility" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="DisabilitiesAccess" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FeeStructureSource" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="ApplicationProcess" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="DocumentsRequired" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguagesOfferedList" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguageOfRecord" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WorkHours" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CustomEligibilitybyAge" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getMapByCategoriesFR" Method="getMapByCategoriesFR">
+    <Parameter Name="c1" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c2" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c3" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c4" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c5" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c6" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c7" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c8" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="c9" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="getMapByCategoriesFRResult">
+      <Column Name="ETLLoadID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="KHPCategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PublicName" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="AgencyDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TaxonomyLevelNameID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhysicalAddress" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CityName" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalCountry" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalPostalCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="HoursOfOperation" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="WebsiteAddress" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Eligibility" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="DisabilitiesAccess" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FeeStructureSource" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="ApplicationProcess" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="DocumentsRequired" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguagesOfferedList" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguageOfRecord" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WorkHours" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CustomEligibilitybyAge" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getCategoriesFR" Method="getCategoriesFR">
+    <ElementType Name="getCategoriesFRResult">
+      <Column Name="KHPCategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KHPCategoryFr" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="ImageSrc" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getProvince_EN" Method="getProvince_EN">
+    <ElementType Name="getProvince_ENResult">
+      <Column Name="ProvinceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ProvinceAlias" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getProvince_FR" Method="getProvince_FR">
+    <ElementType Name="getProvince_FRResult">
+      <Column Name="ProvinceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProvinceFrench" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ProvinceAlias" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetCityByProvince" Method="GetCityByProvince">
+    <Parameter Name="pid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetCityByProvinceResult">
+      <Column Name="CityId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CityName" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetCityAll" Method="GetCityAll">
+    <ElementType Name="GetCityAllResult">
+      <Column Name="CityId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CityName" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getPWByCityIDCateID" Method="getPWByCityIDCateID">
+    <Parameter Name="num" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cateID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="lang" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="getPWByCityIDCateIDResult">
+      <Column Name="ETLLoadID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="KHPCategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PublicName" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="AgencyDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TaxonomyLevelNameID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhysicalAddress" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CityName" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalCountry" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalPostalCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="HoursOfOperation" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="WebsiteAddress" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Eligibility" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="DisabilitiesAccess" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FeeStructureSource" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="ApplicationProcess" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="DocumentsRequired" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguagesOfferedList" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguageOfRecord" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WorkHours" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CustomEligibilitybyAge" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="KHPCategory" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getPWNameByCityIDCateID" Method="getPWNameByCityIDCateID">
+    <Parameter Name="num" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cateID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="lang" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="getPWNameByCityIDCateIDResult">
+      <Column Name="ETLLoadID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="PublicName" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="AgencyDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getShelterByCityIDCateID" Method="getShelterByCityIDCateID">
+    <Parameter Name="num" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cateID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="lang" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="getShelterByCityIDCateIDResult">
+      <Column Name="ETLLoadID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="KHPCategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PublicName" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="AgencyDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TaxonomyLevelNameID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhysicalAddress" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CityName" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalCountry" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalPostalCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="HoursOfOperation" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="WebsiteAddress" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Eligibility" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="DisabilitiesAccess" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FeeStructureSource" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="ApplicationProcess" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="DocumentsRequired" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguagesOfferedList" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguageOfRecord" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WorkHours" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CustomEligibilitybyAge" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="KHPCategory" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Proc_Get_All_Pinned" Method="Proc_Get_All_Pinned">
+    <Parameter Name="lang" Type="System.String" DbType="NVarChar(10)" />
+    <ElementType Name="Proc_Get_All_PinnedResult">
+      <Column Name="ETLLoadID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ResourceAgencyNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Map" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SubCategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubCategory" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TopCategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TopCategory" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PublicName" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="AgencyDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhysicalAddress" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="PhysicalCityID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhysicalCity" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="PhysicalProvinceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhysicalProvince" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalCountry" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhysicalPostalCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="HoursOfOperation" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="WebsiteAddress" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="Eligibility" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="DisabilitiesAccess" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="FeeStructureSource" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="ApplicationProcess" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="DocumentsRequired" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguagesOfferedList" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="LanguageOfRecord" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkHours" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="CustomEligibilitybyAge" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

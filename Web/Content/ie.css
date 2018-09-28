@@ -1,0 +1,12 @@
+header[role=banner] {
+  position: absolute;
+}
+
+#loading div {
+  position: absolute;
+}
+
+img{
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)"; /* IE8 */   
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);   /* IE6 & 7 */ 
+}

@@ -1,0 +1,84 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Web.SiteMaster" %>
+
+
+<html lang="en">
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>Resource Arround Me</title>
+    <%--<link href="~/Content/Site.css" rel="stylesheet" /> --%>
+    <link href="Content/screen.css" rel="stylesheet" />
+    <link href="Content/reset.css" rel="stylesheet" />
+<link href="http://kidshelpphone.ca/favicon.ico" type="image/x-icon" rel="shortcut icon"/> 
+<link href="http://kidshelpphone.ca/favicon.ico" type="image/x-icon" rel="icon"/> 
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+    <script src="Scripts/pre.js"></script>
+    <script src="Scripts/lang.js"></script>
+    <script src="Scripts/modernizr.js"></script>
+    <asp:PlaceHolder runat="server">        
+        <script src="<%: ResolveUrl("~/Scripts/modernizr-2.6.2.js") %>"></script>
+    </asp:PlaceHolder>
+
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body>
+<noscript style="margin-bottom: 0px">
+    JavaScript is required to view this application. Please <a href="http://enable-javascript.com/">enable JavaScript</a> and try again. / La fonction JavaScript est requise afin d’utiliser cette application. Active la <a href="http://enable-javascript.com/">fonction JavaScript</a> et réessaye. 
+</noscript>
+
+    <form runat="server">
+    <asp:ScriptManager runat="server">
+        <Scripts>
+            <asp:ScriptReference Name="jquery" />
+            <asp:ScriptReference Name="jquery.ui.combined" />
+        </Scripts>
+    </asp:ScriptManager>
+ 
+  <header role="banner">
+    <div class="logo"><script>document.write('<a href="'+site_url_khp+'"><img src="images/en/khp-logo.gif" alt="Kids Help Phone"></a>');</script></div>  
+    <nav>
+      <ul>
+        <li>
+          <a href="http://kidshelpphone.ca/Teens/PhoneUs.aspx"><img id="nav-phone" src="images/en/nav-phone.png"></a>  
+        </li>
+        <li>
+        <a href="http://kidshelpphone.ca/Teens/AskUsOnline.aspx"><img id="nav-ask" src="images/en/nav-ask.png"></a> 
+        </li>
+        <li>
+        <a href="http://kidshelpphone.ca/Teens/InfoBooth.aspx"><img id="nav-info" src="images/en/nav-info.png"></a>
+        </li>
+        <li>
+        <a href="http://kidshelpphone.ca/Teens/YourSpace.aspx"><img id="nav-space" src="images/en/nav-space.png"></a>
+        </li>
+        <li>
+        <a href="http://kidshelpphone.ca/Teens/GetInvolved.aspx"><img id="nav-involved" src="images/en/nav-involved.png"></a> 
+        </li>
+      </ul>
+    </nav>
+    <ul class="utils">
+      <li><script>document.write('<a href="'+site_url_home+'">'+btn_home+'</a>');</script></li>
+      <li><script>document.write('<a href="'+site_url_toggle+'">'+btn_lang+'</a>');</script></li>
+      <li class="btn"><a href="http://google.com"><script>document.write(btn_leave_site);</script></a></li>
+    </ul>
+  </header>
+ 
+    <div id="body">
+<%--        <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />--%>
+        <section class="content-wrapper main-content clear-fix">
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+        </section>
+    </div>
+  <footer>
+    <div id="logo-ram">
+        <script>document.write('<a href="' + site_url + '"><img src="img/' + dir + 'logo-ram.png" alt="' + site_title + '"></a>');</script>
+    </div>
+    <div id="legend">
+        <ul id="legend-cats"></ul>
+    </div>
+    <div class="btn suggest-resource"><a href="#"><script>document.write(btn_suggest_resource);</script> <i class="icon-edit"></i> </a></div>
+    <script>document.write('<div class="btn search-tips"><a href="' + site_url_search_tips + '" target="_blank">' + btn_search_tips + ' <i class="icon-question-sign"></i></a></div>');</script>
+    <div class="call-khp"><script>document.write('<img src="img/' + dir + 'cta-call-khp.png">');</script></div>
+  </footer>
+    </form>
+</body>
+</html>

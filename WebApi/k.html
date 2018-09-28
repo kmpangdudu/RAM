@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>POST Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        var url = "http://50.100.14.91/api/v1/email/send";
+        var email = {
+            "receiver":"william.chen@kidshelpphone.com,chenerjun@gmail.com",
+            "body":"12312313<br>Hi there,<br/><br/>Thank you for choosing the Resource Around Me to search the services.<br/>Below is you have selected faviouiries resource list:<br/><ol><li>Services Sample I;</li><li>Services Sample II;</li><li>Services Sample III;</li></ol><br/>Thank you so much for looking up resources from Kids Help Phone and hopefully you found this useful!<br/><br/>Resource Around Me<br/>Kids Help Phone"
+        };
+    $.ajax(
+         {
+             url: url,
+             type: "POST",
+             data: email,
+             dataType: 'json',
+             success: function (response) {
+                 $("#p1").append("OK");
+             },
+             error: function (xhr, status, p3, p4) {
+                 var err = "Error " + " " + status + " " + p3;
+                 if (xhr.responseText && xhr.responseText[0] == "{")
+                     err = JSON.parse(xhr.responseText).message;
+                 alert(err);
+             }
+         });
+    </script>
+
+</head>
+<body>
+    you post to API :  <p id="p1"></p>
+</body>
+</html>
