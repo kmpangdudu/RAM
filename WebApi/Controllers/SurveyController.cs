@@ -16,7 +16,7 @@ using DATA.EF;
 namespace WebApi.Controllers
 {
     /// <summary>
-    /// Retrieving servey information and collecting user's Survey answer.
+    /// Retrieving survey information and collecting user's Survey answer.
     /// </summary>
     public class SurveyController : ApiController
     {
