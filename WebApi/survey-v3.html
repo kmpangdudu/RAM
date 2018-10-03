@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>POST Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+      
+		
+ var url = "http://localhost/RAMApi/api/v3/survey/answer";
+ 
+var survey = 
+{
+  "chatsurvey":  
+    [
+	  {"surveyQuestion_ID":"301","surveyAnswer": "Tester_WC"},
+	  {"surveyQuestion_ID":"302","surveyAnswer": "male"},
+	     ///{"surveyQuestion_ID":"303","surveyAnswer": "Other Gender:bi-gender"},
+	  {"surveyQuestion_ID":"304","surveyAnswer": "December"},
+	  {"surveyQuestion_ID":"305","surveyAnswer": "1980"},
+	  {"surveyQuestion_ID":"306","surveyAnswer": "PEI"},
+	  {"surveyQuestion_ID":"307","surveyAnswer": "City or large town"},
+	  {"surveyQuestion_ID":"308","surveyAnswer": "Other community: City Town Countryside"},
+	  {"surveyQuestion_ID":"309","surveyAnswer": "yes"},
+	  {"surveyQuestion_ID":"310","surveyAnswer":"6.99"},
+	  {"surveyQuestion_ID":"311","surveyAnswer":"yes"},
+	  {"surveyQuestion_ID":"312","surveyAnswer":"0.111"},
+      {"surveyQuestion_ID":"313","surveyAnswer":"9.99"},
+	  {"surveyQuestion_ID":"314","surveyAnswer":"Called Kids Help Phone"},
+	     ///{"surveyQuestion_ID":"315","surveyAnswer":"Other services:Other services"},
+      {"surveyQuestion_ID":"316","surveyAnswer":"1"},
+	  {"surveyQuestion_ID":"317","surveyAnswer": "2"},
+	  {"surveyQuestion_ID":"318","surveyAnswer": "3"},
+	  {"surveyQuestion_ID":"319","surveyAnswer": "4"}
+	] ,
+  "chatID": "123",
+  "language": "en",
+  "surveyAnswer_Device": "Chat/3.0.1 (iPhone; iOS 10.2; Scale/2.00)",
+  "token": "37790910-7AEF-49D9-BFE5-9CBA29A0F7FB"
+}
+;
+
+
+    $.ajax(
+         {
+             url: url,
+             type: "POST",
+             data: survey,
+             //dataType: 'HTML',
+             ContentType: 'application/json;charset=utf-8',
+             success: function (response) {
+                 $("#p1").append("ok");
+             },
+             error: function (xhr, status, p3, p4) {
+                 var err = "Error " + " " + status + " " + p3;
+                 if (xhr.responseText && xhr.responseText[0] == "{")
+                     err = JSON.parse(xhr.responseText).message;
+                 alert(err); alert(xhr.responseText);
+             }
+         });
+    </script>
+
+
+
+</head>
+<body>
+    you post to API :  <p id="p1"></p>
+</body>
+</html>

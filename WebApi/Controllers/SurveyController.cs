@@ -112,10 +112,10 @@ namespace WebApi.Controllers
         #region Version_3
         #region post_answer
         /// <summary>
-        /// Version 3: collecting Per/Post Survey answer 
+        /// Version 3: collecting Ver.3 Per/Post Survey answer 
         /// </summary>
         /// <param name="_survey">Collection of answers</param>
-        /// <param name="_surveyQuestion_ID">_surveyQuestion_ID</param>
+        /// <param name="_surveyQuestion_ID">surveyQuestion_ID</param>
         /// <param name="_surveyAnswer">survey Answer(s)</param>
         /// <param name="_chatID">ChatID:from ChatApp</param>
         /// <param name="language">survey language, English, French</param>
@@ -193,7 +193,7 @@ namespace WebApi.Controllers
         #region survey_type
         // Path
         /// <summary>
-        /// Get a survey type list, or a survey type by specific survey-type-id.
+        /// Path: Gets a list of survey types SurveyTypeID=0, or type information specifying the survey type ID.
         /// </summary>
         /// <param name="TypeID">Survey type id, Per-Survey, Post-Suvey etc.</param>
         /// <param name="lang">Language, English = en, French = fr</param>
@@ -215,7 +215,7 @@ namespace WebApi.Controllers
         }
         // Query
         /// <summary>
-        /// Get a survey type list, or a survey type by specific survey-type-id.
+        /// Query: Gets a list of survey types SurveyTypeID=0, or type information specifying the survey type ID.
         /// </summary>
         /// <param name="TypeID">Survey type id, Per-Survey, Post-Suvey etc.</param>
         /// <param name="lang">Language, English = en, French = fr</param>
@@ -241,7 +241,7 @@ namespace WebApi.Controllers
         #region question_list
         // Path
         /// <summary>
-        /// Get a survey question list, or a survey question information by specific survey-question-id.
+        /// Path: retrieving a list of survey questions when QuestionID=0, or a specify information about the questions.
         /// </summary>
         /// <param name="QID">servey question ID</param>
         /// <param name="lang">Language, English = en, French = fr</param>
@@ -264,7 +264,7 @@ namespace WebApi.Controllers
 
         // Query
         /// <summary>
-        /// Get a survey question list, or a survey question information by specific survey-question-id.
+        /// Query: retrieving a list of survey questions when QuestionID=0, or a specify information about the questions.
         /// </summary>
         /// <param name="QID">servey question ID</param>
         /// <param name="lang">Language, English = en, French = fr</param>
@@ -290,7 +290,7 @@ namespace WebApi.Controllers
         #region question_optional
         // Path
         /// <summary>
-        /// Get specific survey question optional answers list.
+        /// Path: Get optional answers to specified survey questions, and when QuestionID=0, gets the full list of options.
         /// </summary>
         /// <param name="QID">servey question ID</param>
         /// <param name="lang">Language, English = en, French = fr</param>
@@ -313,7 +313,7 @@ namespace WebApi.Controllers
 
         // Query
         /// <summary>
-        /// Get specific survey question optional answers list.
+        /// Query: Get optional answers to specified survey questions, and when QuestionID=0, gets the full list of options.
         /// </summary>
         /// <param name="QID">servey question ID</param>
         /// <param name="lang">Language, English = en, French = fr</param>
@@ -340,7 +340,7 @@ namespace WebApi.Controllers
 
         #region question_List_By_Version
         /// <summary>
-        /// Get a survey question list by version, or all versions question information list.
+        /// Path: Gets a list of questions for the specified survey version
         /// </summary>
         /// <param name="ver">servey version number. E.g.: v2,v3 </param>
         /// <param name="lang">Language, English = en, French = fr</param>
@@ -362,7 +362,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Get a survey question list by version, or all versions question information list.
+        /// Query: Gets a list of questions for the specified survey version
         /// </summary>
         /// <param name="ver">servey version number. E.g.: v2,v3 </param>
         /// <param name="lang">Language, English = en, French = fr</param>
