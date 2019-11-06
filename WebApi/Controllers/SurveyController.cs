@@ -387,7 +387,7 @@ namespace WebApi.Controllers
 
         #region question_optional_By_Version
         /// <summary>
-        /// Get survey question optional answers list by specified version.
+        /// Path: Get survey question optional answers list by specified version.
         /// </summary>
         /// <param name="ver">servey version. E.g. v2, v3</param>
         /// <param name="lang">Language, English = en, French = fr</param>
@@ -409,7 +409,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Get survey question optional answers list by specified version.
+        /// Query: Get survey question optional answers list by specified version.
         /// </summary>
         /// <param name="ver">servey version. E.g. v2, v3</param>
         /// <param name="lang">Language, English = en, French = fr</param>
