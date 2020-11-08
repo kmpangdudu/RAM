@@ -29,7 +29,7 @@ namespace WebApi.Controllers
 
         #region Get Resource by Lang
         #region JSON
-        //Friendly
+        //path
         /// <summary>
         /// Get all allowable resource list by language.
         /// </summary>
@@ -51,6 +51,30 @@ namespace WebApi.Controllers
 
             return response;
         }
+
+        //2020-11-07 add get subset resource by 4D asked
+        /// <summary>
+        /// Get all allowable subset resource list by language.
+        /// </summary>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return JSON format resource list, filter by language</returns>
+        [ActionName("json")]
+        [ResponseType(typeof(SubRamResource))]
+        [Route("api/v3/resource/json/{token}/{lang}")]
+        [Route("api/v3/Ressource/json/{token}/{lang}")]
+        [HttpGet]
+        public HttpResponseMessage GetAllSubsetResourcesByLang(string lang, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetAllSubResourcesByLang(lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "Language", "resource", lang);
+
+            return response;
+        }
+
         //Query String
         /// <summary>
         /// Query string style getting allowable resource list by language.
@@ -73,6 +97,30 @@ namespace WebApi.Controllers
 
             return response;
         }
+        //2020-11-07 get subset RAM Resources 
+        //Query String
+        /// <summary>
+        /// Query string style getting allowable subset resource list by language.
+        /// </summary>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return JSON format resource list, filter by language</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/json")]
+        [Route("api/v3/Ressource/json")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAllSubsetResourcesByLang_QS(string lang, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetAllSubResourcesByLang(lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "Language", "resource", lang);
+
+            return response;
+        }
+
         #endregion JSON
 
         #region XML

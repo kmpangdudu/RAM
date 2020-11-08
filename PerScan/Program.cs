@@ -74,7 +74,9 @@ namespace PerScan
 
                     if (substrings.Length != default_Col)
                     {
-                        log = "   Row#: " + i + " ;     ResourceAgencyNum: " + substrings[0] + "    Column # : " + substrings.Length;
+                        int j = 0;
+                            j = i + 1;
+                        log = "   Row#: " + j + " ;     ResourceAgencyNum: " + substrings[0] + "    Column # : " + substrings.Length;
                         Console.WriteLine(log);
                         file.WriteLine(log);
                     }

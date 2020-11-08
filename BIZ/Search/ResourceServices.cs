@@ -1,6 +1,7 @@
 ﻿using DATA.EF;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Caching;
 
 namespace BIZ.Search
 {
@@ -32,6 +33,14 @@ namespace BIZ.Search
             var response = db.Proc_Get_All_RamResource_by_Lang(lang , token).ToList();
             //db.Proc_apilog("GET", lang, token, "Language", "Resource", lang);
 
+            return response;
+        }
+
+        // 2020-11-07 add subset of RAM Resoucre by 4D asked
+        public List<SubRamResource> GetAllSubResourcesByLang(string lang, string token)
+        {
+            var response = db.Proc_Get_All_SubRamResource_by_Lang(lang, token).ToList();
+            //db.Proc_apilog("GET", lang, token, "Language", "Resource", lang);
             return response;
         }
 

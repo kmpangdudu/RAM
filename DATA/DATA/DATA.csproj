@@ -152,6 +152,9 @@
     <Compile Include="EF\SubCategoryResult.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\SubRamResource.cs">
+      <DependentUpon>RAMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\SuggestionWords.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
