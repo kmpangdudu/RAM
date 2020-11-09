@@ -209,6 +209,14 @@
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Proc_Search_Sub_Resource_In_circular_by_kws" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchWordS" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="StartLatitude" Type="numeric" Mode="In" />
+          <Parameter Name="StartLongitude" Type="numeric" Mode="In" />
+          <Parameter Name="Radius" Type="numeric" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Proc_TopCategory_by_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TID" Type="int" Mode="In" />
           <Parameter Name="LANG" Type="nvarchar" Mode="In" />
@@ -500,6 +508,14 @@
             <Parameter Name="lang" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Proc_Get_All_SubRamResource_by_Lang" ReturnType="Collection(RAMModel.SubRamResource)">
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Search_Sub_Resource_In_circular_by_kws" ReturnType="Collection(RAMModel.SubRamResource)">
+            <Parameter Name="SearchWordS" Mode="In" Type="String" />
+            <Parameter Name="StartLatitude" Mode="In" Type="Decimal" />
+            <Parameter Name="StartLongitude" Mode="In" Type="Decimal" />
+            <Parameter Name="Radius" Mode="In" Type="Decimal" />
             <Parameter Name="lang" Mode="In" Type="String" />
             <Parameter Name="token" Mode="In" Type="String" />
           </FunctionImport>
@@ -1677,6 +1693,27 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Proc_Get_All_SubRamResource_by_Lang" FunctionName="RAMModel.Store.Proc_Get_All_SubRamResource_by_Lang">
           <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.SubRamResource">
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Search_Sub_Resource_In_circular_by_kws" FunctionName="RAMModel.Store.Proc_Search_Sub_Resource_In_circular_by_kws" >
+            <ResultMapping>
               <ComplexTypeMapping TypeName="RAMModel.SubRamResource">
                 <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
                 <ScalarProperty Name="Map" ColumnName="Map" />

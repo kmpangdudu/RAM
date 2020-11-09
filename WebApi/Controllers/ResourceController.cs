@@ -54,7 +54,7 @@ namespace WebApi.Controllers
 
         //2020-11-07 add get subset resource by 4D asked
         /// <summary>
-        /// Get all allowable subset resource list by language.
+        /// Get allowable subset of resource list by language.
         /// </summary>
         /// <param name="lang">Language. English = "en"; French = "fr"</param>
         /// <param name="token">Access token</param>
@@ -97,6 +97,7 @@ namespace WebApi.Controllers
 
             return response;
         }
+
         //2020-11-07 get subset RAM Resources 
         //Query String
         /// <summary>
@@ -1283,7 +1284,7 @@ namespace WebApi.Controllers
 
         #region Proc_Get_All_Resources_In_Radius
             #region JSON
-            //Friendly
+            //path
             /// <summary>
             /// Get allowable resources which locate in a circular area. current location is center of the circle; radius (Km) is distance. 
             /// </summary>
@@ -1654,6 +1655,158 @@ namespace WebApi.Controllers
         #endregion XML
 
         #endregion Search Resource by Coverage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //2020-11-08 add
+        #region Proc_Get_All_SubResources_by_keywords_In_Radius
+        #region JSON
+        //path
+        /// <summary>
+        /// Get allowable subset of resources list by searching key words in a circular area. current location is center of the circle; radius (Km) is distance. 
+        /// </summary>
+        /// <param name="lang">Language: English = "en" ;  French = "fr"</param>
+        /// <param name="lat">Latitude of current location </param>
+        /// <param name="lon">Longitude of current location </param>
+        /// <param name="radius">radius: How many Kilometre from current location</param>
+        /// <param name="token">Access token</param>
+        /// <param name="kws">search key words</param>
+        /// <returns>Return a Subset of resource list, current location is center, radius is the distance, fromat in JSON.</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/circular/json/{kws}/{token}/{lang}/{lat}/{lon}/{radius}")]
+        [Route("api/v3/Ressource/circulaire/json/{kws}/{token}/{lang}/{lat}/{lon}/{radius}")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetSubResourcesByKwsInRadiusList(string lang, decimal lat, decimal lon, decimal radius, string token, string kws)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetResourcesInRadiusbyKwsList(kws, lang, lat, lon, radius, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "circular", "resource", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
+            return response;
+        }
+
+        //Query String
+        /// <summary>
+        /// Query String style, get allowable subset of resource list by searching keywords in a circular area. current location is center of the circle; radius (Km) is distance. 
+        /// </summary>
+        /// <param name="lang">Language: English = "en" ;  French = "fr"</param>
+        /// <param name="lat">Latitude of current location</param>
+        /// <param name="lon">Longitude of current location</param>
+        /// <param name="radius">radius: How many Kilometre from current location</param>
+        /// <param name="token">Access token</param>
+        /// <param name="kws">search key words</param>
+        /// <returns>Return a Subset of resource list, current location is center, radius is the distance, fromat in JSON.</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/circular/json")]
+        [Route("api/v3/Ressource/circulaire/json")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetSubResourcesInRadiusList_QS(string lang, decimal lat, decimal lon, decimal radius, string token, string kws)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetResourcesInRadiusbyKwsList(kws,lang, lat, lon, radius, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "circular", "resource", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
+            return response;
+        }
+        #endregion JSON
+
+        #region XML
+        //Friendly
+        /// <summary>
+        /// Get allowable resources by key words in a circular area. current location is center of the circle; radius (Km) is distance. 
+        /// </summary>
+        /// <param name="lang">Language: English = "en" ;  French = "fr"</param>
+        /// <param name="lat">Latitude of current location </param>
+        /// <param name="lon">Longitude of current location </param>
+        /// <param name="radius">radius: How many Kilometre from current location</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return a subset of resource list, current location is center, wish distance is the radius, fromat in XML </returns>
+        [ActionName("xml")]
+        [Route("api/v3/resource/circular/xml/{token}/{lang}/{lat}/{lon}/{radius}/{kws}")]
+        [Route("api/v3/Ressource/circulaire/xml/{token}/{lang}/{lat}/{lon}/{radius}/{kws}")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetSubResourcesbyKwsInRadiusList_XML(string lang, decimal lat, decimal lon, decimal radius, string token, string kws)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            response = createKwsCircularResult(lang, lat, lon, radius, token, kws);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "circular", "resource", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
+            return response;
+        }
+
+        //Query String
+        /// <summary>
+        /// Query String style, get allowable resources which locate in a circular area. current location is center of the circle; radius (Km) is distance. 
+        /// </summary>
+        /// <param name="lang">Language: English = "en" ;  French = "fr"</param>
+        /// <param name="lat">Latitude of current location</param>
+        /// <param name="lon">Longitude of current location</param>
+        /// <param name="radius">radius: How many Kilometre from current location</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return a subset of resource list, current location is center, wish distance is the radius, fromat in XML.</returns>
+        [ActionName("xml")]
+        [Route("api/v3/resource/circular/xml")]
+        [Route("api/v3/Ressource/circulaire/xml")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetResourcesInRadiusList_XML_QS(string lang, decimal lat, decimal lon, decimal radius, string token, string kws)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            response = createKwsCircularResult(lang, lat, lon, radius, token, kws);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "circular", "resource", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
+            return response;
+        }
+        #endregion XML
+        private HttpResponseMessage createKwsCircularResult(string lang, decimal lat, decimal lon, decimal radius, string token, string kws)
+        {
+            lang = lang.ToLower();
+            if ((lang == "en") || (lang == "fr"))
+            {
+                var xml = resourceservice.GetResourcesInRadiusbyKwsList(kws, lang, lat, lon, radius, token).ToList();
+
+                if (xml.Count > 0)
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                    return response;
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NoContent);
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+        }
+
+        #endregion Proc_Get_All_SubResources_by_keywords_In_Radius
+
+
+
+
+
+
+
+
+
 
 
         private HttpResponseMessage toJson(Object r, string lang)

@@ -875,5 +875,34 @@ namespace DATA.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Get_All_SubRamResource_by_Lang", langParameter, tokenParameter);
         }
+    
+        public virtual ObjectResult<SubRamResource> Proc_Search_Sub_Resource_In_circular_by_kws(string searchWordS, Nullable<decimal> startLatitude, Nullable<decimal> startLongitude, Nullable<decimal> radius, string lang, string token)
+        {
+            var searchWordSParameter = searchWordS != null ?
+                new ObjectParameter("SearchWordS", searchWordS) :
+                new ObjectParameter("SearchWordS", typeof(string));
+    
+            var startLatitudeParameter = startLatitude.HasValue ?
+                new ObjectParameter("StartLatitude", startLatitude) :
+                new ObjectParameter("StartLatitude", typeof(decimal));
+    
+            var startLongitudeParameter = startLongitude.HasValue ?
+                new ObjectParameter("StartLongitude", startLongitude) :
+                new ObjectParameter("StartLongitude", typeof(decimal));
+    
+            var radiusParameter = radius.HasValue ?
+                new ObjectParameter("Radius", radius) :
+                new ObjectParameter("Radius", typeof(decimal));
+    
+            var langParameter = lang != null ?
+                new ObjectParameter("lang", lang) :
+                new ObjectParameter("lang", typeof(string));
+    
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Search_Sub_Resource_In_circular_by_kws", searchWordSParameter, startLatitudeParameter, startLongitudeParameter, radiusParameter, langParameter, tokenParameter);
+        }
     }
 }

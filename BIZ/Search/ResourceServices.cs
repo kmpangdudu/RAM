@@ -127,6 +127,17 @@ namespace BIZ.Search
 
         }
 
+        //2020-11-08 add
+        public List<SubRamResource> GetResourcesInRadiusbyKwsList(string kws, string lang, decimal latitude, decimal longitude, decimal radius, string token)
+        {
+            List<SubRamResource> response = new List<SubRamResource>();
+
+            response = db.Proc_Search_Sub_Resource_In_circular_by_kws( kws, latitude, longitude, radius, lang, token).ToList();
+            //db.Proc_apilog("GET", lang, token, "Radius", "Resource", string.Empty);
+
+            return response;
+
+        }
 
         public List<RamResource> GetResourcesInRadiusBoundaryBoxList(string lang, decimal latitude, decimal longitude, decimal radius, string token)
         {

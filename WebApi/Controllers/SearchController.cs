@@ -29,7 +29,7 @@ namespace WebApi.Controllers
 
         #region Search
         #region JSON
-        //Friendly
+        //path
         /// <summary>
         /// Search resource by using interest key word(s).  
         /// </summary>
@@ -274,19 +274,24 @@ namespace WebApi.Controllers
         #endregion Search_Resources_In_Radius
 
 
+        #region Search_SubResources_by_keywords_In_Radius
+
+        #endregion
+
+
         #region Search_Resource_In_boundary_Box
-            #region JSON
-            //Friendly
-            /// <summary>
-            /// Search allowable resources locate in a Boundary-Box area. current location is center of the boundary box; Radius (Km) is center to Northern, Southern, Eastern and Western boundary. 
-            /// </summary>
-            /// <param name="lang">Language: English = "en" ;  French = "fr"</param>
-            /// <param name="lat">Latitude of current location </param>
-            /// <param name="lon">Longitude of current location </param>
-            /// <param name="radius">Radius: How many Kilometre from current location</param>
-            /// <param name="token">Access token</param>
-            /// <returns>Return a resource list in Boundary-Box area, current location is center. Radius (Km) is the distance to Northern, Southern, Eastern and Western, fromat in JSON </returns>
-            [ActionName("json")]
+        #region JSON
+        //Friendly
+        /// <summary>
+        /// Search allowable resources locate in a Boundary-Box area. current location is center of the boundary box; Radius (Km) is center to Northern, Southern, Eastern and Western boundary. 
+        /// </summary>
+        /// <param name="lang">Language: English = "en" ;  French = "fr"</param>
+        /// <param name="lat">Latitude of current location </param>
+        /// <param name="lon">Longitude of current location </param>
+        /// <param name="radius">Radius: How many Kilometre from current location</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return a resource list in Boundary-Box area, current location is center. Radius (Km) is the distance to Northern, Southern, Eastern and Western, fromat in JSON </returns>
+        [ActionName("json")]
             [Route("api/v2/Search/box/json/{token}/{lang}/{lat}/{lon}/{radius}")]
             [Route("api/v2/Chercher/boîte/json/{token}/{lang}/{lat}/{lon}/{radius}")]
             [ResponseType(typeof(Search_Result))]
