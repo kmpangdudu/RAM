@@ -659,6 +659,7 @@
           <Property Type="String" Name="Phone" Nullable="true" MaxLength="2000" />
           <Property Type="String" Name="WebsiteAddress" Nullable="true" MaxLength="2000" />
           <Property Type="String" Name="Coverage" Nullable="true" />
+          <Property Type="Int32" Name="ETLLoadID" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1709,6 +1710,7 @@
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
                 <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
