@@ -102,6 +102,19 @@ namespace BIZ.Search
 
         }
 
+        //2020-11-20 add for V3 by 4D asked
+        public List<SubRamResource> GetSubResourcesBySubCategory(int sid, string lang, string token)
+        {
+            List<SubRamResource> response = new List<SubRamResource>();
+
+            response = db.Proc_Get_SubResource_by_SubCategory(sid, lang, token).ToList();
+            //db.Proc_apilog("GET", lang, token, "Subcategory", "Resource", sid.ToString());
+
+            return response;
+
+        }
+
+
 
         public List<RamResource> GetResourcesByTopCategory(int tid, string lang, string token)
         {
@@ -114,6 +127,17 @@ namespace BIZ.Search
 
         }
 
+        //2020-11-20 add for V3 by 4D asked
+        public List<SubRamResource> GetSubResourcesByTopCategory(int tid, string lang, string token)
+        {
+            List<SubRamResource> response = new List<SubRamResource>();
+
+            response = db.Proc_Get_SubResource_by_TopCategory(tid, lang, token).ToList();
+            //db.Proc_apilog("GET", lang, token, "Topcategory", "Resource", tid.ToString());
+
+            return response;
+
+        }
 
 
         public List<RamResource> GetResourcesInRadiusList(string lang, decimal latitude, decimal longitude, decimal radius, string token)

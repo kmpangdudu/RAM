@@ -125,6 +125,12 @@
     <Compile Include="EF\Proc_GetSurveyTypeByID_Result.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\Proc_Get_SubResource_by_SubCategory_Result.cs">
+      <DependentUpon>RAMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Proc_Get_SubResource_by_TopCategory_Result.cs">
+      <DependentUpon>RAMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\ProvinceList.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>

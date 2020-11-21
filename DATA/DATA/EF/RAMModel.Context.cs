@@ -904,5 +904,39 @@ namespace DATA.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Search_Sub_Resource_In_circular_by_kws", searchWordSParameter, startLatitudeParameter, startLongitudeParameter, radiusParameter, langParameter, tokenParameter);
         }
+    
+        public virtual ObjectResult<SubRamResource> Proc_Get_SubResource_by_SubCategory(Nullable<int> subCategoryID, string lang, string token)
+        {
+            var subCategoryIDParameter = subCategoryID.HasValue ?
+                new ObjectParameter("SubCategoryID", subCategoryID) :
+                new ObjectParameter("SubCategoryID", typeof(int));
+    
+            var langParameter = lang != null ?
+                new ObjectParameter("lang", lang) :
+                new ObjectParameter("lang", typeof(string));
+    
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Get_SubResource_by_SubCategory", subCategoryIDParameter, langParameter, tokenParameter);
+        }
+    
+        public virtual ObjectResult<SubRamResource> Proc_Get_SubResource_by_TopCategory(Nullable<int> tOPCategoryID, string lang, string token)
+        {
+            var tOPCategoryIDParameter = tOPCategoryID.HasValue ?
+                new ObjectParameter("TOPCategoryID", tOPCategoryID) :
+                new ObjectParameter("TOPCategoryID", typeof(int));
+    
+            var langParameter = lang != null ?
+                new ObjectParameter("lang", lang) :
+                new ObjectParameter("lang", typeof(string));
+    
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Get_SubResource_by_TopCategory", tOPCategoryIDParameter, langParameter, tokenParameter);
+        }
     }
 }

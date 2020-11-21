@@ -944,15 +944,43 @@ namespace WebApi.Controllers
                     logservices.logservices(request, response, "dbo", "json", "path", lang, token, "SubCategory", "resource", sid.ToString());
                     return response;
                 }
-                // Query String
-                /// <summary>
-                ///  Query String style, Get resource list under the SubCategory filter by resource's language 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="sid">SubCategory id.</param>
-                /// <param name="token">Access token</param>
-                /// <returns>Return a JSON format resource list under the specific SubCategory</returns>
-                [ActionName("json")]
+
+
+        // 2020-11-20 V3
+        // Friendly
+        /// <summary>
+        ///  Get subset of resource list under the SubCategory filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="sid">SubCategory id.</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return a JSON format resource list under the specific SubCategory</returns>
+        [ActionName("json")]
+        [Route("api/v3/Resource/SubCategory/json/{token}/{lang}/{sid}")]
+        [Route("api/v3/Ressource/souscatégorie/json/{token}/{lang}/{sid}")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_Sub_ResourcesBySubCategory(string lang, int sid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetSubResourcesBySubCategory(sid, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "SubCategory", "resource", sid.ToString());
+            return response;
+        }
+
+
+
+        // Query String
+        /// <summary>
+        ///  Query String style, Get resource list under the SubCategory filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="sid">SubCategory id.</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return a JSON format resource list under the specific SubCategory</returns>
+        [ActionName("json")]
                 [Route("api/v2/resource/SubCategory/json")]
                 [Route("api/v2/Ressource/souscatégorie/json")]
                 [ResponseType(typeof(RamResource))]
@@ -966,18 +994,46 @@ namespace WebApi.Controllers
                     logservices.logservices(request, response, "dbo", "json", "query", lang, token, "SubCategory", "resource", sid.ToString());
                     return response;
                 }
-            #endregion JSON
 
-            #region XML
-            // Friendly
-            /// <summary>
-            ///  Get resource list under the SubCategory filter by resource's language 
-            /// </summary>
-            /// <param name="lang">language. English = "en"; French = "fr"</param>
-            /// <param name="sid">SubCategory id.</param>
-            /// <param name="token">Access token</param>
-            /// <returns>Return a XML format resource list under the specific SubCategory</returns>
-            [ActionName("xml")]
+
+        // 2020-11-20 V3
+        /// <summary>
+        ///  Query String style, Get Subset of resource list under the SubCategory filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="sid">SubCategory id.</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return a JSON format resource list under the specific SubCategory</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/SubCategory/json")]
+        [Route("api/v3/Ressource/souscatégorie/json")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_Sub_ResourcesBySubCategory_QS(string lang, int sid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetSubResourcesBySubCategory(sid, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "SubCategory", "resource", sid.ToString());
+            return response;
+        }
+
+        #endregion JSON
+
+
+
+
+        #region XML
+        // Friendly
+        /// <summary>
+        ///  Get resource list under the SubCategory filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="sid">SubCategory id.</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return a XML format resource list under the specific SubCategory</returns>
+        [ActionName("xml")]
             [Route("api/v2/resource/SubCategory/xml/{token}/{lang}/{sid}")]
             [Route("api/v2/Ressource/souscatégorie/xml/{token}/{lang}/{sid}")]
             [ResponseType(typeof(RamResource))]
@@ -1063,15 +1119,44 @@ namespace WebApi.Controllers
                 return response;
             }
 
-            // Query String
-            /// <summary>
-            ///  Query String Style. Get resource list under allowable TopCategory filter by resource's language 
-            /// </summary>
-            /// <param name="lang">language. English = "en"; French = "fr"</param>
-            /// <param name="tid">TopCategory id.</param>
-            /// <param name="token">Access token</param>
-            /// <returns>Return a JSON format resource list under the specific TopCategory</returns>
-            [ActionName("json")]
+
+        //2020-11-20 add
+        // Friendly
+        /// <summary>
+        ///  Get subset of resource list under allowable TopCategory, filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="tid">TopCategory id.</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return a JSON format resource list under the specific TopCategory</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/topcategory/json/{token}/{lang}/{tid}")]
+        [Route("api/v3/Ressource/catégorie/json/{token}/{lang}/{tid}")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_Sub_ResourcesByTopCategory(string lang, int tid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetSubResourcesByTopCategory(tid, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "TopCategory", "resource", tid.ToString());
+
+            return response;
+        }
+
+
+
+
+        // Query String
+        /// <summary>
+        ///  Query String Style. Get resource list under allowable TopCategory filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="tid">TopCategory id.</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return a JSON format resource list under the specific TopCategory</returns>
+        [ActionName("json")]
             [Route("api/v2/resource/topcategory/json")]
             [Route("api/v2/Ressource/catégorie/json")]
             [ResponseType(typeof(RamResource))]
@@ -1086,18 +1171,46 @@ namespace WebApi.Controllers
 
                 return response;
             }
-            #endregion JSON
 
-            #region XML
-            // Friendly
-            /// <summary>
-            ///  Get resource list under allowable TopCategory filter by resource's language 
-            /// </summary>
-            /// <param name="lang">language. English = "en"; French = "fr"</param>
-            /// <param name="tid">TopCategory id.</param>
-            /// <param name="token">Access token</param>
-            /// <returns>Return a XML format resource list under the specific TopCategory</returns>
-            [ActionName("xml")]
+        //2020-11-20 added
+        /// <summary>
+        ///  Query get subset of resource list under allowable TopCategory filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="tid">TopCategory id.</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return a JSON format resource list under the specific TopCategory</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/topcategory/json")]
+        [Route("api/v3/Ressource/catégorie/json")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_Sub_ResourcesByTopCategory_QS(string lang, int tid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetSubResourcesByTopCategory(tid, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "TopCategory", "resource", tid.ToString());
+
+            return response;
+        }
+
+
+
+
+        #endregion JSON
+
+        #region XML
+        // Friendly
+        /// <summary>
+        ///  Get resource list under allowable TopCategory filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="tid">TopCategory id.</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return a XML format resource list under the specific TopCategory</returns>
+        [ActionName("xml")]
             [Route("api/v2/resource/topcategory/xml/{token}/{lang}/{tid}")]
             [Route("api/v2/Ressource/catégorie/xml/{token}/{lang}/{tid}")]
             [ResponseType(typeof(RamResource))]
@@ -1694,7 +1807,7 @@ namespace WebApi.Controllers
             var json = resourceservice.GetResourcesInRadiusbyKwsList(kws, lang, lat, lon, radius, token).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "circular", "resource", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "circular", "resource", kws);
             return response;
         }
 
@@ -1720,13 +1833,13 @@ namespace WebApi.Controllers
             var json = resourceservice.GetResourcesInRadiusbyKwsList(kws,lang, lat, lon, radius, token).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "circular", "resource", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "circular", "resource", kws);
             return response;
         }
         #endregion JSON
 
         #region XML
-        //Friendly
+        //PATH
         /// <summary>
         /// Get allowable resources by key words in a circular area. current location is center of the circle; radius (Km) is distance. 
         /// </summary>
@@ -1735,6 +1848,7 @@ namespace WebApi.Controllers
         /// <param name="lon">Longitude of current location </param>
         /// <param name="radius">radius: How many Kilometre from current location</param>
         /// <param name="token">Access token</param>
+        /// <param name="kws">search key words</param>
         /// <returns>Return a subset of resource list, current location is center, wish distance is the radius, fromat in XML </returns>
         [ActionName("xml")]
         [Route("api/v3/resource/circular/xml/{token}/{lang}/{lat}/{lon}/{radius}/{kws}")]
@@ -1746,7 +1860,7 @@ namespace WebApi.Controllers
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             response = createKwsCircularResult(lang, lat, lon, radius, token, kws);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "circular", "resource", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
+            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "circular", "resource", kws);
             return response;
         }
 
@@ -1770,7 +1884,7 @@ namespace WebApi.Controllers
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             response = createKwsCircularResult(lang, lat, lon, radius, token, kws);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "circular", "resource", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
+            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "circular", "resource", kws);
             return response;
         }
         #endregion XML
