@@ -938,5 +938,14 @@ namespace DATA.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Get_SubResource_by_TopCategory", tOPCategoryIDParameter, langParameter, tokenParameter);
         }
+    
+        public virtual ObjectResult<string> Proc_Construct_APIlogKeywords_by_ETLLoadid(Nullable<int> eTLLoadID)
+        {
+            var eTLLoadIDParameter = eTLLoadID.HasValue ?
+                new ObjectParameter("ETLLoadID", eTLLoadID) :
+                new ObjectParameter("ETLLoadID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Proc_Construct_APIlogKeywords_by_ETLLoadid", eTLLoadIDParameter);
+        }
     }
 }

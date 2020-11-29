@@ -457,7 +457,10 @@ namespace WebApi.Controllers
                 response =toJson(json, lang);
                 request = HttpContext.Current.Request;
 
-            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "resource", rid.ToString());
+            //construct keywords
+            string keywords = "";
+            keywords =  resourceservice.constructKeywords(rid);
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "resource", keywords);
             return response;
         }
         //Query String
@@ -479,7 +482,12 @@ namespace WebApi.Controllers
             var json = resourceservice.GetResourcesByID(lang, rid, token);
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "this", "resource", rid.ToString());
+            //logservices.logservices(request, response, "dbo", "json", "query", lang, token, "this", "resource", rid.ToString());
+
+            //construct keywords
+            string keywords = "";
+            keywords = resourceservice.constructKeywords(rid);
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "resource", keywords);
             return response;
 
         }
@@ -504,7 +512,11 @@ namespace WebApi.Controllers
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             response =  CreateResourcesByID(lang, rid, token);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "this", "resource", rid.ToString());
+            //logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "this", "resource", rid.ToString());
+            //construct keywords
+            string keywords = "";
+            keywords = resourceservice.constructKeywords(rid);
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "resource", keywords);
             return response;
         }
         //Query String
@@ -525,7 +537,11 @@ namespace WebApi.Controllers
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             response = CreateResourcesByID(lang, rid, token);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "this", "resource", rid.ToString());
+            //logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "this", "resource", rid.ToString());
+            //construct keywords
+            string keywords = "";
+            keywords = resourceservice.constructKeywords(rid);
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "resource", keywords);
             return response;
         }
         private HttpResponseMessage CreateResourcesByID(string lang, int rid, string token)

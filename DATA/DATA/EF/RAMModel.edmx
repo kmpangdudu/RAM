@@ -5,6 +5,9 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RAMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="F_Extract_Text_Between_Quotation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="kws" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Get_City_By_CId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cid" Type="int" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
@@ -51,6 +54,9 @@
           <Parameter Name="SearchWordS" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Construct_APIlogKeywords_by_ETLLoadid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ETLLoadID" Type="int" Mode="In" />
         </Function>
         <Function Name="Proc_Get_All_RamResource" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
@@ -538,6 +544,9 @@
             <Parameter Name="TOPCategoryID" Mode="In" Type="Int32" />
             <Parameter Name="lang" Mode="In" Type="String" />
             <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Construct_APIlogKeywords_by_ETLLoadid" ReturnType="Collection(String)">
+            <Parameter Name="ETLLoadID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="TopCategoryList">
@@ -1835,6 +1844,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Construct_APIlogKeywords_by_ETLLoadid" FunctionName="RAMModel.Store.Proc_Construct_APIlogKeywords_by_ETLLoadid" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -207,6 +207,19 @@ namespace BIZ.Search
             return response;
         }
 
+        //2020-11-30 Added for construct APIlog Keywords
+        // input a ETLLoadID , return a keywords for APIlog "TID/Language/ResourceAgencyNum/Map/SID"
+
+        public string constructKeywords(int ETLLoadID)
+        {
+            string keywords = "";
+            keywords = db.Proc_Construct_APIlogKeywords_by_ETLLoadid(ETLLoadID).First();
+           
+
+
+            return keywords;
+        }
+
 
     }
 }
