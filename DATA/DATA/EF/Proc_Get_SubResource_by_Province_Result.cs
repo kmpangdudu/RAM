@@ -11,7 +11,7 @@ namespace DATA.EF
 {
     using System;
     
-    public partial class SubRamResource
+    public partial class Proc_Get_SubResource_by_Province_Result
     {
         public int ETLLoadID { get; set; }
         public string ResourceAgencyNum { get; set; }
@@ -29,6 +29,5 @@ namespace DATA.EF
         public string Phone { get; set; }
         public string WebsiteAddress { get; set; }
         public string Coverage { get; set; }
-     
     }
 }

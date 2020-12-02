@@ -27,7 +27,6 @@ namespace BIZ.Search
             return response;
         }
 
-
         public List<RamResource> GetAllResourcesByLang(string lang, string token)
         {
             var response = db.Proc_Get_All_RamResource_by_Lang(lang , token).ToList();
@@ -71,6 +70,24 @@ namespace BIZ.Search
             }
         }
 
+        //2020-12-01 Add
+        public List<SubRamResource> GetSubResourcesByCity(int cid, string lang, string token)
+        {
+            List<SubRamResource> response = new List<SubRamResource>();
+            if (cid > 0)
+            {
+                response = db.Proc_Get_SubResource_by_City(cid, lang, token).ToList();
+                //db.Proc_apilog("GET", lang, token, "city", "Resource", cid.ToString());
+
+                return response;
+            }
+            else
+            {
+                //db.Proc_apilog("GET", lang, token, "city", "Resource", cid.ToString());
+
+                return response;
+            }
+        }
 
         public List<RamResource> GetResourcesByProvince(int pid, string lang, string token)
         {
@@ -90,6 +107,24 @@ namespace BIZ.Search
             }
         }
 
+        //2020-12-01 add
+        public List<SubRamResource> GetSubResourcesByProvince(int pid, string lang, string token)
+        {
+            List<SubRamResource> response = new List<SubRamResource>();
+            if ((pid > 0) && (pid < 14))
+            {
+                response = db.Proc_Get_SubResource_by_Province(pid, lang, token).ToList();
+                //db.Proc_apilog("GET", lang, token, "Province", "Resource", pid.ToString());
+
+                return response;
+            }
+            else
+            {
+                //db.Proc_apilog("GET", lang, token, "Province", "Resource", pid.ToString());
+
+                return response;
+            }
+        }
 
         public List<RamResource> GetResourcesBySubCategory(int sid, string lang, string token)
         {
@@ -114,8 +149,6 @@ namespace BIZ.Search
 
         }
 
-
-
         public List<RamResource> GetResourcesByTopCategory(int tid, string lang, string token)
         {
             List<RamResource> response = new List<RamResource>();
@@ -138,7 +171,6 @@ namespace BIZ.Search
             return response;
 
         }
-
 
         public List<RamResource> GetResourcesInRadiusList(string lang, decimal latitude, decimal longitude, decimal radius, string token)
         {
@@ -174,7 +206,6 @@ namespace BIZ.Search
 
         }
 
-
         public List<RamResource> GetUniqueResources(string map, string resourceAgencyNum,int subcategoryid, int topcategoryid,string lang, string token)
         {
             List<RamResource> response = new List<RamResource>();
@@ -186,8 +217,6 @@ namespace BIZ.Search
 
         }
 
-
-
         public List<RamResource> GetResourceByCoverage(string coverager, string lang, string token)
         {
             List<RamResource> response = new List<RamResource>();
@@ -197,6 +226,15 @@ namespace BIZ.Search
             return response;
         }
 
+        //2020-12-01
+        public List<SubRamResource> Get_subResource_ByCoverage(string coverager, string lang, string token)
+        {
+            List<SubRamResource> response = new List<SubRamResource>();
+            response = db.Proc_Get_SubResource_By_Coverage(coverager, lang, token).ToList();
+            //db.Proc_apilog("GET", lang, token, "Coverage", "Resource", coverager);
+
+            return response;
+        }
 
         public List<RamResource> GetResourceByType(string type, string lang, string token)
         {

@@ -700,7 +700,7 @@ namespace WebApi.Controllers
 
         #region Get Resource By City ID
             #region JSON
-                // Friendly
+                // Path
                 /// <summary>
                 ///  Get resource list in the specific allowable city filter by resource's language 
                 /// </summary>
@@ -723,15 +723,41 @@ namespace WebApi.Controllers
 
                     return response;
                 }
-                // Query String
-                /// <summary>
-                ///  Query String style getting resource list in the specific allowable city filter by resource's language 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="cid">city id</param>
-                /// <param name="token">Access token</param>
-                /// <returns>return a JSON format resource list located in a specific city</returns>
-                [ActionName("json")]
+
+        //2020-12-01 Add
+        /// <summary>
+        ///  Get Subset of resource list in the specific allowable city filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="cid">city id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format subset of resource list located in a specific city</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/city/json/{token}/{lang}/{cid}")]
+        [Route("api/v3/Ressource/ville/json/{token}/{lang}/{cid}")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_SubResourcesByCity(string lang, int cid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetSubResourcesByCity(cid, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "City", "resource", cid.ToString());
+
+            return response;
+        }
+
+
+        // Query String
+        /// <summary>
+        ///  Query String getting resource list in the specific allowable city filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="cid">city id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format resource list located in a specific city</returns>
+        [ActionName("json")]
                 [Route("api/v2/resource/city/json")]
                 [Route("api/v2/Ressource/ville/json")]
                 [ResponseType(typeof(RamResource))]
@@ -746,18 +772,42 @@ namespace WebApi.Controllers
 
                     return response;
                 }
-            #endregion JSON
 
-            #region XML
-            // Friendly
-            /// <summary>
-            ///  Get resource list in the specific allowable city filter by resource's language 
-            /// </summary>
-            /// <param name="lang">language. English = "en"; French = "fr"</param>
-            /// <param name="cid">city id</param>
-            /// <param name="token">Access token</param>
-            /// <returns>return a XML format resource list located in a specific city</returns>
-            [ActionName("xml")]
+        //2020-12-01 add
+        /// <summary>
+        ///  Query String getting subset of resource list in the specific allowable city filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="cid">city id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format subset of resource list located in a specific city</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/city/json")]
+        [Route("api/v3/Ressource/ville/json")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_SubResourcesByCity_QS(string lang, int cid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetSubResourcesByCity(cid, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "City", "resource", cid.ToString());
+
+            return response;
+        }
+        #endregion JSON
+
+        #region XML
+        // Friendly
+        /// <summary>
+        ///  Get resource list in the specific allowable city filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="cid">city id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a XML format resource list located in a specific city</returns>
+        [ActionName("xml")]
             [Route("api/v2/resource/city/xml/{token}/{lang}/{cid}")]
             [Route("api/v2/Ressource/ville/xml/{token}/{lang}/{cid}")]
             [ResponseType(typeof(RamResource))]
@@ -819,7 +869,7 @@ namespace WebApi.Controllers
 
         #region Get Resource By Province ID
             #region JSON
-                // Friendly
+                // Path
                 /// <summary>
                 ///  Get resource list in the specific allowable province filter by resource's language 
                 /// </summary>
@@ -842,15 +892,41 @@ namespace WebApi.Controllers
 
                     return response;
                 }
-                // Query String
-                /// <summary>
-                ///  Query String style getting resource list in the specific allowable province filter by resource's language 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="pid">province id</param>
-                /// <param name="token">Access token</param>
-                /// <returns>return a XML format resource list located in a specific province</returns>
-                [ActionName("json")]
+
+        //2020-12-01 add
+        /// <summary>
+        ///  Get subset of resource list in the specific allowable province filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="pid">province id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format subset of resource list located in a specific province</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/province/json/{token}/{lang}/{pid}")]
+        [Route("api/v3/Ressource/province/json/{token}/{lang}/{pid}")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_SubResourcesByProvince(string lang, int pid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetSubResourcesByProvince(pid, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "Province", "resource", pid.ToString());
+
+            return response;
+        }
+
+
+        // Query String
+        /// <summary>
+        ///  Query String getting resource list in the specific allowable province filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="pid">province id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a XML format resource list located in a specific province</returns>
+        [ActionName("json")]
                 [Route("api/v2/resource/province/json")]
                 [Route("api/v2/Ressource/province/json")]
                 [ResponseType(typeof(RamResource))]
@@ -865,18 +941,42 @@ namespace WebApi.Controllers
 
                     return response;
                 }
+
+        //2020-12-01 add
+        /// <summary>
+        ///  Query String getting subset of resource list in the specific allowable province filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="pid">province id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a XML format resource list located in a specific province</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/province/json")]
+        [Route("api/v3/Ressource/province/json")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_subResourcesByProvince_QS(string lang, int pid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetSubResourcesByProvince(pid, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "Province", "resource", pid.ToString());
+
+            return response;
+        }
         #endregion JSON
 
-            #region XML
-                // Friendly
-                /// <summary>
-                ///  Get resource list in the specific allowable province filter by resource's language 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="pid">province id</param>
-                /// <param name="token">Access token</param>
-                /// <returns>return a XML format resource list located in a specific province</returns>
-                [ActionName("xml")]
+        #region XML
+        // Friendly
+        /// <summary>
+        ///  Get resource list in the specific allowable province filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="pid">province id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a XML format resource list located in a specific province</returns>
+        [ActionName("xml")]
                 [Route("api/v2/resource/province/xml/{token}/{lang}/{pid}")]
                 [Route("api/v2/Ressource/province/xml/{token}/{lang}/{pid}")]
                 [ResponseType(typeof(RamResource))]
@@ -1668,7 +1768,7 @@ namespace WebApi.Controllers
 
         #region Search Resource by Coverage
         #region JSON
-        // Friendly
+        // Path
         /// <summary>
         ///  Get allowable resources by its coverage   
         /// </summary>
@@ -1691,6 +1791,34 @@ namespace WebApi.Controllers
 
             return response;
         }
+
+        //2020-12-01 added
+        // Path
+        /// <summary>
+        ///  Get allowable subset of resources by its coverage   
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="coverage">coverage</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format subset of resource list</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/coverage/json/{token}/{lang}/{coverage}")]
+        [Route("api/v3/Ressource/couverture/json/{token}/{lang}/{coverage}")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_SubSet_ResourcesByCoverage(string lang, string coverage, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.Get_subResource_ByCoverage(coverage, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "coverage", "resource", coverage);
+
+            return response;
+        }
+
+
+
         // Query String
         /// <summary>
         ///  Query String style get resources by its coverage   
@@ -1698,7 +1826,7 @@ namespace WebApi.Controllers
         /// <param name="lang">language. English = "en"; French = "fr"</param>
         /// <param name="coverage">coverage</param>
         /// <param name="token">Access token</param>
-        /// <returns>return a XML format resource list</returns>
+        /// <returns>return a json format resource list</returns>
         [ActionName("json")]
         [Route("api/v2/resource/coverage/json")]
         [Route("api/v2/Ressource/couverture/json")]
@@ -1708,6 +1836,30 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetResourceByCoverage(coverage, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "coverage", "resource", coverage);
+
+            return response;
+        }
+
+        //2020-12-01 add
+        /// <summary>
+        ///  Query String get Subset of resources by its coverage   
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="coverage">coverage</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a json format subset of resource list</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/coverage/json")]
+        [Route("api/v3/Ressource/couverture/json")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_Subset_ResourcesByCoverage_QS(string lang, string coverage, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.Get_subResource_ByCoverage(coverage, lang, token).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
             logservices.logservices(request, response, "dbo", "json", "query", lang, token, "coverage", "resource", coverage);

@@ -947,5 +947,56 @@ namespace DATA.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Proc_Construct_APIlogKeywords_by_ETLLoadid", eTLLoadIDParameter);
         }
+    
+        public virtual ObjectResult<SubRamResource> Proc_Get_SubResource_By_Coverage(string s, string lang, string token)
+        {
+            var sParameter = s != null ?
+                new ObjectParameter("s", s) :
+                new ObjectParameter("s", typeof(string));
+    
+            var langParameter = lang != null ?
+                new ObjectParameter("lang", lang) :
+                new ObjectParameter("lang", typeof(string));
+    
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Get_SubResource_By_Coverage", sParameter, langParameter, tokenParameter);
+        }
+    
+        public virtual ObjectResult<SubRamResource> Proc_Get_SubResource_by_City(Nullable<int> cityID, string lang, string token)
+        {
+            var cityIDParameter = cityID.HasValue ?
+                new ObjectParameter("CityID", cityID) :
+                new ObjectParameter("CityID", typeof(int));
+    
+            var langParameter = lang != null ?
+                new ObjectParameter("lang", lang) :
+                new ObjectParameter("lang", typeof(string));
+    
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Get_SubResource_by_City", cityIDParameter, langParameter, tokenParameter);
+        }
+    
+        public virtual ObjectResult<SubRamResource> Proc_Get_SubResource_by_Province(Nullable<int> provinceID, string lang, string token)
+        {
+            var provinceIDParameter = provinceID.HasValue ?
+                new ObjectParameter("ProvinceID", provinceID) :
+                new ObjectParameter("ProvinceID", typeof(int));
+    
+            var langParameter = lang != null ?
+                new ObjectParameter("lang", lang) :
+                new ObjectParameter("lang", typeof(string));
+    
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Get_SubResource_by_Province", provinceIDParameter, langParameter, tokenParameter);
+        }
     }
 }
