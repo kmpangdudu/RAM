@@ -163,6 +163,11 @@
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Proc_Get_SubResource_by_Phone" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Proc_Get_SubResource_by_Province" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProvinceID" Type="int" Mode="In" />
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
@@ -578,6 +583,11 @@
             <Parameter Name="lang" Mode="In" Type="String" />
             <Parameter Name="token" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Proc_Get_SubResource_by_Phone" ReturnType="Collection(RAMModel.SubRamResource)">
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="TopCategoryList">
           <Property Type="Int32" Name="TopCategoryID" Nullable="false" />
@@ -793,6 +803,24 @@
           <Property Type="String" Name="Coverage" Nullable="true" />
         </ComplexType>
         <ComplexType Name="Proc_Get_SubResource_by_Province_Result">
+          <Property Type="Int32" Name="ETLLoadID" Nullable="false" />
+          <Property Type="String" Name="ResourceAgencyNum" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Map" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="SubCategoryID" Nullable="false" />
+          <Property Type="Int32" Name="TOPCategoryID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="PhysicalAddress" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Province" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhysicalPostalCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhysicalAddressIsPrivate" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Latitude" Nullable="true" Precision="18" Scale="10" />
+          <Property Type="Decimal" Name="Longitude" Nullable="true" Precision="18" Scale="10" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="WebsiteAddress" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Coverage" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Proc_Get_SubResource_by_Phone_Result">
           <Property Type="Int32" Name="ETLLoadID" Nullable="false" />
           <Property Type="String" Name="ResourceAgencyNum" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Map" Nullable="false" MaxLength="50" />
@@ -1974,6 +2002,28 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Proc_Get_SubResource_by_Province" FunctionName="RAMModel.Store.Proc_Get_SubResource_by_Province">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.SubRamResource">
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_SubResource_by_Phone" FunctionName="RAMModel.Store.Proc_Get_SubResource_by_Phone">
           <ResultMapping>
               <ComplexTypeMapping TypeName="RAMModel.SubRamResource">
                 <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />

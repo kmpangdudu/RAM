@@ -236,6 +236,17 @@ namespace BIZ.Search
             return response;
         }
 
+        //2021-01-06
+        public List<SubRamResource> Get_subResource_ByPhone(string phone, string lang, string token)
+        {
+            List<SubRamResource> response = new List<SubRamResource>();
+            response = db.Proc_Get_SubResource_by_Phone(phone, lang, token).ToList();
+            //db.Proc_apilog("GET", lang, token, "Coverage", "Resource", coverager);
+
+            return response;
+        }
+
+
         public List<RamResource> GetResourceByType(string type, string lang, string token)
         {
             List<RamResource> response = new List<RamResource>();

@@ -1038,7 +1038,7 @@ namespace WebApi.Controllers
 
         #region Get Resource By SubCategory ID
             #region JSON
-                // Friendly
+                // Path
                 /// <summary>
                 ///  Get resource list under the SubCategory filter by resource's language 
                 /// </summary>
@@ -1390,7 +1390,7 @@ namespace WebApi.Controllers
 
         #region Get Resource By Search Keywords
             #region JSON
-            //Friendly
+            //Path
             /// <summary>
             /// Get allowable resource list by using interest key word(s). Format in JSON.
             /// </summary>
@@ -1804,7 +1804,7 @@ namespace WebApi.Controllers
         [ActionName("json")]
         [Route("api/v3/resource/coverage/json/{token}/{lang}/{coverage}")]
         [Route("api/v3/Ressource/couverture/json/{token}/{lang}/{coverage}")]
-        [ResponseType(typeof(RamResource))]
+        [ResponseType(typeof(SubRamResource))]
         [HttpGet]
         public HttpResponseMessage GetAll_SubSet_ResourcesByCoverage(string lang, string coverage, string token)
         {
@@ -1936,18 +1936,6 @@ namespace WebApi.Controllers
         #endregion XML
 
         #endregion Search Resource by Coverage
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         //2020-11-08 add
@@ -2082,6 +2070,55 @@ namespace WebApi.Controllers
         #endregion Proc_Get_All_SubResources_by_keywords_In_Radius
 
 
+        //2021-01-06
+        #region Get subset of resources by phone number 
+        // Path
+        /// <summary>
+        ///  Get allowable subset of resources by phone number   
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="phone">phone number</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format subset of resource list</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/phone/json/{token}/{lang}/{phone}")]
+        [Route("api/v3/Ressource/telephone/json/{token}/{lang}/{phone}")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_SubSet_ResourcesByPhone(string lang, string phone, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.Get_subResource_ByPhone(phone, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "phone", "resource", phone);
+
+            return response;
+        }
+        // Query
+        /// <summary>
+        ///  Query String get Subset of resources by its phone number   
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="phone">phone number</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a json format subset of resource list</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/phone/json")]
+        [Route("api/v3/Ressource/telephone/json")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_Subset_ResourcesByPhone_QS(string lang, string phone, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.Get_subResource_ByPhone(phone, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "phone", "resource", phone);
+
+            return response;
+        }
+        #endregion  Get subset of resources by phone number 
 
 
 
@@ -2109,9 +2146,10 @@ namespace WebApi.Controllers
                     else
                     {
                         var response = this.Request.CreateResponse(HttpStatusCode.OK);
-                      // --- this is old one, it brings IE offering "SAVE/DOWNLOAD" issue response.Content = new StringContent(thisJson, Encoding.UTF8, "--changed to below--application/json---");
-                    response.Content = new StringContent(thisJson, Encoding.UTF8, "text/html");
-
+                    // --- this is old one, it brings IE offering "SAVE/DOWNLOAD" issue response.Content = new StringContent(thisJson, Encoding.UTF8, "--changed to below--application/json---");
+                    //2020-01-03 chenged
+                    //response.Content = new StringContent(thisJson, Encoding.UTF8, "text/html");
+                    response.Content = new StringContent(thisJson, Encoding.UTF8, "application/json");
                     return response;
                     }
                 }

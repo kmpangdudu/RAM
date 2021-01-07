@@ -67,6 +67,7 @@ namespace WebApi.Controllers
             {
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
                 response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8);
+            
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
                 logservices.logservices(request, response, string.Empty, string.Empty, "send", _email.lang, string.Empty, subject, "email", _email.receiver);
 
@@ -76,7 +77,9 @@ namespace WebApi.Controllers
             {
                 var response = this.Request.CreateResponse(HttpStatusCode.NotFound);
                 response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8);
+             
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+               
                 logservices.logservices(request, response, string.Empty, string.Empty, "send", _email.lang, string.Empty, subject, "email", _email.receiver);
 
                 return response; 
@@ -137,7 +140,9 @@ namespace WebApi.Controllers
             {
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
                 response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8);
+             
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+                
                 logservices.logservices(request, response, string.Empty, string.Empty, "send", lang, string.Empty, subject, "eCard", receiver);
 
                 return response;
@@ -146,6 +151,7 @@ namespace WebApi.Controllers
             {
                 var response = this.Request.CreateResponse(HttpStatusCode.NotFound);
                 response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8);
+               
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
                 logservices.logservices(request, response, string.Empty, string.Empty, "send", lang, string.Empty, subject, "eCard", receiver);
 
@@ -266,6 +272,7 @@ namespace WebApi.Controllers
             {
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
                 response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8);
+           
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
                 logservices.logservices(request, response, string.Empty, string.Empty, "gsender", _email.lang, string.Empty, subject, "gmail", _account);
 
@@ -275,6 +282,7 @@ namespace WebApi.Controllers
             {
                 var response = this.Request.CreateResponse(HttpStatusCode.NotFound);
                 response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8);
+           
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
                 logservices.logservices(request, response, string.Empty, string.Empty, "gsender", _email.lang, string.Empty, subject, "gmail", _account);
 

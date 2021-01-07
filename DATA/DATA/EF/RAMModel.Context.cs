@@ -998,5 +998,22 @@ namespace DATA.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Get_SubResource_by_Province", provinceIDParameter, langParameter, tokenParameter);
         }
+    
+        public virtual ObjectResult<SubRamResource> Proc_Get_SubResource_by_Phone(string phone, string lang, string token)
+        {
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            var langParameter = lang != null ?
+                new ObjectParameter("lang", lang) :
+                new ObjectParameter("lang", typeof(string));
+    
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Get_SubResource_by_Phone", phoneParameter, langParameter, tokenParameter);
+        }
     }
 }

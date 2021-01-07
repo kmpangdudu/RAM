@@ -82,6 +82,7 @@ namespace WebApi.Controllers
             {
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
                 response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8);
+
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
 
                 //( request,  response,  dbschema, format,  para,  lang, token, string cscontent,  csendpoint, keywords)

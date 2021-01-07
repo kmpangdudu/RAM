@@ -143,13 +143,17 @@ namespace WebApi.Controllers
                 if (thisJson.Length < 3)
                 {
                     var response = this.Request.CreateResponse(HttpStatusCode.NoContent);
-                    response.Content = new StringContent(string.Empty, Encoding.UTF8, "text/html");
-                    return response;
+ 
+                  response.Content = new StringContent(string.Empty, Encoding.UTF8, "text/html");
+ 
+                return response;
                 }
                 else
                 {
                     var response = this.Request.CreateResponse(HttpStatusCode.OK);
+             
                     response.Content = new StringContent(thisJson, Encoding.UTF8, "text/html");
+            
                     return response;
                 }
 

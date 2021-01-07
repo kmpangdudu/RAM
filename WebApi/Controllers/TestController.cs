@@ -166,7 +166,9 @@ namespace WebApi.Controllers
                 else
                 {
                     var response = this.Request.CreateResponse(HttpStatusCode.OK);
-                    response.Content = new StringContent(thisJson, Encoding.UTF8, "text/html");
+                    //2021-01-03 changed
+                    //response.Content = new StringContent(thisJson, Encoding.UTF8, "text/html");
+                    response.Content = new StringContent(thisJson, Encoding.UTF8, "application/json");
                     return response;
                 }
             }
