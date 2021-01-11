@@ -51,6 +51,36 @@ namespace WebApi.Controllers
             logservices.logservices(request, response, "dbo", "json", "path", lang, token, "search", "search", kws);
             return response;
         }
+
+
+        //2021-01-11 adding 
+        //path
+        /// <summary>
+        /// Search resource by using interest key word(s) return a subset of resource.  
+        /// </summary>
+        /// <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return subset of resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in JSON</returns>
+        [ActionName("search")]
+        [Route("api/v3/Search/json/{token}/{lang}/{kws}")]
+        [Route("api/v3/Chercher/json/{token}/{lang}/{kws}")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage search_subset(string kws, string lang, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = searchservice.Search_Sub_Resource_By_Keywords(kws, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "search", 
+                "search", kws);
+            //logservices(HttpRequest request, HttpResponseMessage response, string dbschema, string format, 
+            //string para, string lang, string token, string cscontent, string csendpoint, string keywords)
+            return response;
+        }
+
+
         //Query String
         /// <summary>
         /// Query String style cluster search resource by using interest key word(s).  
@@ -73,18 +103,43 @@ namespace WebApi.Controllers
             logservices.logservices(request, response, "dbo", "json", "query", lang, token, "search", "search", kws);
             return response;
         }
-            #endregion JSON
+
+
+        //2021-01-11
+        //Query String
+        /// <summary>
+        /// Query String cluster search resource by using interest key word(s). Return a subset of resource.  
+        /// </summary>
+        /// <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return subset of resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in JSON</returns>
+        [ActionName("search")]
+        [Route("api/v3/Search/json")]
+        [Route("api/v3/Chercher/json")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage search_subset_QS(string lang, string kws, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = searchservice.Search_Sub_Resource_By_Keywords(kws, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "search", "search", kws);
+            return response;
+        }
+        #endregion JSON
 
         #region XML
         //Friendly
-            /// <summary>
-            /// Cluster search resource by using interest key word(s). XML response. 
-            /// </summary>
-            /// <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
-            /// <param name="lang">Language. English = "en"; French = "fr"</param>
-            /// <param name="token">Access token</param>
-            /// <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in XML</returns>
-            [ActionName("xml")]
+        /// <summary>
+        /// Cluster search resource by using interest key word(s). XML response. 
+        /// </summary>
+        /// <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in XML</returns>
+        [ActionName("xml")]
             [Route("api/v2/Search/xml/{token}/{lang}/{kws}")]
             [Route("api/v2/Chercher/xml/{token}/{lang}/{kws}")]
             [ResponseType(typeof(Search_Result))]

@@ -21,6 +21,18 @@ namespace BIZ.Search
 
         }
 
+        //2021-01-11
+        public List<SubRamResource> Search_Sub_Resource_By_Keywords(string keywords, string lang, string token)
+        {
+            var response = db.Proc_Cluster_Search_SubResource(keywords, lang, token).ToList();
+            //db.Proc_apilog("GET", lang, token, "keywords", "search ", keywords);
+
+            return response;
+
+        }
+
+
+
         public List<Search_Result> GetResourcesInRadiusList(string lang, decimal latitude, decimal longitude, decimal radius, string token)
         {
             List<Search_Result> response = new List<Search_Result>();

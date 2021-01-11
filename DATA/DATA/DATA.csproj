@@ -110,6 +110,9 @@
     <Compile Include="EF\GoogleCityList.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\Proc_Cluster_Search_SubResource_Result.cs">
+      <DependentUpon>RAMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\Proc_GetSurveyQuestionByQuestionID_Result.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>

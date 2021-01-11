@@ -1015,5 +1015,22 @@ namespace DATA.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Get_SubResource_by_Phone", phoneParameter, langParameter, tokenParameter);
         }
+    
+        public virtual ObjectResult<SubRamResource> Proc_Cluster_Search_SubResource(string searchWordS, string lang, string token)
+        {
+            var searchWordSParameter = searchWordS != null ?
+                new ObjectParameter("SearchWordS", searchWordS) :
+                new ObjectParameter("SearchWordS", typeof(string));
+    
+            var langParameter = lang != null ?
+                new ObjectParameter("lang", lang) :
+                new ObjectParameter("lang", typeof(string));
+    
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Cluster_Search_SubResource", searchWordSParameter, langParameter, tokenParameter);
+        }
     }
 }
