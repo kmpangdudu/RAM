@@ -739,6 +739,7 @@
           <Property Type="String" Name="WebsiteAddress" Nullable="true" MaxLength="2000" />
           <Property Type="String" Name="Coverage" Nullable="true" />
           <Property Type="Int32" Name="ETLLoadID" Nullable="false" />
+          <Property Type="Boolean" Name="IsHelpline" Nullable="true" />
         </ComplexType>
         <ComplexType Name="Proc_Get_SubResource_by_SubCategory_Result">
           <Property Type="Int32" Name="ETLLoadID" Nullable="false" />
@@ -1916,6 +1917,7 @@
                 <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
                 <ScalarProperty Name="Coverage" ColumnName="Coverage" />
                 <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="IsHelpline" ColumnName="IsHelpline" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1937,6 +1939,8 @@
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
                 <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="IsHelpline" ColumnName="IsHelpline" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1959,6 +1963,7 @@
                 <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
                 <ScalarProperty Name="Coverage" ColumnName="Coverage" />
                 <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="IsHelpline" ColumnName="IsHelpline" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1981,6 +1986,7 @@
                 <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
                 <ScalarProperty Name="Coverage" ColumnName="Coverage" />
                 <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="IsHelpline" ColumnName="IsHelpline" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2004,6 +2010,7 @@
                 <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
                 <ScalarProperty Name="Coverage" ColumnName="Coverage" />
                 <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="IsHelpline" ColumnName="IsHelpline" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2026,6 +2033,7 @@
                 <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
                 <ScalarProperty Name="Coverage" ColumnName="Coverage" />
                 <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="IsHelpline" ColumnName="IsHelpline" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2048,6 +2056,7 @@
                 <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
                 <ScalarProperty Name="Coverage" ColumnName="Coverage" />
                 <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="IsHelpline" ColumnName="IsHelpline" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2070,6 +2079,7 @@
                 <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
                 <ScalarProperty Name="Coverage" ColumnName="Coverage" />
                 <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="IsHelpline" ColumnName="IsHelpline" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

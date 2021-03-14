@@ -29,6 +29,7 @@ namespace DATA.EF
         public string Phone { get; set; }
         public string WebsiteAddress { get; set; }
         public string Coverage { get; set; }
-
+      
+        public Nullable<bool> IsHelpline { get; set; }
     }
 }
