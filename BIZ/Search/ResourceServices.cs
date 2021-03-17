@@ -45,12 +45,21 @@ namespace BIZ.Search
 
         public RamResource GetResourcesByID(string lang, int rid, string token)
         {
+            // rid = ETLLOADID in Table RAMResource
             var response = db.Proc_Get_Resource_by_ID(rid,lang, token).FirstOrDefault();
            // db.Proc_apilog("GET", lang, token, "the", "Resource", rid.ToString());
 
             return response;
         }
+        //2021-03-17
+        public SubRamResource Get_Subset_ResourcesByID(string lang, int rid, string token)
+        {
+            // rid = ETLLOADID in Table RAMResource
+            var response = db.Proc_Get_SubResource_by_ID(rid, lang, token).FirstOrDefault();
+            // db.Proc_apilog("GET", lang, token, "the", "Resource", rid.ToString());
 
+            return response;
+        }
 
         public List<RamResource> GetResourcesByCity(int cid, string lang, string token)
         {

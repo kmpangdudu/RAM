@@ -134,6 +134,9 @@
     <Compile Include="EF\Proc_Get_SubResource_By_Coverage_Result.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\Proc_Get_SubResource_by_ID_Result.cs">
+      <DependentUpon>RAMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\Proc_Get_SubResource_by_Phone_Result.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>

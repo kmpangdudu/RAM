@@ -439,14 +439,15 @@ namespace WebApi.Controllers
         #region JSON
         //Friendly
         /// <summary>
-        ///  Get specific allowable resource by its id, filter by resource's language 
+        ///  Get specific allowable resource by its id, filter bapi/v2/resource/jsony resource's language 
         /// </summary>
         /// <param name="lang">language. English = "en"; French = "fr"</param>
         /// <param name="rid">resource id</param>
         /// <param name="token">Access token</param>
         /// <returns>return a JSON format specific resource's detail information</returns>
         [ActionName("json")]
-        [Route("api/v2/resource/json/{token}/{lang}/{rid}")]
+        [Route("api/v2/resource/json/{token}/{lang}/{rid}")] 
+        // rid is ETLLOADID in the SP Proc_Get_Resource_by_ID
         [Route("api/v2/Ressource/json/{token}/{lang}/{rid}")]
         [ResponseType(typeof(RamResource))]
         [HttpGet]
@@ -491,6 +492,68 @@ namespace WebApi.Controllers
             return response;
 
         }
+
+
+
+
+        //2021-03-17
+        //Friendly
+        /// <summary>
+        ///  Get specific allowable resource by its id, filter bapi/v2/resource/jsony resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="rid">resource id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format specific resource's detail information</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/json/{token}/{lang}/{rid}")]
+        // rid is ETLLOADID in the SP Proc_Get_Resource_by_ID
+        [Route("api/v3/Ressource/json/{token}/{lang}/{rid}")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage Get_Subset_ResourcesByID(string lang, int rid, string token)
+        {
+            
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.Get_Subset_ResourcesByID(lang, rid, token); //rid = etlloadid in table RAMResource 
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+
+            //construct keywords
+            string keywords = "";
+            keywords = resourceservice.constructKeywords(rid);
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "resource", keywords);
+            return response;
+        }
+        //Query String
+        /// <summary>
+        ///  Query String style getting allowable specific resource by its id, filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="rid">resource id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format specific resource's detail information</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/json")]
+        [Route("api/v3/Ressource/json")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage Get_Subset_ResourcesByID_QS(string lang, int rid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.Get_Subset_ResourcesByID(lang, rid, token);// rid is ETLLOADID in the SP Proc_Get_Resource_by_ID
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            //logservices.logservices(request, response, "dbo", "json", "query", lang, token, "this", "resource", rid.ToString());
+
+            //construct keywords
+            string keywords = "";
+            keywords = resourceservice.constructKeywords(rid);
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "resource", keywords);
+            return response;
+
+        }
+
         #endregion JSON
 
         #region XML
