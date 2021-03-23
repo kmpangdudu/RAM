@@ -439,7 +439,7 @@ namespace WebApi.Controllers
         #region JSON
         //Friendly
         /// <summary>
-        ///  Get specific allowable resource by its id, filter bapi/v2/resource/jsony resource's language 
+        ///  Get specific allowable resource by its id, filter by resource's language 
         /// </summary>
         /// <param name="lang">language. English = "en"; French = "fr"</param>
         /// <param name="rid">resource id</param>
@@ -499,7 +499,7 @@ namespace WebApi.Controllers
         //2021-03-17
         //Friendly
         /// <summary>
-        ///  Get specific allowable resource by its id, filter bapi/v2/resource/jsony resource's language 
+        ///  Get specific allowable resource by its id, filter by resource's language 
         /// </summary>
         /// <param name="lang">language. English = "en"; French = "fr"</param>
         /// <param name="rid">resource id</param>
@@ -509,7 +509,7 @@ namespace WebApi.Controllers
         [Route("api/v3/resource/json/{token}/{lang}/{rid}")]
         // rid is ETLLOADID in the SP Proc_Get_Resource_by_ID
         [Route("api/v3/Ressource/json/{token}/{lang}/{rid}")]
-        [ResponseType(typeof(RamResource))]
+        [ResponseType(typeof(SubRamResource))]
         [HttpGet]
         public HttpResponseMessage Get_Subset_ResourcesByID(string lang, int rid, string token)
         {
@@ -536,7 +536,7 @@ namespace WebApi.Controllers
         [ActionName("json")]
         [Route("api/v3/resource/json")]
         [Route("api/v3/Ressource/json")]
-        [ResponseType(typeof(RamResource))]
+        [ResponseType(typeof(SubRamResource))]
         [HttpGet]
         public HttpResponseMessage Get_Subset_ResourcesByID_QS(string lang, int rid, string token)
         {
