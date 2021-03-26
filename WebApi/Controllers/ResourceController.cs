@@ -554,6 +554,65 @@ namespace WebApi.Controllers
 
         }
 
+
+        //2021-03-26
+        //Friendly
+        /// <summary>
+        ///  Get specific allowable resource information in full by its id, filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="rid">resource id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format specific resource's detail information in full</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/full/json/{token}/{lang}/{rid}")]
+        // rid is ETLLOADID in the SP Proc_Get_Resource_by_ID
+        [Route("api/v3/Ressource/complète/json/{token}/{lang}/{rid}")]
+        [ResponseType(typeof(V3_Full_Resource))]
+        [HttpGet]
+        public HttpResponseMessage Get_full_ResourcesByID(string lang, int rid, string token)
+        {
+
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.Get_full_ResourcesByID(lang, rid, token); //rid = etlloadid in table RAMResource 
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+
+            //construct keywords
+            string keywords = "";
+            keywords = resourceservice.constructKeywords(rid);
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "resource", keywords);
+            return response;
+        }
+        //Query String
+        /// <summary>
+        ///  Query String style getting allowable specific resource information in full by its id, filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="rid">resource id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format specific resource's detail information in full</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/full/json")]
+        [Route("api/v3/Ressource/complète/json")]
+        [ResponseType(typeof(V3_Full_Resource))]
+        [HttpGet]
+        public HttpResponseMessage Get_full_ResourcesByID_QS(string lang, int rid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.Get_full_ResourcesByID(lang, rid, token);// rid is ETLLOADID in the SP Proc_Get_Resource_by_ID
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            //logservices.logservices(request, response, "dbo", "json", "query", lang, token, "this", "resource", rid.ToString());
+
+            //construct keywords
+            string keywords = "";
+            keywords = resourceservice.constructKeywords(rid);
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "resource", keywords);
+            return response;
+
+        }
+
         #endregion JSON
 
         #region XML
