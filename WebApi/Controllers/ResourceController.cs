@@ -550,11 +550,11 @@ namespace WebApi.Controllers
             string keywords = "";
             keywords = resourceservice.constructKeywords(rid);
             logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "resource", keywords);
-            return response;
+            return response; 
 
         }
 
-
+         
         //2021-03-26
         //Friendly
         /// <summary>
