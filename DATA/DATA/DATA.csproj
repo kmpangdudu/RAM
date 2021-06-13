@@ -128,10 +128,16 @@
     <Compile Include="EF\Proc_GetSurveyTypeByID_Result.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\Proc_Get_Helpline_Result.cs">
+      <DependentUpon>RAMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\Proc_Get_SubResource_by_City_Result.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Proc_Get_SubResource_By_Coverage_Result.cs">
+      <DependentUpon>RAMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Proc_Get_SubResource_by_Helpline_Result.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Proc_Get_SubResource_by_ID_Result.cs">

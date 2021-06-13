@@ -2243,6 +2243,53 @@ namespace WebApi.Controllers
         #endregion  Get subset of resources by phone number 
 
 
+        //2021-06-13
+        #region Get subset of resources by Helpline 
+        // Path
+        /// <summary>
+        ///  Get Subset of all Helpline resources by language    
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a subset of Helpline resource list format in json</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/helpline/json/{token}/{lang}")]
+        [Route("api/v3/Ressource/dassistance/json/{token}/{lang}")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_SubSet_ResourcesByHelpline(string lang,  string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.Get_subResource_Helpline( lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "helpline", "resource", "helpline");
+
+            return response;
+        }
+        // Query
+        /// <summary>
+        ///  Query String get Subset of all Helpline resources by language   
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a subset of  helpline resource list format in json</returns>
+        [ActionName("json")]
+        [Route("api/v3/resource/helpline/json")]
+        [Route("api/v3/Ressource/dassistance/json")]
+        [ResponseType(typeof(SubRamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAll_SubSet_ResourcesByHelpline_QS(string lang, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.Get_subResource_Helpline(  lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "helpline", "resource", "helpline");
+
+            return response;
+        }
+        #endregion  Get subset of resources by phone number 
 
 
 
