@@ -2249,7 +2249,7 @@ namespace WebApi.Controllers
         /// <summary>
         ///  Get Subset of all Helpline resources by language    
         /// </summary>
-        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="lang">language. English = "en"; French = "fr"; English and French = "all" </param>
         /// <param name="token">Access token</param>
         /// <returns>return a subset of Helpline resource list format in json</returns>
         [ActionName("json")]
@@ -2271,7 +2271,7 @@ namespace WebApi.Controllers
         /// <summary>
         ///  Query String get Subset of all Helpline resources by language   
         /// </summary>
-        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="lang">language. English = "en"; French = "fr"; English and French = "all" </param>
         /// <param name="token">Access token</param>
         /// <returns>return a subset of  helpline resource list format in json</returns>
         [ActionName("json")]
@@ -2301,26 +2301,26 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 lang = lang.ToLower();
-                if ((lang == "en") || (lang == "fr"))
+                if ((lang == "en") || (lang == "fr") || (lang == "all"))
                 {
                     string thisJson = JsonConvert.SerializeObject(r, Formatting.None);
 
-                if (thisJson.Length < 5)
-                    {
-                        var response = this.Request.CreateResponse(HttpStatusCode.NoContent);
+                    if (thisJson.Length < 5)
+                        {
+                            var response = this.Request.CreateResponse(HttpStatusCode.NoContent);
 
-                        response.Content = new StringContent(string.Empty, Encoding.UTF8, "application/json");
+                            response.Content = new StringContent(string.Empty, Encoding.UTF8, "application/json");
+                            return response;
+                        }
+                        else
+                        {
+                            var response = this.Request.CreateResponse(HttpStatusCode.OK);
+                        // --- this is old one, it brings IE offering "SAVE/DOWNLOAD" issue response.Content = new StringContent(thisJson, Encoding.UTF8, "--changed to below--application/json---");
+                        //2020-01-03 chenged
+                        //response.Content = new StringContent(thisJson, Encoding.UTF8, "text/html");
+                        response.Content = new StringContent(thisJson, Encoding.UTF8, "application/json");
                         return response;
-                    }
-                    else
-                    {
-                        var response = this.Request.CreateResponse(HttpStatusCode.OK);
-                    // --- this is old one, it brings IE offering "SAVE/DOWNLOAD" issue response.Content = new StringContent(thisJson, Encoding.UTF8, "--changed to below--application/json---");
-                    //2020-01-03 chenged
-                    //response.Content = new StringContent(thisJson, Encoding.UTF8, "text/html");
-                    response.Content = new StringContent(thisJson, Encoding.UTF8, "application/json");
-                    return response;
-                    }
+                        }
                 }
                 else
                 {
