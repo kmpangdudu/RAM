@@ -70,6 +70,19 @@ namespace BIZ.Search
 
             return response;
         }
+
+        //2021-07-24    Proc_Get_All_V3_Ram_by_Lang   
+
+        public List<V3_NewFullRAM> Get_AllV3NewfullResourcesByLang(string lang, string token)
+        {
+            // rid = ETLLOADID in Table RAMResource
+            var response = db.Proc_Get_All_V3_Ram_by_Lang(lang, token).ToList();
+            // db.Proc_apilog("GET", lang, token, "the", "Resource", rid.ToString());
+
+            return response;
+        }
+
+
         public List<RamResource> GetResourcesByCity(int cid, string lang, string token)
         {
             List<RamResource> response = new List<RamResource>();
