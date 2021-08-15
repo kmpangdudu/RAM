@@ -13,6 +13,7 @@ namespace DATA.EF
     
     public partial class SubRamResource
     {
+        public int ETLLoadID { get; set; }
         public string ResourceAgencyNum { get; set; }
         public string Map { get; set; }
         public int SubCategoryID { get; set; }
@@ -28,7 +29,7 @@ namespace DATA.EF
         public string Phone { get; set; }
         public string WebsiteAddress { get; set; }
         public string Coverage { get; set; }
-        public int ETLLoadID { get; set; }
+
         public Nullable<bool> IsHelpline { get; set; }
     }
 }

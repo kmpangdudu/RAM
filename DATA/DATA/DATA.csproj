@@ -128,9 +128,6 @@
     <Compile Include="EF\Proc_GetSurveyTypeByID_Result.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF\Proc_Get_All_V3_Ram_by_Lang_Result.cs">
-      <DependentUpon>RAMModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="EF\Proc_Get_Helpline_Result.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
@@ -195,9 +192,6 @@
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\V3_Full_Resource.cs">
-      <DependentUpon>RAMModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\V3_NewFullRAM.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ExtendClass\ProvinceList.cs" />

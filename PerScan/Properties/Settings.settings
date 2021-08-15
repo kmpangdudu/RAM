@@ -15,7 +15,7 @@
       <Value Profile="(Default)">|</Value>
     </Setting>
     <Setting Name="default_Col" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">175</Value>
+      <Value Profile="(Default)">183</Value>
     </Setting>
   </Settings>
 </SettingsFile>
