@@ -27,7 +27,7 @@ namespace WebApi.Controllers
         HttpRequest request = HttpContext.Current.Request;
         LogServices logservices = new LogServices();
 
-        int seed = Convert.ToInt32(ConfigurationManager.AppSettings["p"]);
+        int seed =Properties.Settings.Default.p;
         Random rnd = new Random();
 
 
@@ -70,7 +70,6 @@ namespace WebApi.Controllers
         /// <param name="token">Access token</param>
         /// <returns>Return JSON format resource list, filter by language</returns>
         [ActionName("json")]
-        [ResponseType(typeof(RamResource))]
         [Route("api/v3/all/resource/json/{token}/{lang}")]
         [Route("api/v3/toute/Ressource/json/{token}/{lang}")]
         [ResponseType(typeof(V3_NewFullRAM))]
