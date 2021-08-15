@@ -89,6 +89,11 @@
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Proc_Get_All_V3_Ram_by_Lang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="a" Type="int" Mode="In" />
+        </Function>
         <Function Name="Proc_Get_Allow_Domain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Proc_Get_Allow_IP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Proc_Get_Blocked_IP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -626,6 +631,11 @@
             <Parameter Name="lang" Mode="In" Type="String" />
             <Parameter Name="token" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Proc_Get_All_V3_Ram_by_Lang" ReturnType="Collection(RAMModel.V3_NewFullRAM)">
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="a" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="TopCategoryList">
           <Property Type="Int32" Name="TopCategoryID" Nullable="false" />
@@ -1009,6 +1019,78 @@
           <Property Type="String" Name="WebsiteAddress" Nullable="true" MaxLength="2000" />
           <Property Type="String" Name="Coverage" Nullable="true" />
           <Property Type="Boolean" Name="IsHelpline" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Proc_Get_All_V3_Ram_by_Lang_Result">
+          <Property Type="Int32" Name="ETLLoadID" Nullable="false" />
+          <Property Type="String" Name="ResourceAgencyNum" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Map" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="SubCategoryID" Nullable="false" />
+          <Property Type="Int32" Name="TOPCategoryID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="AgencyDescription" Nullable="true" />
+          <Property Type="String" Name="PhysicalAddress" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Province" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhysicalCountry" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhysicalPostalCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="STerm" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="LTerms" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="PhysicalAddressIsPrivate" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Latitude" Nullable="true" Precision="18" Scale="10" />
+          <Property Type="Decimal" Name="Longitude" Nullable="true" Precision="18" Scale="10" />
+          <Property Type="String" Name="HoursOfOperation" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="WebsiteAddress" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Eligibility" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="DisabilitiesAccess" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="FeeStructureSource" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="ApplicationProcess" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="DocumentsRequired" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="LanguagesOfferedList" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="LanguageOfRecord" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="WorkHours" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="CustomEligibilitybyAge" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Coverage" Nullable="true" />
+          <Property Type="String" Name="CoverageArea" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="NormalWaitTime" Nullable="true" MaxLength="2000" />
+          <Property Type="Boolean" Name="IsHelpline" Nullable="true" />
+          <Property Type="String" Name="CustomTargetPopulation" Nullable="true" MaxLength="2000" />
+        </ComplexType>
+        <ComplexType Name="V3_NewFullRAM">
+          <Property Type="Int32" Name="ETLLoadID" Nullable="false" />
+          <Property Type="String" Name="ResourceAgencyNum" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Map" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="SubCategoryID" Nullable="false" />
+          <Property Type="Int32" Name="TOPCategoryID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="AgencyDescription" Nullable="true" />
+          <Property Type="String" Name="PhysicalAddress" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Province" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhysicalCountry" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhysicalPostalCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="STerm" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="LTerms" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="PhysicalAddressIsPrivate" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Latitude" Nullable="true" Precision="18" Scale="10" />
+          <Property Type="Decimal" Name="Longitude" Nullable="true" Precision="18" Scale="10" />
+          <Property Type="String" Name="HoursOfOperation" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="WebsiteAddress" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Eligibility" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="DisabilitiesAccess" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="FeeStructureSource" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="ApplicationProcess" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="DocumentsRequired" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="LanguagesOfferedList" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="LanguageOfRecord" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="WorkHours" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="CustomEligibilitybyAge" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Coverage" Nullable="true" />
+          <Property Type="String" Name="CoverageArea" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="NormalWaitTime" Nullable="true" MaxLength="2000" />
+          <Property Type="Boolean" Name="IsHelpline" Nullable="true" />
+          <Property Type="String" Name="CustomTargetPopulation" Nullable="true" MaxLength="2000" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2334,6 +2416,46 @@
                 <ScalarProperty Name="Coverage" ColumnName="Coverage" />
                 <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
                 <ScalarProperty Name="IsHelpline" ColumnName="IsHelpline" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_All_V3_Ram_by_Lang" FunctionName="RAMModel.Store.Proc_Get_All_V3_Ram_by_Lang">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.V3_NewFullRAM">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+                <ScalarProperty Name="IsHelpline" ColumnName="IsHelpline" />
+                <ScalarProperty Name="CustomTargetPopulation" ColumnName="CustomTargetPopulation" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

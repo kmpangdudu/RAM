@@ -1079,5 +1079,22 @@ namespace DATA.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Get_SubResource_by_Helpline", langParameter, tokenParameter);
         }
+    
+        public virtual ObjectResult<V3_NewFullRAM> Proc_Get_All_V3_Ram_by_Lang(string lang, string token, Nullable<int> a)
+        {
+            var langParameter = lang != null ?
+                new ObjectParameter("lang", lang) :
+                new ObjectParameter("lang", typeof(string));
+    
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            var aParameter = a.HasValue ?
+                new ObjectParameter("a", a) :
+                new ObjectParameter("a", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<V3_NewFullRAM>("Proc_Get_All_V3_Ram_by_Lang", langParameter, tokenParameter, aParameter);
+        }
     }
 }

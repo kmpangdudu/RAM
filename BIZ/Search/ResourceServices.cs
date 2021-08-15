@@ -43,6 +43,15 @@ namespace BIZ.Search
             return response;
         }
 
+
+        // 2020-07-24 add V3_NewFullRAM subset of RAM Resoucre by 4D asked
+        public List<V3_NewFullRAM> Get_AllV3NewfullResourcesByLang(string lang, string token, int outputnum)
+        {
+            var response = db.Proc_Get_All_V3_Ram_by_Lang(lang, token, outputnum).ToList();
+            //db.Proc_apilog("GET", lang, token, "Language", "Resource", lang);
+            return response;
+        }
+
         public RamResource GetResourcesByID(string lang, int rid, string token)
         {
             // rid = ETLLOADID in Table RAMResource

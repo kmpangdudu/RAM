@@ -47,11 +47,15 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllResourcesByLang(string lang, string token)
         {
+            int outputnum = rnd.Next(1, 11) % seed;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
+
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetAllResourcesByLang(lang, token).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "Language", "resource", lang);
+            logservices.logservices(request, response, mark, "json", "path", lang, token, "Language", "resource", lang);
 
             return response;
         }
@@ -75,12 +79,13 @@ namespace WebApi.Controllers
         {
             int outputnum = rnd.Next(1, 11) % seed;
             // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_v3a_dump_p" : "dbo_v3a_dump";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.Get_AllV3NewfullResourcesByLang(lang, token, outputnum).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
-            string mark = (outputnum == 0)? "dbo_v3_dump_p": "dbo_v3_dump";
+
 
             logservices.logservices(request, response, mark, "json", "path", lang, token, "Language", "resource", lang);
 
@@ -102,11 +107,15 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllSubsetResourcesByLang(string lang, string token)
         {
+            int outputnum = rnd.Next(1, 11) % seed;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_v3s_dump_p" : "dbo_v3s_dump";
+
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetAllSubResourcesByLang(lang, token).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "Language", "resource", lang);
+            logservices.logservices(request, response, mark, "json", "path", lang, token, "Language", "resource", lang);
 
             return response;
         }
@@ -125,11 +134,16 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllResourcesByLang_QS(string lang, string token)
         {
+            int outputnum = rnd.Next(1, 11) % seed;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
+
+
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetAllResourcesByLang(lang, token).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "Language", "resource", lang);
+            logservices.logservices(request, response, mark, "json", "query", lang, token, "Language", "resource", lang);
 
             return response;
         }
@@ -152,11 +166,16 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetV3NewFullResourcesByLang_QS(string lang, string token)
         {
+            int outputnum = rnd.Next(1, 11) % seed;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_v3a_dump_p" : "dbo_v3a_dump";
+
+
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-            var json = resourceservice.Get_AllV3NewfullResourcesByLang(lang, token).ToList();
+            var json = resourceservice.Get_AllV3NewfullResourcesByLang(lang, token,outputnum).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "Language", "resource", lang);
+            logservices.logservices(request, response, mark, "json", "query", lang, token, "Language", "resource", lang);
 
             return response;
         }
@@ -178,11 +197,15 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllSubsetResourcesByLang_QS(string lang, string token)
         {
+            int outputnum = rnd.Next(1, 11) % seed;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_v3Sub_dump_p" : "dbo_v3Sub_dump";
+
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetAllSubResourcesByLang(lang, token).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "Language", "resource", lang);
+            logservices.logservices(request, response, mark, "json", "query", lang, token, "Language", "resource", lang);
 
             return response;
         }
@@ -204,10 +227,14 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllResourcesByLang_XML(string lang, string token)
         {
+            int outputnum = rnd.Next(1, 11) % seed;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
+
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             response = createResourcehResult(lang, token);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "Language", "resource", lang);
+            logservices.logservices(request, response, mark, "xml", "path", lang, token, "Language", "resource", lang);
 
             return response;
         }
@@ -225,10 +252,14 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllResourcesByLang_XML_QS(string lang, string token)
         {
+            int outputnum = rnd.Next(1, 11) % seed;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
+
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             response = createResourcehResult(lang, token);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "Language", "resource", lang);
+            logservices.logservices(request, response, mark, "xml", "query", lang, token, "Language", "resource", lang);
 
             return response;
         }
@@ -273,11 +304,15 @@ namespace WebApi.Controllers
             [HttpGet]
             public HttpResponseMessage GetAllResources(string token)
             {
-                HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            int outputnum = rnd.Next(1, 11) % seed;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
+
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = resourceservice.GetAllResources(token).ToList();
                 response = toJson(json, "en");
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "json", "path", string.Empty, token, "all", "resource", string.Empty);
+                logservices.logservices(request, response, mark, "json", "path", string.Empty, token, "all", "resource", string.Empty);
                 return response;
             }
 
@@ -294,11 +329,15 @@ namespace WebApi.Controllers
             [HttpGet]
             public HttpResponseMessage GetAllResources_QS(string token)
             {
-                HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            int outputnum = rnd.Next(1, 11) % seed;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
+
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = resourceservice.GetAllResources(token).ToList();
                 response = toJson(json, "en");
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "json", "query", string.Empty, token, "all", "resource", string.Empty);
+                logservices.logservices(request, response, mark, "json", "query", string.Empty, token, "all", "resource", string.Empty);
                 return response;
             }
 
@@ -317,20 +356,25 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllResources_xml(string token)
                 {
+                    int outputnum = rnd.Next(1, 11) % seed;
+                    // if outputnum = 0 then out all records, else output parts of records
+                    string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
+
+
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     request = HttpContext.Current.Request;
                     var xml = resourceservice.GetAllResources(token).ToList();
                     if (xml.Count > 0)
                     {
                         var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
-                        logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, token, "all", "resource", string.Empty);
+                        logservices.logservices(request, response, mark, "xml", "path", string.Empty, token, "all", "resource", string.Empty);
 
                         return response;
                     }
                     else
                     {
                         response = Request.CreateResponse(HttpStatusCode.NoContent);
-                        logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, token, "all", "resource", string.Empty);
+                        logservices.logservices(request, response, mark, "xml", "path", string.Empty, token, "all", "resource", string.Empty);
 
                         return response;
                     }
@@ -349,20 +393,24 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllResources_XML_QS( string token)
                 {
+                    int outputnum = rnd.Next(1, 11) % seed;
+                    // if outputnum = 0 then out all records, else output parts of records
+                    string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
+
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     request = HttpContext.Current.Request;
                     var xml = resourceservice.GetAllResources(token).ToList();
                     if (xml.Count > 0)
                     {
                         var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
-                        logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, token, "all", "resource", string.Empty);
+                        logservices.logservices(request, response, mark, "xml", "query", string.Empty, token, "all", "resource", string.Empty);
 
                         return response;
                     }
                     else
                     {
                         response = Request.CreateResponse(HttpStatusCode.NoContent);
-                        logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, token, "all", "resource", string.Empty);
+                        logservices.logservices(request, response, mark, "xml", "query", string.Empty, token, "all", "resource", string.Empty);
 
                         return response;
                     }
