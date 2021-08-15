@@ -41,5 +41,8 @@
     <Setting Name="eCardpwd" Type="System.String" Scope="Application">
       <Value Profile="(Default)">K1dsH3lp15</Value>
     </Setting>
+    <Setting Name="p" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

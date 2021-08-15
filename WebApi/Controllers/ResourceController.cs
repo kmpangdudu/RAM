@@ -3,6 +3,7 @@ using BIZ.Search;
 using DATA.EF;
 using Newtonsoft.Json;
 using System;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -25,6 +26,9 @@ namespace WebApi.Controllers
         HttpResponseMessage response = new HttpResponseMessage();
         HttpRequest request = HttpContext.Current.Request;
         LogServices logservices = new LogServices();
+
+        int seed = Convert.ToInt32(ConfigurationManager.AppSettings["p"]);
+        Random rnd = new Random();
 
 
         #region Get Resource by Lang
@@ -51,6 +55,38 @@ namespace WebApi.Controllers
 
             return response;
         }
+
+
+        //2021-07-24
+        //path
+        /// <summary>
+        /// Get V3 all allowable resource list by language.
+        /// </summary>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return JSON format resource list, filter by language</returns>
+        [ActionName("json")]
+        [ResponseType(typeof(RamResource))]
+        [Route("api/v3/all/resource/json/{token}/{lang}")]
+        [Route("api/v3/toute/Ressource/json/{token}/{lang}")]
+        [ResponseType(typeof(V3_NewFullRAM))]
+        [HttpGet]
+        public HttpResponseMessage GetV3NewFullResourcesByLang(string lang, string token)
+        {
+            int outputnum = rnd.Next(1, 11) % seed;
+            // if outputnum = 0 then out all records, else output parts of records
+
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.Get_AllV3NewfullResourcesByLang(lang, token, outputnum).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            string mark = (outputnum == 0)? "dbo_v3_dump_p": "dbo_v3_dump";
+
+            logservices.logservices(request, response, mark, "json", "path", lang, token, "Language", "resource", lang);
+
+            return response;
+        }
+
 
         //2020-11-07 add get subset resource by 4D asked
         /// <summary>
@@ -97,6 +133,35 @@ namespace WebApi.Controllers
 
             return response;
         }
+
+
+
+
+        //2021-07-24
+        //path
+        /// <summary>
+        /// Query Get V3 all allowable resource list by language.
+        /// </summary>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return JSON format resource list, filter by language</returns>
+        [ActionName("json")]
+        [Route("api/v3/all/resource/json")]
+        [Route("api/v3/toute/Ressource/json")]
+        [ResponseType(typeof(V3_NewFullRAM))]
+        [HttpGet]
+        public HttpResponseMessage GetV3NewFullResourcesByLang_QS(string lang, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.Get_AllV3NewfullResourcesByLang(lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "Language", "resource", lang);
+
+            return response;
+        }
+
+
 
         //2020-11-07 get subset RAM Resources 
         //Query String
