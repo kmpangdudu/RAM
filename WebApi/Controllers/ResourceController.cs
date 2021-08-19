@@ -76,8 +76,9 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetV3NewFullResourcesByLang(string lang, string token)
         {
-            int outputnum = rnd.Next(1, 11) % seed;
-            // if outputnum = 0 then out all records, else output parts of records
+            int outputnum = 1;
+            outputnum = (rnd.Next(1, 10) <= seed)? 0: 1;
+            // if outputnum = 0 then out  parts of records, elase all records, 
             string mark = (outputnum == 0) ? "dbo_v3a_dump_p" : "dbo_v3a_dump";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
