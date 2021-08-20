@@ -47,7 +47,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllResourcesByLang(string lang, string token)
         {
-            int outputnum = rnd.Next(1, 11) % seed;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
 
@@ -76,8 +76,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetV3NewFullResourcesByLang(string lang, string token)
         {
-            int outputnum = 1;
-            outputnum = (rnd.Next(1, 10) <= seed)? 0: 1;
+            int outputnum = (rnd.Next(1, 10) <= seed)? 0: 1;
             // if outputnum = 0 then out  parts of records, elase all records, 
             string mark = (outputnum == 0) ? "dbo_v3a_dump_p" : "dbo_v3a_dump";
 
@@ -107,7 +106,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllSubsetResourcesByLang(string lang, string token)
         {
-            int outputnum = rnd.Next(1, 11) % seed;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v3s_dump_p" : "dbo_v3s_dump";
 
@@ -134,7 +133,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllResourcesByLang_QS(string lang, string token)
         {
-            int outputnum = rnd.Next(1, 11) % seed;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
 
@@ -166,7 +165,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetV3NewFullResourcesByLang_QS(string lang, string token)
         {
-            int outputnum = rnd.Next(1, 11) % seed;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v3a_dump_p" : "dbo_v3a_dump";
 
@@ -197,7 +196,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllSubsetResourcesByLang_QS(string lang, string token)
         {
-            int outputnum = rnd.Next(1, 11) % seed;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v3Sub_dump_p" : "dbo_v3Sub_dump";
 
@@ -227,7 +226,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllResourcesByLang_XML(string lang, string token)
         {
-            int outputnum = rnd.Next(1, 11) % seed;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
 
@@ -252,7 +251,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllResourcesByLang_XML_QS(string lang, string token)
         {
-            int outputnum = rnd.Next(1, 11) % seed;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
 
@@ -304,7 +303,7 @@ namespace WebApi.Controllers
             [HttpGet]
             public HttpResponseMessage GetAllResources(string token)
             {
-            int outputnum = rnd.Next(1, 11) % seed;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
 
@@ -329,7 +328,7 @@ namespace WebApi.Controllers
             [HttpGet]
             public HttpResponseMessage GetAllResources_QS(string token)
             {
-            int outputnum = rnd.Next(1, 11) % seed;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
 
@@ -356,7 +355,7 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllResources_xml(string token)
                 {
-                    int outputnum = rnd.Next(1, 11) % seed;
+                    int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
                     // if outputnum = 0 then out all records, else output parts of records
                     string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
 
@@ -393,7 +392,7 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllResources_XML_QS( string token)
                 {
-                    int outputnum = rnd.Next(1, 11) % seed;
+                    int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
                     // if outputnum = 0 then out all records, else output parts of records
                     string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
 
