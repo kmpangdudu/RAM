@@ -11,7 +11,7 @@ namespace DATA.EF
 {
     using System;
     
-    public partial class SubRamResource
+    public partial class p281_Result
     {
         public int ETLLoadID { get; set; }
         public string ResourceAgencyNum { get; set; }
@@ -19,16 +19,33 @@ namespace DATA.EF
         public int SubCategoryID { get; set; }
         public int TOPCategoryID { get; set; }
         public string Name { get; set; }
+        public string AgencyDescription { get; set; }
         public string PhysicalAddress { get; set; }
         public string City { get; set; }
         public string Province { get; set; }
+        public string PhysicalCountry { get; set; }
         public string PhysicalPostalCode { get; set; }
+        public string STerm { get; set; }
+        public string LTerms { get; set; }
         public string PhysicalAddressIsPrivate { get; set; }
         public Nullable<decimal> Latitude { get; set; }
         public Nullable<decimal> Longitude { get; set; }
+        public string HoursOfOperation { get; set; }
         public string Phone { get; set; }
         public string WebsiteAddress { get; set; }
+        public string Eligibility { get; set; }
+        public string DisabilitiesAccess { get; set; }
+        public string FeeStructureSource { get; set; }
+        public string ApplicationProcess { get; set; }
+        public string DocumentsRequired { get; set; }
+        public string LanguagesOfferedList { get; set; }
+        public string LanguageOfRecord { get; set; }
+        public string WorkHours { get; set; }
+        public string CustomEligibilitybyAge { get; set; }
         public string Coverage { get; set; }
+        public string CoverageArea { get; set; }
+        public string NormalWaitTime { get; set; }
         public Nullable<bool> IsHelpline { get; set; }
+        public string CustomTargetPopulation { get; set; }
     }
 }

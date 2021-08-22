@@ -11,24 +11,24 @@ namespace DATA.EF
 {
     using System;
     
-    public partial class SubRamResource
+    public partial class p506_Result
     {
         public int ETLLoadID { get; set; }
         public string ResourceAgencyNum { get; set; }
         public string Map { get; set; }
         public int SubCategoryID { get; set; }
+        public string SubCategory { get; set; }
         public int TOPCategoryID { get; set; }
+        public string TopCategory { get; set; }
         public string Name { get; set; }
         public string PhysicalAddress { get; set; }
+        public string PhysicalAddressIsPrivate { get; set; }
         public string City { get; set; }
         public string Province { get; set; }
-        public string PhysicalPostalCode { get; set; }
-        public string PhysicalAddressIsPrivate { get; set; }
+        public string STerm { get; set; }
         public Nullable<decimal> Latitude { get; set; }
         public Nullable<decimal> Longitude { get; set; }
         public string Phone { get; set; }
         public string WebsiteAddress { get; set; }
-        public string Coverage { get; set; }
-        public Nullable<bool> IsHelpline { get; set; }
     }
 }

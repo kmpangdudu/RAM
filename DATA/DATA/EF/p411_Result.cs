@@ -11,7 +11,7 @@ namespace DATA.EF
 {
     using System;
     
-    public partial class SubRamResource
+    public partial class p411_Result
     {
         public int ETLLoadID { get; set; }
         public string ResourceAgencyNum { get; set; }
