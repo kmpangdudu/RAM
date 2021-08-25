@@ -284,6 +284,9 @@
           <Parameter Name="cid" Type="int" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="p981" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="csip" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Proc_apilog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dbschema" Type="nvarchar" Mode="In" />
           <Parameter Name="csmethod" Type="nvarchar" Mode="In" />
@@ -891,6 +894,9 @@
             <Parameter Name="lang" Mode="In" Type="String" />
             <Parameter Name="token" Mode="In" Type="String" />
             <Parameter Name="a" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_check_user_country" ReturnType="Collection(RAMModel.UserCountry)">
+            <Parameter Name="csip" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="TopCategoryList">
@@ -2492,6 +2498,9 @@
           <Property Type="String" Name="Alias" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Province" Nullable="true" MaxLength="255" />
         </ComplexType>
+        <ComplexType Name="UserCountry">
+          <Property Type="String" Name="country" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3857,6 +3866,13 @@
                 <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
                 <ScalarProperty Name="Alias" ColumnName="Alias" />
                 <ScalarProperty Name="Province" ColumnName="Province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_check_user_country" FunctionName="RAMModel.Store.p981">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.UserCountry">
+                <ScalarProperty Name="country" ColumnName="country" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

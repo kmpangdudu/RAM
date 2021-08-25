@@ -1,9 +1,9 @@
-﻿using BIZ.Log;
+﻿using BIZ.Locations;
+using BIZ.Log;
 using BIZ.Search;
 using DATA.EF;
 using Newtonsoft.Json;
 using System;
-using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -26,10 +26,11 @@ namespace WebApi.Controllers
         HttpResponseMessage response = new HttpResponseMessage();
         HttpRequest request = HttpContext.Current.Request;
         LogServices logservices = new LogServices();
-
-        int seed =Properties.Settings.Default.p;
+        CityServices cityservice = new CityServices();
+        int seed =Properties.Settings.Default.p; // user comes from Canada
+        int seed1 = Properties.Settings.Default.p1; // user comes from other country
         Random rnd = new Random();
-
+        
 
         #region Get Resource by Lang
         #region JSON
@@ -47,6 +48,9 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllResourcesByLang(string lang, string token)
         {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
@@ -76,6 +80,10 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetV3NewFullResourcesByLang(string lang, string token)
         {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed : seed1; 
+
             int outputnum = (rnd.Next(1, 10) <= seed)? 0: 1;
             // if outputnum = 0 then out  parts of records, elase all records, 
             string mark = (outputnum == 0) ? "dbo_v3a_dump_p" : "dbo_v3a_dump";
@@ -106,6 +114,9 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllSubsetResourcesByLang(string lang, string token)
         {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v3s_dump_p" : "dbo_v3s_dump";
@@ -133,6 +144,9 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllResourcesByLang_QS(string lang, string token)
         {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
@@ -165,6 +179,9 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetV3NewFullResourcesByLang_QS(string lang, string token)
         {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v3a_dump_p" : "dbo_v3a_dump";
@@ -196,6 +213,9 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllSubsetResourcesByLang_QS(string lang, string token)
         {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v3Sub_dump_p" : "dbo_v3Sub_dump";
@@ -226,6 +246,9 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllResourcesByLang_XML(string lang, string token)
         {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
@@ -251,6 +274,9 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllResourcesByLang_XML_QS(string lang, string token)
         {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
@@ -303,6 +329,9 @@ namespace WebApi.Controllers
             [HttpGet]
             public HttpResponseMessage GetAllResources(string token)
             {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
@@ -328,6 +357,9 @@ namespace WebApi.Controllers
             [HttpGet]
             public HttpResponseMessage GetAllResources_QS(string token)
             {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
@@ -355,6 +387,9 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllResources_xml(string token)
                 {
+                    //check where the user comes from by his IP address
+                    string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+                    seed = (userCountry == "CA") ? seed : seed1;
                     int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
                     // if outputnum = 0 then out all records, else output parts of records
                     string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
@@ -392,6 +427,9 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllResources_XML_QS( string token)
                 {
+                    //check where the user comes from by his IP address
+                    string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+                    seed = (userCountry == "CA") ? seed : seed1;
                     int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
                     // if outputnum = 0 then out all records, else output parts of records
                     string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";

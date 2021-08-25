@@ -341,6 +341,9 @@
     <Compile Include="EF\TopCategoryList.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\UserCountry.cs">
+      <DependentUpon>RAMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\V3_Full_Resource.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>

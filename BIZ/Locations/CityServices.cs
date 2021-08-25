@@ -35,6 +35,12 @@ namespace BIZ.Locations
             return response;
         }
 
+        //2021-08-25
+        public string checkusercountry (string csip)
+        {
+            var usercountry = db.Proc_check_user_country(csip).ToString().ToUpper();
+            return usercountry;
+        }
 
         #region Incrementlocation
         public List<CityList> GetIncrementCityLocationList(string cl, string token)

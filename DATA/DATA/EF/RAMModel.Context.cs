@@ -1096,5 +1096,14 @@ namespace DATA.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<V3_NewFullRAM>("Proc_Get_All_V3_Ram_by_Lang", langParameter, tokenParameter, aParameter);
         }
+    
+        public virtual ObjectResult<UserCountry> Proc_check_user_country(string csip)
+        {
+            var csipParameter = csip != null ?
+                new ObjectParameter("csip", csip) :
+                new ObjectParameter("csip", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserCountry>("Proc_check_user_country", csipParameter);
+        }
     }
 }
