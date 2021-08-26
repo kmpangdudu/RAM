@@ -53,7 +53,7 @@ namespace WebApi.Controllers
             seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
-            string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
+            string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetAllResourcesByLang(lang, token).ToList();
@@ -86,7 +86,7 @@ namespace WebApi.Controllers
 
             int outputnum = (rnd.Next(1, 10) <= seed)? 0: 1;
             // if outputnum = 0 then out  parts of records, elase all records, 
-            string mark = (outputnum == 0) ? "dbo_v3a_dump_p" : "dbo_v3a_dump";
+            string mark = (outputnum == 0) ? "dbo_3a_d_p" : "dbo_3a_d";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.Get_AllV3NewfullResourcesByLang(lang, token, outputnum).ToList();
@@ -119,7 +119,7 @@ namespace WebApi.Controllers
             seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
-            string mark = (outputnum == 0) ? "dbo_v3s_dump_p" : "dbo_v3s_dump";
+            string mark = (outputnum == 0) ? "dbo_3s_d_p" : "dbo_3s_d";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetAllSubResourcesByLang(lang, token).ToList();
@@ -149,7 +149,7 @@ namespace WebApi.Controllers
             seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
-            string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
+            string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
 
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
@@ -184,7 +184,7 @@ namespace WebApi.Controllers
             seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
-            string mark = (outputnum == 0) ? "dbo_v3a_dump_p" : "dbo_v3a_dump";
+            string mark = (outputnum == 0) ? "dbo_3a_d_p" : "dbo_3a_d";
 
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
@@ -218,7 +218,7 @@ namespace WebApi.Controllers
             seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
-            string mark = (outputnum == 0) ? "dbo_v3Sub_dump_p" : "dbo_v3Sub_dump";
+            string mark = (outputnum == 0) ? "dbo_3s_d_p" : "dbo_3s_d";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetAllSubResourcesByLang(lang, token).ToList();
@@ -251,7 +251,7 @@ namespace WebApi.Controllers
             seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
-            string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
+            string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             response = createResourcehResult(lang, token);
@@ -279,7 +279,7 @@ namespace WebApi.Controllers
             seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
-            string mark = (outputnum == 0) ? "dbo_v2_dump_p" : "dbo_v2_dump";
+            string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             response = createResourcehResult(lang, token);
@@ -334,7 +334,7 @@ namespace WebApi.Controllers
             seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
-            string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
+            string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = resourceservice.GetAllResources(token).ToList();
@@ -362,7 +362,7 @@ namespace WebApi.Controllers
             seed = (userCountry == "CA") ? seed : seed1;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
-            string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
+            string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = resourceservice.GetAllResources(token).ToList();
@@ -392,7 +392,7 @@ namespace WebApi.Controllers
                     seed = (userCountry == "CA") ? seed : seed1;
                     int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
                     // if outputnum = 0 then out all records, else output parts of records
-                    string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
+                    string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
 
 
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
@@ -432,7 +432,7 @@ namespace WebApi.Controllers
                     seed = (userCountry == "CA") ? seed : seed1;
                     int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
                     // if outputnum = 0 then out all records, else output parts of records
-                    string mark = (outputnum == 0) ? "dbo_v2F_dump_p" : "dbo_v2F_dump";
+                    string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
 
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     request = HttpContext.Current.Request;
@@ -474,11 +474,16 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetResourcesByType(string type, string lang, string token)
         {
+
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
+
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetResourceByType(type,lang,token).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "type", "resource", type);
+            logservices.logservices(request, response, mark, "json", "path", lang, token, "type", "resource", type);
             return response;
         }
         #endregion Path
@@ -498,11 +503,17 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetResourcesByType_QS(string type, string lang, string token)
         {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed : seed1;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetResourceByType(type, lang, token).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "type", "resource", type);
+            logservices.logservices(request, response, mark, "json", "query", lang, token, "type", "resource", type);
             return response;
         }
         #endregion queryString
@@ -524,11 +535,17 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetResourcesByType_XML(string type, string lang, string token)
         {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed : seed1;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             //var json = resourceservice.GetResourceByType(type, lang, token).ToList();
             request = HttpContext.Current.Request;
             response = createResourcehTypeResult(type, lang, token);
-            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "type", "resource", type);
+            logservices.logservices(request, response, mark, "xml", "path", lang, token, "type", "resource", type);
 
             return response;
         }
@@ -549,11 +566,17 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetResourcesByType_XML_QS(string type, string lang, string token)
         {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed : seed1;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             //var json = resourceservice.GetResourceByType(type, lang, token).ToList();
             request = HttpContext.Current.Request;
             response = createResourcehTypeResult(type, lang, token);
-            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "type", "resource", type);
+            logservices.logservices(request, response, mark, "xml", "query", lang, token, "type", "resource", type);
 
             return response;
         }
