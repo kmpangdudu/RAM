@@ -19,26 +19,26 @@ namespace BIZ.Search
 
         }
 
-        public List<RamResource> GetAllResources(string token)
+        public List<RamResource> GetAllResources(string token, int a)
         {
-            var response = db.Proc_Get_All_RamResource("en", token).ToList();
+            var response = db.Proc_Get_All_RamResource("en", token, a).ToList();
            // db.Proc_apilog("GET", "en", token, "all", "Resource", string.Empty);
 
             return response;
         }
 
-        public List<RamResource> GetAllResourcesByLang(string lang, string token)
+        public List<RamResource> GetAllResourcesByLang(string lang, string token, int a)
         {
-            var response = db.Proc_Get_All_RamResource_by_Lang(lang , token).ToList();
+            var response = db.Proc_Get_All_RamResource_by_Lang(lang , token, a).ToList();
             //db.Proc_apilog("GET", lang, token, "Language", "Resource", lang);
 
             return response;
         }
 
         // 2020-11-07 add subset of RAM Resoucre by 4D asked
-        public List<SubRamResource> GetAllSubResourcesByLang(string lang, string token)
+        public List<SubRamResource> GetAllSubResourcesByLang(string lang, string token, int a)
         {
-            var response = db.Proc_Get_All_SubRamResource_by_Lang(lang, token).ToList();
+            var response = db.Proc_Get_All_SubRamResource_by_Lang(lang, token, a).ToList();
             //db.Proc_apilog("GET", lang, token, "Language", "Resource", lang);
             return response;
         }

@@ -21,6 +21,8 @@ namespace WebApi.Controllers
     [FilterIP]
     public class ResourceController : ApiController
     {
+        // monitor the user agent axios/0.21.1
+       //  MongoDB-Realm application-0-ozzbn
 
         private ResourceServices resourceservice = new ResourceServices();
         HttpResponseMessage response = new HttpResponseMessage();
@@ -29,7 +31,11 @@ namespace WebApi.Controllers
         CityServices cityservice = new CityServices();
         int seed =Properties.Settings.Default.p; // user comes from Canada
         int seed1 = Properties.Settings.Default.p1; // user comes from other country
+        int seed2 = Properties.Settings.Default.p2; // user comes from other country
         Random rnd = new Random();
+        string ua1 = "axios";
+        string ua2 = "MongoDB";
+        
         
 
         #region Get Resource by Lang
@@ -50,13 +56,14 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1;
+            seed = (userCountry == "CA") ? seed2 : seed1;
+            seed =( request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-            var json = resourceservice.GetAllResourcesByLang(lang, token).ToList();
+            var json = resourceservice.GetAllResourcesByLang(lang, token, outputnum).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
             logservices.logservices(request, response, mark, "json", "path", lang, token, "Language", "resource", lang);
@@ -82,8 +89,8 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1; 
-
+            seed = (userCountry == "CA") ? seed : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
             int outputnum = (rnd.Next(1, 10) <= seed)? 0: 1;
             // if outputnum = 0 then out  parts of records, elase all records, 
             string mark = (outputnum == 0) ? "dbo_3a_d_p" : "dbo_3a_d";
@@ -116,13 +123,14 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1;
+            seed = (userCountry == "CA") ? seed : seed1; //if it is from CA, do not truncate 
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_3s_d_p" : "dbo_3s_d";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-            var json = resourceservice.GetAllSubResourcesByLang(lang, token).ToList();
+            var json = resourceservice.GetAllSubResourcesByLang(lang, token, outputnum).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
             logservices.logservices(request, response, mark, "json", "path", lang, token, "Language", "resource", lang);
@@ -146,14 +154,15 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1;
+            seed = (userCountry == "CA") ? seed2 : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
 
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-            var json = resourceservice.GetAllResourcesByLang(lang, token).ToList();
+            var json = resourceservice.GetAllResourcesByLang(lang, token, outputnum).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
             logservices.logservices(request, response, mark, "json", "query", lang, token, "Language", "resource", lang);
@@ -182,6 +191,7 @@ namespace WebApi.Controllers
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
             seed = (userCountry == "CA") ? seed : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_3a_d_p" : "dbo_3a_d";
@@ -216,12 +226,13 @@ namespace WebApi.Controllers
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
             seed = (userCountry == "CA") ? seed : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_3s_d_p" : "dbo_3s_d";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-            var json = resourceservice.GetAllSubResourcesByLang(lang, token).ToList();
+            var json = resourceservice.GetAllSubResourcesByLang(lang, token, outputnum).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
             logservices.logservices(request, response, mark, "json", "query", lang, token, "Language", "resource", lang);
@@ -248,7 +259,8 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1;
+            seed = (userCountry == "CA") ? seed2 : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
@@ -276,7 +288,8 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1;
+            seed = (userCountry == "CA") ? seed2 : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
@@ -292,10 +305,18 @@ namespace WebApi.Controllers
 
         private HttpResponseMessage createResourcehResult(string lang, string token)
         {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+            seed = (userCountry == "CA") ? seed2 : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
+            // if outputnum = 0 then out all records, else output parts of records
+            string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
+
             lang = lang.ToLower();
             if ((lang == "en") || (lang == "fr"))
             {
-                var xml = resourceservice.GetAllResourcesByLang(lang, token).ToList();
+                var xml = resourceservice.GetAllResourcesByLang(lang, token, outputnum).ToList();
 
                 if (xml.Count > 0)
                 {
@@ -331,13 +352,14 @@ namespace WebApi.Controllers
             {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1;
+            seed = (userCountry == "CA") ? seed2 : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                var json = resourceservice.GetAllResources(token).ToList();
+                var json = resourceservice.GetAllResources(token, outputnum).ToList();
                 response = toJson(json, "en");
                 request = HttpContext.Current.Request;
                 logservices.logservices(request, response, mark, "json", "path", string.Empty, token, "all", "resource", string.Empty);
@@ -359,13 +381,14 @@ namespace WebApi.Controllers
             {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1;
+            seed = (userCountry == "CA") ? seed2 : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
 
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                var json = resourceservice.GetAllResources(token).ToList();
+                var json = resourceservice.GetAllResources(token, outputnum).ToList();
                 response = toJson(json, "en");
                 request = HttpContext.Current.Request;
                 logservices.logservices(request, response, mark, "json", "query", string.Empty, token, "all", "resource", string.Empty);
@@ -389,15 +412,16 @@ namespace WebApi.Controllers
                 {
                     //check where the user comes from by his IP address
                     string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-                    seed = (userCountry == "CA") ? seed : seed1;
-                    int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
+                    seed = (userCountry == "CA") ? seed2 : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
                     // if outputnum = 0 then out all records, else output parts of records
                     string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
 
 
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     request = HttpContext.Current.Request;
-                    var xml = resourceservice.GetAllResources(token).ToList();
+                    var xml = resourceservice.GetAllResources(token, outputnum).ToList();
                     if (xml.Count > 0)
                     {
                         var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
@@ -429,14 +453,15 @@ namespace WebApi.Controllers
                 {
                     //check where the user comes from by his IP address
                     string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-                    seed = (userCountry == "CA") ? seed : seed1;
-                    int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
+                    seed = (userCountry == "CA") ? seed2 : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
                     // if outputnum = 0 then out all records, else output parts of records
                     string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
 
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     request = HttpContext.Current.Request;
-                    var xml = resourceservice.GetAllResources(token).ToList();
+                    var xml = resourceservice.GetAllResources(token, outputnum).ToList();
                     if (xml.Count > 0)
                     {
                         var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
@@ -505,7 +530,8 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1;
+            seed = (userCountry == "CA") ? seed2 : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
@@ -537,7 +563,8 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1;
+            seed = (userCountry == "CA") ? seed2 : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
@@ -568,7 +595,8 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1;
+            seed = (userCountry == "CA") ? seed2 : seed1;
+            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";

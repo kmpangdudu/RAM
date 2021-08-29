@@ -187,7 +187,7 @@ namespace DATA.EF
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RamResource>("Proc_Get_Resource_by_Cluster_Search_Keywords", searchWordSParameter, langParameter, tokenParameter);
         }
     
-        public virtual ObjectResult<RamResource> Proc_Get_All_RamResource_by_Lang(string lang, string token)
+        public virtual ObjectResult<RamResource> Proc_Get_All_RamResource_by_Lang(string lang, string token, Nullable<int> a)
         {
             var langParameter = lang != null ?
                 new ObjectParameter("lang", lang) :
@@ -197,10 +197,14 @@ namespace DATA.EF
                 new ObjectParameter("token", token) :
                 new ObjectParameter("token", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RamResource>("Proc_Get_All_RamResource_by_Lang", langParameter, tokenParameter);
+            var aParameter = a.HasValue ?
+                new ObjectParameter("a", a) :
+                new ObjectParameter("a", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RamResource>("Proc_Get_All_RamResource_by_Lang", langParameter, tokenParameter, aParameter);
         }
     
-        public virtual ObjectResult<RamResource> Proc_Get_All_RamResource(string lang, string token)
+        public virtual ObjectResult<RamResource> Proc_Get_All_RamResource(string lang, string token, Nullable<int> a)
         {
             var langParameter = lang != null ?
                 new ObjectParameter("lang", lang) :
@@ -210,7 +214,11 @@ namespace DATA.EF
                 new ObjectParameter("token", token) :
                 new ObjectParameter("token", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RamResource>("Proc_Get_All_RamResource", langParameter, tokenParameter);
+            var aParameter = a.HasValue ?
+                new ObjectParameter("a", a) :
+                new ObjectParameter("a", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RamResource>("Proc_Get_All_RamResource", langParameter, tokenParameter, aParameter);
         }
     
         public virtual ObjectResult<RamResource> Proc_Get_Resource_by_City(Nullable<int> cityID, string lang, string token)
@@ -863,7 +871,7 @@ namespace DATA.EF
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Proc_GetSurveyQuestionOptsByVersion_Result>("Proc_GetSurveyQuestionOptsByVersion", tokenParameter, verParameter, langParameter);
         }
     
-        public virtual ObjectResult<SubRamResource> Proc_Get_All_SubRamResource_by_Lang(string lang, string token)
+        public virtual ObjectResult<SubRamResource> Proc_Get_All_SubRamResource_by_Lang(string lang, string token, Nullable<int> a)
         {
             var langParameter = lang != null ?
                 new ObjectParameter("lang", lang) :
@@ -873,7 +881,11 @@ namespace DATA.EF
                 new ObjectParameter("token", token) :
                 new ObjectParameter("token", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Get_All_SubRamResource_by_Lang", langParameter, tokenParameter);
+            var aParameter = a.HasValue ?
+                new ObjectParameter("a", a) :
+                new ObjectParameter("a", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubRamResource>("Proc_Get_All_SubRamResource_by_Lang", langParameter, tokenParameter, aParameter);
         }
     
         public virtual ObjectResult<SubRamResource> Proc_Search_Sub_Resource_In_circular_by_kws(string searchWordS, Nullable<decimal> startLatitude, Nullable<decimal> startLongitude, Nullable<decimal> radius, string lang, string token)

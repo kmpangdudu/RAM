@@ -81,10 +81,12 @@
         <Function Name="p256" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="a" Type="int" Mode="In" />
         </Function>
         <Function Name="p261" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="a" Type="int" Mode="In" />
         </Function>
         <Function Name="p266" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lat" Type="numeric" Mode="In" />
@@ -103,6 +105,7 @@
         <Function Name="p276" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="a" Type="int" Mode="In" />
         </Function>
         <Function Name="p281" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
@@ -325,10 +328,12 @@
         <Function Name="Proc_Get_All_RamResource" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="a" Type="int" Mode="In" />
         </Function>
         <Function Name="Proc_Get_All_RamResource_by_Lang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="a" Type="int" Mode="In" />
         </Function>
         <Function Name="Proc_Get_All_Resource_In_Radius_boundary_Box" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lat" Type="numeric" Mode="In" />
@@ -347,6 +352,7 @@
         <Function Name="Proc_Get_All_SubRamResource_by_Lang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="a" Type="int" Mode="In" />
         </Function>
         <Function Name="Proc_Get_All_V3_Ram_by_Lang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
@@ -635,10 +641,12 @@
           <FunctionImport Name="Proc_Get_All_RamResource_by_Lang" ReturnType="Collection(RAMModel.RamResource)">
             <Parameter Name="lang" Mode="In" Type="String" />
             <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="a" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Proc_Get_All_RamResource" ReturnType="Collection(RAMModel.RamResource)">
             <Parameter Name="lang" Mode="In" Type="String" />
             <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="a" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Proc_Get_Resource_by_City" ReturnType="Collection(RAMModel.RamResource)">
             <Parameter Name="CityID" Mode="In" Type="Int32" />
@@ -829,6 +837,7 @@
           <FunctionImport Name="Proc_Get_All_SubRamResource_by_Lang" ReturnType="Collection(RAMModel.SubRamResource)">
             <Parameter Name="lang" Mode="In" Type="String" />
             <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="a" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Proc_Search_Sub_Resource_In_circular_by_kws" ReturnType="Collection(RAMModel.SubRamResource)">
             <Parameter Name="SearchWordS" Mode="In" Type="String" />
@@ -896,7 +905,7 @@
             <Parameter Name="a" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Proc_check_user_country" ReturnType="Collection(RAMModel.UserCountry)">
-            <Parameter Name="csip" Mode="In" Type="String" />
+          <Parameter Name="csip" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="TopCategoryList">
