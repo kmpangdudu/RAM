@@ -31,7 +31,7 @@ namespace WebApi.Controllers
         CityServices cityservice = new CityServices();
         int seed =Properties.Settings.Default.p; // user comes from Canada
         int seed1 = Properties.Settings.Default.p1; // user comes from other country
-        int seed2 = Properties.Settings.Default.p2; // user comes from other country
+        int seed2 = Properties.Settings.Default.p2;  // no constri
         Random rnd = new Random();
         string ua1 = "axios";
         string ua2 = "MongoDB";
@@ -56,8 +56,14 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed2 : seed1;
-            seed =( request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+            //seed = (userCountry == "CA") ? seed2 : seed1;
+           // seed =( request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+                else seed = seed2;
+
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
@@ -89,8 +95,12 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+            //else seed = seed2;
+
+            //else seed = seed;
             int outputnum = (rnd.Next(1, 10) <= seed)? 0: 1;
             // if outputnum = 0 then out  parts of records, elase all records, 
             string mark = (outputnum == 0) ? "dbo_3a_d_p" : "dbo_3a_d";
@@ -123,8 +133,11 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1; //if it is from CA, do not truncate 
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+            //else seed = seed2;
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_3s_d_p" : "dbo_3s_d";
@@ -154,8 +167,10 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed2 : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+             else seed = seed2;
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
@@ -190,8 +205,12 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+            //else seed = seed2;
+
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_3a_d_p" : "dbo_3a_d";
@@ -225,8 +244,11 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+            //else seed = seed2;
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_3s_d_p" : "dbo_3s_d";
@@ -259,8 +281,12 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed2 : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+            else seed = seed2;
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
@@ -288,8 +314,12 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed2 : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+            else seed = seed2;
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
@@ -307,8 +337,12 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed2 : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+             else seed = seed2;
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
@@ -352,8 +386,13 @@ namespace WebApi.Controllers
             {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed2 : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+             else seed = seed2;
+
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
@@ -381,8 +420,13 @@ namespace WebApi.Controllers
             {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed2 : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+             else seed = seed2;
+
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
@@ -412,9 +456,13 @@ namespace WebApi.Controllers
                 {
                     //check where the user comes from by his IP address
                     string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-                    seed = (userCountry == "CA") ? seed2 : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
-            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
+
+
+                    if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+                    else if (userCountry != "CA") seed = seed1;
+                     else seed = seed2;
+
+                     int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
                     // if outputnum = 0 then out all records, else output parts of records
                     string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
 
@@ -453,9 +501,12 @@ namespace WebApi.Controllers
                 {
                     //check where the user comes from by his IP address
                     string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-                    seed = (userCountry == "CA") ? seed2 : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
-            int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
+
+                    if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+                    else if (userCountry != "CA") seed = seed1;
+                    else seed = seed2;
+
+                    int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
                     // if outputnum = 0 then out all records, else output parts of records
                     string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
 
@@ -499,8 +550,15 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetResourcesByType(string type, string lang, string token)
         {
+            //check where the user comes from by his IP address
+            string userCountry = cityservice.checkusercountry(request.UserHostAddress);
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
+
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
 
@@ -530,8 +588,12 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed2 : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+            else seed = seed2;
+
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
@@ -563,8 +625,13 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed2 : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+            else seed = seed2;
+
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
@@ -595,8 +662,13 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            seed = (userCountry == "CA") ? seed2 : seed1;
-            seed = (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
+
+
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
+            else if (userCountry != "CA") seed = seed1;
+            else seed = seed2;
+
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2f_d_p" : "dbo_2f_d";
