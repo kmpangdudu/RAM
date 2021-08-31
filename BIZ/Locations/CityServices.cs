@@ -38,7 +38,12 @@ namespace BIZ.Locations
         //2021-08-25
         public string checkusercountry (string csip)
         {
-            var usercountry = db.Proc_check_user_country(csip).ToString().ToUpper();
+            //csip = "142.126.225.191";
+            //var usercountry = db.Proc_check_user_country(csip).ToString().ToUpper();
+
+            var usercountry = db.Proc_check_user_country(csip).FirstOrDefault().country.ToUpper();
+           
+            
             return usercountry;
         }
 

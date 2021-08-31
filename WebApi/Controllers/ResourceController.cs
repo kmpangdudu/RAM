@@ -62,8 +62,7 @@ namespace WebApi.Controllers
             if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = 9;
             else if (userCountry != "CA") seed = seed1;
                 else seed = seed2;
-
-
+ 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
