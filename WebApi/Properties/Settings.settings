@@ -42,13 +42,16 @@
       <Value Profile="(Default)">K1dsH3lp15</Value>
     </Setting>
     <Setting Name="p" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">3</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="p1" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">7</Value>
     </Setting>
     <Setting Name="p2" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="p3" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">9</Value>
     </Setting>
   </Settings>
 </SettingsFile>

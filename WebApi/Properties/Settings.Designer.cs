@@ -144,7 +144,7 @@ namespace WebApi.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int p {
             get {
                 return ((int)(this["p"]));
@@ -166,6 +166,15 @@ namespace WebApi.Properties {
         public int p2 {
             get {
                 return ((int)(this["p2"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
+        public int p3 {
+            get {
+                return ((int)(this["p3"]));
             }
         }
     }
