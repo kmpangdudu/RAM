@@ -308,7 +308,7 @@ namespace WebApi.Controllers
             var r = ss.GetSurveyQuestionOpts(token, QID, lang);
             response = toJson(r, lang);
             //( request,  response,  dbschema, format,  para,  lang, token, string cscontent,  csendpoint, keywords)
-            logservices.logservices(request, response, "survey", "json", "path", lang, token, "answer options", "answer/option", QID + "");
+            logservices.logservices(request, response, "survey", "json", "path", lang, token, "answer options", "survey_3", QID + "");
             return response;
         }
 
