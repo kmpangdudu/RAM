@@ -60,9 +60,8 @@ namespace WebApi.Controllers
             //seed = (userCountry == "CA") ? seed2 : seed1;
            // seed =( request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) ? seed1 : seed;
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
             else seed = seed2;
             
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -97,10 +96,10 @@ namespace WebApi.Controllers
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3; 
-            else seed = seed2;
+            //else seed = seed2;   //V3 never allow smooth  
+
             int outputnum = (rnd.Next(1, 10) <= seed)? 0: 1;
             // if outputnum = 0 then out  parts of records, elase all records, 
             string mark = (outputnum == 0) ? "dbo_3a_d_p" : "dbo_3a_d";
@@ -134,10 +133,10 @@ namespace WebApi.Controllers
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
-            else seed = seed2;
+             
+            //else seed = seed2; //v3 never allow smooth
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
@@ -168,9 +167,9 @@ namespace WebApi.Controllers
         {
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-             else if (userCountry == "IN") seed = seed3;
+              
             else seed = seed2;
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
@@ -207,10 +206,10 @@ namespace WebApi.Controllers
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
-            else seed = seed2;
+             
+            //else seed = seed2; //V3 never allow smooth
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
@@ -246,10 +245,10 @@ namespace WebApi.Controllers
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
-            else seed = seed2;
+             
+            //else seed = seed2; //v3 never allow smooth
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
@@ -285,9 +284,9 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
+             
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -319,9 +318,9 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
+             
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -343,9 +342,9 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-             else if (userCountry == "IN") seed = seed3;
+              
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -393,9 +392,9 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-             else if (userCountry == "IN") seed = seed3;
+              
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -427,9 +426,9 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-             else if (userCountry == "IN") seed = seed3;
+              
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -463,9 +462,9 @@ namespace WebApi.Controllers
                     string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-                    if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+                    if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
                     else if (userCountry != "CA") seed = seed1;
-                     else if (userCountry == "IN") seed = seed3;
+                      
                     else seed = seed2;
 
                     int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -508,9 +507,9 @@ namespace WebApi.Controllers
                     //check where the user comes from by his IP address
                     string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
-                    if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+                    if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
                     else if (userCountry != "CA") seed = seed1;
-                    else if (userCountry == "IN") seed = seed3;
+                     
                     else seed = seed2;
 
                     int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -560,9 +559,9 @@ namespace WebApi.Controllers
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-             else if (userCountry == "IN") seed = seed3;
+              
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -597,9 +596,9 @@ namespace WebApi.Controllers
             //check where the user comes from by his IP address
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
+             
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -635,9 +634,9 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
+             
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -672,9 +671,9 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
+             
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -1634,9 +1633,9 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
+             
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -1673,10 +1672,10 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
-            else seed = seed2;
+             
+           //else seed = seed2;  //V3 never allow smooth
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
@@ -1712,9 +1711,9 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
+             
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -1748,10 +1747,10 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
-            else seed = seed2;
+             
+            // else seed = seed2;  //v3 never allow smooth
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
@@ -1790,9 +1789,9 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
+             
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -1827,9 +1826,9 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
+             
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
@@ -2620,10 +2619,10 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
-            else seed = seed2;
+             
+            //else seed = seed2; //v3 never allow smooth
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
@@ -2655,10 +2654,10 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
 
 
-            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2)) seed = seed3;
+            if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-            else if (userCountry == "IN") seed = seed3;
-            else seed = seed2;
+             
+            //else seed = seed2; //v3 never allow smooth
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
