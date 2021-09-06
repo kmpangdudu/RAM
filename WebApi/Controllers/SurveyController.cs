@@ -86,7 +86,7 @@ namespace WebApi.Controllers
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
 
                 //( request,  response,  dbschema, format,  para,  lang, token, string cscontent,  csendpoint, keywords)
-                 logservices.logservices(request, response, "survey", "json", "path", _language, _token, "answer", "survey", _chatid+"");
+                 logservices.logservices(request, response, "survey", "json", "path", _language, _token, "answer", "survey_2", _chatid+"");
 
 
                 return response;
@@ -98,7 +98,7 @@ namespace WebApi.Controllers
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
 
 
-                logservices.logservices(request, response, "survey", "json", "path", _language, _token, "answer", "survey", _chatid + "");
+                logservices.logservices(request, response, "survey", "json", "path", _language, _token, "answer", "survey_2", _chatid + "");
 
                 return response;
             }
@@ -170,7 +170,7 @@ namespace WebApi.Controllers
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
 
                 //( request,  response,  dbschema, format,  para,  lang, token, string cscontent,  csendpoint, keywords)
-                logservices.logservices(request, response, "survey", "json", "path", _language, _token, "answer", "survey", _chatid + "");
+                logservices.logservices(request, response, "survey", "json", "path", _language, _token, "answer", "survey_3", _chatid + "");
 
 
                 return response;
@@ -182,7 +182,7 @@ namespace WebApi.Controllers
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
 
 
-                logservices.logservices(request, response, "survey", "json", "path", _language, _token, "answer", "survey", _chatid + "");
+                logservices.logservices(request, response, "survey", "json", "path", _language, _token, "answer", "survey_3", _chatid + "");
 
                 return response;
             }
@@ -211,7 +211,7 @@ namespace WebApi.Controllers
             var r = ss.GetSurveyType(token, TypeID, lang);
             response = toJson(r,lang);
             //( request,  response,  dbschema, format,  para,  lang, token, string cscontent,  csendpoint, keywords)
-            logservices.logservices(request, response, "survey", "json", "path", lang, token, "survey type", "survey/type", TypeID + "");
+            logservices.logservices(request, response, "survey", "json", "path", lang, token, "survey type", "survey_3", TypeID + "");
             return response;
         }
         // Query
@@ -233,7 +233,7 @@ namespace WebApi.Controllers
             var r = ss.GetSurveyType(token, TypeID, lang);
             response = toJson(r, lang);
             //( request,  response,  dbschema, format,  para,  lang, token, string cscontent,  csendpoint, keywords)
-            logservices.logservices(request, response, "survey", "json", "query", lang, token, "survey type", "survey/type", TypeID + "");
+            logservices.logservices(request, response, "survey", "json", "query", lang, token, "survey type", "survey_3", TypeID + "");
             return response;
         }
         #endregion survey_type
@@ -259,7 +259,7 @@ namespace WebApi.Controllers
             var r = ss.GetSurveyQuestion(token, QID, lang);
             response = toJson(r, lang);
             //( request,  response,  dbschema, format,  para,  lang, token, string cscontent,  csendpoint, keywords)
-            logservices.logservices(request, response, "survey", "json", "path", lang, token, "survey question", "survey/question", QID + "");
+            logservices.logservices(request, response, "survey", "json", "path", lang, token, "survey question", "survey_3", QID + "");
             return response;
         }
 
@@ -282,7 +282,7 @@ namespace WebApi.Controllers
             var r = ss.GetSurveyQuestion(token, QID, lang);
             response = toJson(r, lang);
             //( request,  response,  dbschema, format,  para,  lang, token, string cscontent,  csendpoint, keywords)
-            logservices.logservices(request, response, "survey", "json", "query", lang, token, "survey question", "survey/question", QID + "");
+            logservices.logservices(request, response, "survey", "json", "query", lang, token, "survey question", "survey_3", QID + "");
             return response;
         }
         #endregion question_list
@@ -331,12 +331,10 @@ namespace WebApi.Controllers
             var r = ss.GetSurveyQuestionOpts(token, QID, lang);
             response = toJson(r, lang);
             //( request,  response,  dbschema, format,  para,  lang, token, string cscontent,  csendpoint, keywords)
-            logservices.logservices(request, response, "survey", "json", "path", lang, token, "answer options", "answer/option", QID + "");
+            logservices.logservices(request, response, "survey", "json", "path", lang, token, "answer options", "survery_3", QID + "");
             return response;
         }
         #endregion question_optional
-
-
 
 
         #region question_List_By_Version
@@ -358,7 +356,7 @@ namespace WebApi.Controllers
             var r = ss.GetSurveyQuestionByVersion(token, ver, lang);
             response = toJson(r, lang);
             //( request,  response,  dbschema, format,  para,  lang, token, string cscontent,  csendpoint, keywords)
-            logservices.logservices(request, response, "survey", "json", "path", lang, token, "survey question by Version", "survey/question/ver", ver + "");
+            logservices.logservices(request, response, "survey", "json", "path", lang, token, "survey question by Version", "survey_3", ver + "");
             return response;
         }
 
@@ -380,7 +378,7 @@ namespace WebApi.Controllers
             var r = ss.GetSurveyQuestionByVersion(token, ver, lang);
             response = toJson(r, lang);
             //( request,  response,  dbschema, format,  para,  lang, token, string cscontent,  csendpoint, keywords)
-            logservices.logservices(request, response, "survey", "json", "query", lang, token, "survey question by Version", "survey/question/ver", ver + "");
+            logservices.logservices(request, response, "survey", "json", "query", lang, token, "survey question by Version", "survey_3", ver + "");
             return response;
         }
         #endregion question_List_By_Version
@@ -405,7 +403,7 @@ namespace WebApi.Controllers
             var r = ss.GetSurveyQuestionOptsByVersion(token, ver, lang);
             response = toJson(r, lang);
             //( request,  response,  dbschema, format,  para,  lang, token, string cscontent,  csendpoint, keywords)
-            logservices.logservices(request, response, "survey", "json", "path", lang, token, "version answer options", "Version/answer/option", ver + "");
+            logservices.logservices(request, response, "survey", "json", "path", lang, token, "version answer options", "survery_3", ver + "");
             return response;
         }
 
@@ -427,7 +425,7 @@ namespace WebApi.Controllers
             var r = ss.GetSurveyQuestionOptsByVersion(token, ver, lang);
             response = toJson(r, lang);
             //( request,  response,  dbschema, format,  para,  lang, token, string cscontent,  csendpoint, keywords)
-            logservices.logservices(request, response, "survey", "json", "path", lang, token, "version answer options", "version/answer/option", ver + "");
+            logservices.logservices(request, response, "survey", "json", "path", lang, token, "version answer options", "survey_3", ver + "");
             return response;
         }
         #endregion question_optional_By_Version
@@ -1084,7 +1082,7 @@ namespace WebApi.Controllers
         }
         #endregion question_optional_By_Version
 
-        #endregion Version_5
+        #endregion Version_6
 
         private HttpResponseMessage toJson(Object r, string lang)
         {
