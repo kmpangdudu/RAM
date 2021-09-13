@@ -29,10 +29,17 @@ namespace WebApi.Controllers
         HttpRequest request = HttpContext.Current.Request;
         LogServices logservices = new LogServices();
         CityServices cityservice = new CityServices();
-        int seed =Properties.Settings.Default.p; // user comes from Canada
-        int seed1 = Properties.Settings.Default.p1; // user comes from other country
-        int seed2 = Properties.Settings.Default.p2;  // no constrict
-        int seed3 = Properties.Settings.Default.p3;  // max constrict 9
+        int seed =Properties.Settings.Default.p; // user comes from Canada version3 default = 7
+        int seed1 = Properties.Settings.Default.p1;  // user comes from other country default = 8
+        int seed2 = Properties.Settings.Default.p2;  // from CA and Version2 = 5
+        int seed3 = Properties.Settings.Default.p3;  // from IN or bot = 9
+        // if user are from IN, bot, programming --> seed3 --> 9
+        //     else  not from CA, seed 1 --> 8
+        //          else Version 2 --> seed2 --> 5
+        //               else  version 3 --> seed --> 7
+
+
+
         Random rnd = new Random();
         string ua1 = "axios";
         string ua2 = "MongoDB";
@@ -169,8 +176,8 @@ namespace WebApi.Controllers
             string userCountry = cityservice.checkusercountry(request.UserHostAddress);
             if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-              
             else seed = seed2;
+
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
             // if outputnum = 0 then out all records, else output parts of records
             string mark = (outputnum == 0) ? "dbo_2_d_p" : "dbo_2_d";
@@ -286,7 +293,6 @@ namespace WebApi.Controllers
 
             if (request.UserAgent.Contains(ua1) || request.UserAgent.Contains(ua2) || userCountry == "IN") seed = seed3;
             else if (userCountry != "CA") seed = seed1;
-             
             else seed = seed2;
 
             int outputnum = (rnd.Next(1, 10) <= seed) ? 0 : 1;
